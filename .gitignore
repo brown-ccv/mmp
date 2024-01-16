@@ -23,7 +23,6 @@ env
 
 # Misc
 .idea
-public
 .env
 .DS_Store
 next-env.d.ts
