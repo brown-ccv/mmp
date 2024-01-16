@@ -1,36 +1,42 @@
-{}
 module.exports = {
     root: true,
     env: {
         browser: true,
         es6: true,
-        jest: true,
         node: true,
     },
     extends: [
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:import/recommended",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:@typescript-eslint/recommended",
         "prettier",
+        "next/core-web-vitals"
     ],
-    parserOptions: {
-        sourceType: "module",
-        ecmaVersion: 2023,
-    },
-    plugins: ["react"],
+    parser: "@typescript-eslint/parser",
+    ignorePatterns: [
+        "dist", // Ignore built files.
+        "out",
+        "build",
+        "node_modules",
+    ],
+    plugins: ["react", "@typescript-eslint", "import"],
     rules: {
-        "react/prop-types": "off", // TODO: These should be added so the rule can be removed
-        "import/order": "warn",
-    },
-    settings: {
-        react: {
-            version: "detect",
-        },
-        "import/resolver": {
-            node: {
-                extensions: [".js", ".jsx"],
+        "import/no-unresolved": 0,
+        "import/order": [
+            "warn",
+            {
+                groups: [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index",
+                ],
             },
-        },
+        ],
     },
-    overrides: [{ files: ["*.jsx", "*.js"] }],
 };
