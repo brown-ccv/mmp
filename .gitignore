@@ -17,8 +17,8 @@ Brewfile.lock.json
 public/config/version.json
 Brewfile.lock.json
 
-# Firebase private key
-**/firebase-service-account.json
+# Env
+env
 
 
 # Misc
@@ -27,3 +27,4 @@ public
 .env
 .DS_Store
 next-env.d.ts
+*.firebase
