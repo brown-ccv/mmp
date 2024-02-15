@@ -1,29 +1,23 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-# Dependencies
-node_modules
-Brewfile.lock.json
-.next
+# build output
+dist/
+# generated types
+.astro/
 
-# Production
-/build
-/dist
-/out
+# dependencies
+node_modules/
 
-# Logs
-*.log
-*.log*
-
-# Versioning
-public/config/version.json
-Brewfile.lock.json
-
-# Env
-env
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
 
-# Misc
-.idea
+# environment variables
 .env
+.env.production
+
+# macOS-specific files
 .DS_Store
-next-env.d.ts
-*.firebase
+.idea
+*.log
