@@ -25,6 +25,7 @@ module.exports = {
   plugins: ["@typescript-eslint", "import"],
   rules: {
     "import/no-unresolved": 0,
+    "@typescript-eslint/triple-slash-reference": 0,
     "import/order": [
       "warn",
       {
