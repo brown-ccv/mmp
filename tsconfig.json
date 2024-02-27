@@ -1,5 +1,5 @@
 {
-  "extends": ["astro/tsconfigs/strict", "@brown-ccv/eslint-config"],
+  "extends": ["astro/tsconfigs/strict"],
   "compilerOptions": {
     "strictNullChecks": true
   }
