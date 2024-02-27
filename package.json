@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "lint": "eslint src",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -25,6 +26,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@brown-ccv/eslint-config": "^0.3.0",
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.31.4"
   }
