@@ -1,6 +1,6 @@
 {
   "name": "mmp",
-  "type": "module",
+  "type": "commonjs",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
@@ -23,6 +23,7 @@
     "typescript": "^5.3.3"
   },
   "devDependencies": {
+    "@brown-ccv/eslint-config": "^0.3.0",
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.31.4"
   }

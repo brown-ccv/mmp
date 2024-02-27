@@ -13,6 +13,7 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "plugin:astro/recommended",
     "prettier",
+    "@brown-ccv/eslint-config",
   ],
   parser: "@typescript-eslint/parser",
   ignorePatterns: [
