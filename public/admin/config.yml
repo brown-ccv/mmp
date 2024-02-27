@@ -1,12 +1,240 @@
+local_backend: true
+
 backend:
   name: github
   repo: brown-ccv/mmp
+  base_url: /
 media_folder: public/images
 i18n:
-  # multiple_folders - persists files in `<folder>/<locale>/<slug>.<extension>`
   structure: multiple_folders
-  # Required - a list of locales to show in the editor UI
   locales: [en, es, pt]
-  # Optional, defaults to the first item in locales.
   # The locale to be used for fields validation and as a baseline for the entry.
   default_locale: en
+collections:
+  - name: people
+    i18n: true
+    label: People
+    folder: src/content/people
+    create: true
+    fields:
+      - name: name
+        i18n: true
+        label: Name
+        widget: string
+      - name: title
+        i18n: true
+        label: Title
+        widget: string
+      - name: avatar
+        i18n: duplicate
+        label: Photo
+        widget: image
+      - name: org
+        i18n: true
+        label: Company/University
+        widget: string
+      - name: address
+        i18n: duplicate
+        label: Mailing Address
+        widget: text
+      - name: phone
+        i18n: duplicate
+        label: Phone Number
+        widget: string
+        pattern: ['^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$', 'Phone number must follow standard guidelines']
+      - name: email
+        i18n: duplicate
+        label: Email
+        widget: string
+        pattern: ['.+@.+\..+', 'Email must follow standard guidelines']
+      - name: startDate
+        i18n: duplicate
+        label: Year Started Contributions
+        widget: datetime
+        date_format: yyyy
+        time_format: false
+        format: yyyy
+      - name: endDate
+        i18n: duplicate
+        label: Year Ended Contributions
+        widget: datetime
+        date_format: yyyy
+        time_format: false
+        format: yyyy
+  - name: pubs
+    i18n: true
+    label: Publications
+    folder: src/content/pubs
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}_{{title}}_{{slug}}'
+    fields:
+      - name: classification
+        i18n: true
+        label: Classification
+        widget: select
+        options: [ 'Book', 'Chapter', 'Article', 'Dissertation' ]
+      - name: citation
+        i18n: duplicate
+        label: Citation
+        widget: text
+      - name: url
+        i18n: duplicate
+        label: Link to Publication
+        widget: string
+  - name: data
+    i18n: true
+    label: Data
+    create: true
+    folder: src/content/data
+    fields:
+      - name: title
+        i18n: true
+        label: Title
+        widget: string
+      - name: description
+        i18n: true
+        label: Description
+        widget: text
+      - name: file
+        i18n: duplicate
+        label: File
+        widget: file
+      - name: cat
+        i18n: true
+        label: Category
+        widget: select
+        options: ['Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Code Book', 'Appendices']
+  - name: graphs
+    i18n: true
+    label: Graphs & Figures
+    create: true
+    folder: src/content/graphs
+    fields:
+      - name: title
+        i18n: true
+        label: Title
+        widget: string
+      - name: year
+        i18n: duplicate
+        label: Year
+        widget: datetime
+        date_format: dd.MM.yyyy
+        time_format: false
+        format: yyyy
+      - name: image
+        i18n: duplicate
+        label: Image
+        widget: image
+  - name: history
+    i18n: true
+    label: Oral History
+    create: true
+    folder: src/content/history
+    fields:
+      - name: title
+        i18n: true
+        label: Title
+        widget: string
+      - name: category
+        i18n: true
+        label: Category
+        widget: select
+        options: ['Border Crossing and Working', 'Everyday Life and Return', 'Those Who Stay']
+      - name: interviewee
+        i18n: duplicate
+        label: Who conducted the Interview?
+      - name: year
+        i18n: duplicate
+        label: Year
+        widget: datetime
+        date_format: MM.yyyy
+        time_format: false
+        format: MM.yyyy
+      - name: description
+        i18n: true
+        label: Short Description
+        widget: text
+      - name: story
+        i18n: true
+        label: Full Story
+        widget: markdown
+  - name: news
+    i18n: true
+    label: News
+    identifier_field: date
+    create: true
+    folder: src/content/news
+    fields:
+      - name: date
+        i18n: duplicate
+        label: Date
+        widget: datetime
+        date_format: MM.yyyy
+        time_format: false
+        format: MM.yyyy
+      - name: post
+        i18n: true
+        label: Post
+        widget: markdown
+  - name: pages
+    i18n:
+      structure: single_file
+      locales: [en, es, pt]
+    label: Pages
+    create: false
+    files:
+      - name: about
+        label: About Page
+        file: src/content/pages/about.md
+        slug: about
+        fields:
+          - name: thumbnail
+            label: Header Image
+            widget: image
+          - name: email
+            label: Contact Email
+            widget: string
+            default: mmp-lamp@princeton.edu
+      - name: map
+        label: Map Page
+        file: src/content/pages/map.md
+        slug: map
+        fields:
+          - name: thumbnail
+            label: Header Image
+            widget: image
+          - name: map
+            label: Map Image
+            widget: image
+      - name: pub
+        label: Publication Page
+        file: src/content/pages/pub.md
+        slug: about
+        fields:
+          - name: thumbnail
+            label: Featured Image
+            widget: image
+      - name: news
+        label: News Page
+        file: src/content/pages/news.md
+        slug: news
+        fields:
+          - name: thumbnail
+            label: Featured Image
+            widget: image
+      - name: home
+        label: Home Page
+        file: src/content/pages/home.md
+        slug: about
+        fields:
+          - name: thumbnail
+            label: Featured Image
+            widget: image
+      - name: staff
+        label: Staff Page
+        file: src/content/pages/staff.md
+        slug: staff
+        fields:
+          - name: thumbnail
+            label: Featured Image
+            widget: image
