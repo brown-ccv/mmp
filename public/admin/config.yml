@@ -12,17 +12,14 @@ i18n:
   default_locale: en
 collections:
   - name: people
-    i18n: true
     label: People
     folder: src/content/people
     create: true
     fields:
       - name: name
-        i18n: true
         label: Name
         widget: string
       - name: title
-        i18n: true
         label: Title
         widget: string
       - name: avatar
@@ -30,7 +27,6 @@ collections:
         label: Photo
         widget: image
       - name: org
-        i18n: true
         label: Company/University
         widget: string
       - name: address
@@ -62,14 +58,12 @@ collections:
         time_format: false
         format: yyyy
   - name: pubs
-    i18n: true
     label: Publications
     folder: src/content/pubs
     create: true
     slug: '{{year}}-{{month}}-{{day}}_{{title}}_{{slug}}'
     fields:
       - name: classification
-        i18n: true
         label: Classification
         widget: select
         options: [ 'Book', 'Chapter', 'Article', 'Dissertation' ]
@@ -82,17 +76,15 @@ collections:
         label: Link to Publication
         widget: string
   - name: data
-    i18n: true
     label: Data
     create: true
     folder: src/content/data
     fields:
       - name: title
-        i18n: true
         label: Title
         widget: string
       - name: description
-        i18n: true
+
         label: Description
         widget: text
       - name: file
@@ -100,18 +92,15 @@ collections:
         label: File
         widget: file
       - name: cat
-        i18n: true
         label: Category
         widget: select
         options: ['Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Code Book', 'Appendices']
   - name: graphs
-    i18n: true
     label: Graphs & Figures
     create: true
     folder: src/content/graphs
     fields:
       - name: title
-        i18n: true
         label: Title
         widget: string
       - name: year
@@ -126,17 +115,14 @@ collections:
         label: Image
         widget: image
   - name: history
-    i18n: true
     label: Oral History
     create: true
     folder: src/content/history
     fields:
       - name: title
-        i18n: true
         label: Title
         widget: string
       - name: category
-        i18n: true
         label: Category
         widget: select
         options: ['Border Crossing and Working', 'Everyday Life and Return', 'Those Who Stay']
@@ -151,15 +137,12 @@ collections:
         time_format: false
         format: MM.yyyy
       - name: description
-        i18n: true
         label: Short Description
         widget: text
       - name: story
-        i18n: true
         label: Full Story
         widget: markdown
   - name: news
-    i18n: true
     label: News
     identifier_field: date
     create: true
@@ -173,7 +156,6 @@ collections:
         time_format: false
         format: MM.yyyy
       - name: post
-        i18n: true
         label: Post
         widget: markdown
   - name: pages
