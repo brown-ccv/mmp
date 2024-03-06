@@ -1,12 +1,37 @@
 ---
 import HeaderLink from "./HeaderLink.astro"
 import { SITE_TITLE, LINKS } from "../consts"
+
+const { isHidden = true } = Astro.props
 ---
+<script>
+  class NavbarHamburger extends HTMLElement {
+    constructor() {
+      super()
+
+      // Read the message from the data attribute.
+      let isHidden = true
+      const button = this.querySelector("button")
+      button.addEventListener("click", () => {
+        isHidden = !isHidden
+        console.log(isHidden)
+        if (isHidden) {
+          document.querySelector("#menu-body").style.display = "none"
+        } else {
+          document.querySelector("#menu-body").style.display = "inherit"
+        }
+      })
+    }
+  }
+
+  customElements.define("navbar-hamburger", NavbarHamburger)
+
+</script>
 
 <header class="m-0 p-3 bg-white shadow">
   <nav class="flex items-center justify-between">
     <h2 class="m-0 text-lg"><a class="text-black hover:text-gray-600 decoration-0" href="/">{SITE_TITLE}</a></h2>
-    <div>
+    <div class="hidden lg:flex">
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
@@ -14,13 +39,27 @@ import { SITE_TITLE, LINKS } from "../consts"
           >{data.toUpperCase()}</HeaderLink>)
       }
     </div>
+    <!--hamburger-->
+    <navbar-hamburger class="lg:hidden max-w-screen-xl flex flex-wrap items-center justify-between p-2">
+      <button type="button"
+              class="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+
+    </navbar-hamburger>
   </nav>
+  <div id="menu-body" data-hidden={isHidden} class="hidden">
+    <ul class="flex flex-col items-end font-medium mt-4">
+      {
+        LINKS.map((data) =>
+          <HeaderLink href=`/${data}`
+                      className="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
+          >{data.toUpperCase()}</HeaderLink>)
+      }
+    </ul>
+  </div>
 </header>
-<style>
-
-
-    nav a.active {
-        text-decoration: none;
-        border-bottom-color: var(--accent);
-    }
-</style>
