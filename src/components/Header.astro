@@ -9,13 +9,11 @@ const { isHidden = true } = Astro.props
     constructor() {
       super()
 
-      // Read the message from the data attribute.
       let isHidden = true
       const button = this.querySelector("button")
       const menuElement: HTMLElement = document.getElementById("#menu-body")!
       button?.addEventListener("click", () => {
         isHidden = !isHidden
-        console.log(isHidden)
         if (isHidden) {
           menuElement.style.display = "none"
         } else {
