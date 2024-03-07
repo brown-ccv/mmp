@@ -12,13 +12,14 @@ const { isHidden = true } = Astro.props
       // Read the message from the data attribute.
       let isHidden = true
       const button = this.querySelector("button")
-      button.addEventListener("click", () => {
+      const menuElement: HTMLElement = document.getElementById("#menu-body")!
+      button?.addEventListener("click", () => {
         isHidden = !isHidden
         console.log(isHidden)
         if (isHidden) {
-          document.querySelector("#menu-body").style.display = "none"
+          menuElement.style.display = "none"
         } else {
-          document.querySelector("#menu-body").style.display = "inherit"
+          menuElement.style.display = "inherit"
         }
       })
     }
@@ -35,7 +36,7 @@ const { isHidden = true } = Astro.props
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
-                      className="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
+                      class="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
           >{data.toUpperCase()}</HeaderLink>)
       }
     </div>
@@ -57,7 +58,7 @@ const { isHidden = true } = Astro.props
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
-                      className="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
+                      class="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
           >{data.toUpperCase()}</HeaderLink>)
       }
     </ul>
