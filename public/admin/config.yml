@@ -7,7 +7,7 @@ backend:
 media_folder: public/images
 i18n:
   structure: multiple_folders
-  locales: [en, es, pt]
+  locales: [ en, es, pt ]
   # The locale to be used for fields validation and as a baseline for the entry.
   default_locale: en
 collections:
@@ -37,12 +37,12 @@ collections:
         i18n: duplicate
         label: Phone Number
         widget: string
-        pattern: ['^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$', 'Phone number must follow standard guidelines']
+        pattern: [ '^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$', 'Phone number must follow standard guidelines' ]
       - name: email
         i18n: duplicate
         label: Email
         widget: string
-        pattern: ['.+@.+\..+', 'Email must follow standard guidelines']
+        pattern: [ '.+@.+\..+', 'Email must follow standard guidelines' ]
       - name: startDate
         i18n: duplicate
         label: Year Started Contributions
@@ -94,7 +94,7 @@ collections:
       - name: cat
         label: Category
         widget: select
-        options: ['Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Code Book', 'Appendices']
+        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Code Book', 'Appendices' ]
   - name: graphs
     label: Graphs & Figures
     create: true
@@ -125,7 +125,7 @@ collections:
       - name: category
         label: Category
         widget: select
-        options: ['Border Crossing and Working', 'Everyday Life and Return', 'Those Who Stay']
+        options: [ 'Border Crossing and Working', 'Everyday Life and Return', 'Those Who Stay' ]
       - name: interviewee
         i18n: duplicate
         label: Who conducted the Interview?
@@ -158,65 +158,3 @@ collections:
       - name: post
         label: Post
         widget: markdown
-  - name: pages
-    i18n:
-      structure: single_file
-      locales: [en, es, pt]
-    label: Pages
-    create: false
-    files:
-      - name: about
-        label: About Page
-        file: src/content/pages/about.md
-        slug: about
-        fields:
-          - name: thumbnail
-            label: Header Image
-            widget: image
-          - name: email
-            label: Contact Email
-            widget: string
-            default: mmp-lamp@princeton.edu
-      - name: map
-        label: Map Page
-        file: src/content/pages/map.md
-        slug: map
-        fields:
-          - name: thumbnail
-            label: Header Image
-            widget: image
-          - name: map
-            label: Map Image
-            widget: image
-      - name: pub
-        label: Publication Page
-        file: src/content/pages/pub.md
-        slug: about
-        fields:
-          - name: thumbnail
-            label: Featured Image
-            widget: image
-      - name: news
-        label: News Page
-        file: src/content/pages/news.md
-        slug: news
-        fields:
-          - name: thumbnail
-            label: Featured Image
-            widget: image
-      - name: home
-        label: Home Page
-        file: src/content/pages/home.md
-        slug: about
-        fields:
-          - name: thumbnail
-            label: Featured Image
-            widget: image
-      - name: staff
-        label: Staff Page
-        file: src/content/pages/staff.md
-        slug: staff
-        fields:
-          - name: thumbnail
-            label: Featured Image
-            widget: image
