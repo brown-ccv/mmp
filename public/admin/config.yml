@@ -1,12 +1,160 @@
+local_backend: true
+
 backend:
   name: github
   repo: brown-ccv/mmp
+  base_url: /
 media_folder: public/images
 i18n:
-  # multiple_folders - persists files in `<folder>/<locale>/<slug>.<extension>`
   structure: multiple_folders
-  # Required - a list of locales to show in the editor UI
-  locales: [en, es, pt]
-  # Optional, defaults to the first item in locales.
+  locales: [ en, es, pt ]
   # The locale to be used for fields validation and as a baseline for the entry.
   default_locale: en
+collections:
+  - name: people
+    label: People
+    folder: src/content/people
+    create: true
+    fields:
+      - name: name
+        label: Name
+        widget: string
+      - name: title
+        label: Title
+        widget: string
+      - name: avatar
+        i18n: duplicate
+        label: Photo
+        widget: image
+      - name: org
+        label: Company/University
+        widget: string
+      - name: address
+        i18n: duplicate
+        label: Mailing Address
+        widget: text
+      - name: phone
+        i18n: duplicate
+        label: Phone Number
+        widget: string
+        pattern: [ '^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$', 'Phone number must follow standard guidelines' ]
+      - name: email
+        i18n: duplicate
+        label: Email
+        widget: string
+        pattern: [ '.+@.+\..+', 'Email must follow standard guidelines' ]
+      - name: startDate
+        i18n: duplicate
+        label: Year Started Contributions
+        widget: datetime
+        date_format: yyyy
+        time_format: false
+        format: yyyy
+      - name: endDate
+        i18n: duplicate
+        label: Year Ended Contributions
+        widget: datetime
+        date_format: yyyy
+        time_format: false
+        format: yyyy
+  - name: pubs
+    label: Publications
+    folder: src/content/pubs
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}_{{title}}_{{slug}}'
+    fields:
+      - name: classification
+        label: Classification
+        widget: select
+        options: [ 'Book', 'Chapter', 'Article', 'Dissertation' ]
+      - name: citation
+        i18n: duplicate
+        label: Citation
+        widget: text
+      - name: url
+        i18n: duplicate
+        label: Link to Publication
+        widget: string
+  - name: data
+    label: Data
+    create: true
+    folder: src/content/data
+    fields:
+      - name: title
+        label: Title
+        widget: string
+      - name: description
+
+        label: Description
+        widget: text
+      - name: file
+        i18n: duplicate
+        label: File
+        widget: file
+      - name: cat
+        label: Category
+        widget: select
+        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Code Book', 'Appendices' ]
+  - name: graphs
+    label: Graphs & Figures
+    create: true
+    folder: src/content/graphs
+    fields:
+      - name: title
+        label: Title
+        widget: string
+      - name: year
+        i18n: duplicate
+        label: Year
+        widget: datetime
+        date_format: dd.MM.yyyy
+        time_format: false
+        format: yyyy
+      - name: image
+        i18n: duplicate
+        label: Image
+        widget: image
+  - name: history
+    label: Oral History
+    create: true
+    folder: src/content/history
+    fields:
+      - name: title
+        label: Title
+        widget: string
+      - name: category
+        label: Category
+        widget: select
+        options: [ 'Border Crossing and Working', 'Everyday Life and Return', 'Those Who Stay' ]
+      - name: interviewee
+        i18n: duplicate
+        label: Who conducted the Interview?
+      - name: year
+        i18n: duplicate
+        label: Year
+        widget: datetime
+        date_format: MM.yyyy
+        time_format: false
+        format: MM.yyyy
+      - name: description
+        label: Short Description
+        widget: text
+      - name: story
+        label: Full Story
+        widget: markdown
+  - name: news
+    label: News
+    identifier_field: date
+    create: true
+    folder: src/content/news
+    fields:
+      - name: date
+        i18n: duplicate
+        label: Date
+        widget: datetime
+        date_format: MM.yyyy
+        time_format: false
+        format: MM.yyyy
+      - name: post
+        label: Post
+        widget: markdown
