@@ -18,3 +18,5 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MMP_SITE_B1C9B }}'
           channelId: live
           projectId: mmp-site-b1c9b
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
