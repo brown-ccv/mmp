@@ -36,13 +36,19 @@ const DownloadModal = () => {
                 <CustomInput label={"email"} placeholder={"Your email"} />
                 <CustomTextarea label={"description"} placeholder={"Why you need this file"} />
               </div>
-              <button
-                type="submit"
-                className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500"
-              >
-                <PlusIcon />
-                <span className="pt-1">Validate Email</span>
-              </button>
+              <div className="flex flex-row gap-2">
+                <button className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500">
+                  <PlusIcon />
+                  <span className="pt-1">Validate Email</span>
+                </button>
+                <button
+                  type="submit"
+                  disabled
+                  className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400"
+                >
+                  Download File
+                </button>
+              </div>
             </form>
           </Dialog.Content>
         </Dialog.Overlay>
