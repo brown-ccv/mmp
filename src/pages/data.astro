@@ -1,0 +1,16 @@
+---
+import Layout from "../layouts/BlogPost.astro"
+import DownloadModal from "../components/DownloadModal"
+---
+
+<Layout
+  title="Data"
+  description="Data files and information"
+  pubDate={new Date("August 08 2021")}
+  heroImage="/blog-placeholder-about.jpg"
+>
+  <div class="flex">
+    <p>Download a File</p>
+    <DownloadModal client:only />
+  </div>
+</Layout>
