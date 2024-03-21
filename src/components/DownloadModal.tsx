@@ -2,15 +2,38 @@ import React from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
+import { useForm, Controller, type SubmitHandler } from "react-hook-form"
 import { getDownloadUrl } from "../firebase"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
 
-const DownloadModal = (fileName: any) => {
+export interface Inputs {
+  name: string
+  institution: string
+  email: string
+  description: string
+}
+
+const DownloadModal = ({ fileName }: never) => {
   const [isOpen, setIsOpen] = React.useState(false)
   const [downloadUrl, setDownloadUrl] = React.useState("")
   const [message, setMessage] = React.useState("")
-  const handleSubmit = () => {
+
+  // on load, check if user has valid email
+
+  const {
+    handleSubmit,
+    control,
+    register,
+    formState: { errors },
+  } = useForm<Inputs>()
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    // push data to history table
+
+    // send validation email
+
+    // set session storage
+
     const url = getDownloadUrl(fileName)
   }
   return (
@@ -36,17 +59,49 @@ const DownloadModal = (fileName: any) => {
             </div>
             <Dialog.Title>Download Data</Dialog.Title>
             <p>{message}</p>
-            <Form.Root>
-              <CustomInput label={"name"} placeholder={"Your name"} />
-              <CustomInput label={"institution"} placeholder={"Your institution"} />
-              <CustomInput
-                label={"email"}
-                placeholder={"Your email"}
-                match={"typeMismatch"}
-                errorMessage={"Please provide a valid email"}
+            <Form.Root onSubmit={handleSubmit(onSubmit)}>
+              <Controller
+                name="name"
+                control={control}
+                render={() => (
+                  <CustomInput label={"name"} placeholder={"Your name"} {...register("name")} />
+                )}
               />
-              <CustomTextarea label={"description"} placeholder={"Why you need this file"} />
-
+              <Controller
+                name={"institution"}
+                control={control}
+                render={() => (
+                  <CustomInput
+                    label={"institution"}
+                    placeholder={"Your institution"}
+                    {...register("institution")}
+                  />
+                )}
+              />
+              <Controller
+                name="email"
+                control={control}
+                render={() => (
+                  <CustomInput
+                    label={"email"}
+                    placeholder={"Your email"}
+                    match={"typeMismatch"}
+                    errorMessage={"Please provide a valid email"}
+                    {...register("email")}
+                  />
+                )}
+              />
+              <Controller
+                name="description"
+                control={control}
+                render={() => (
+                  <CustomTextarea
+                    label={"description"}
+                    placeholder={"Why you need this file"}
+                    {...register("description")}
+                  />
+                )}
+              />
               <Form.Submit className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400">
                 <PlusIcon />
                 <span className="pt-1">Validate Email</span>
