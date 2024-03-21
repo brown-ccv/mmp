@@ -1,12 +1,18 @@
 import React from "react"
 import * as Dialog from "@radix-ui/react-dialog"
+import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
+import { getDownloadUrl } from "../firebase"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
 
-const DownloadModal = () => {
+const DownloadModal = (fileName: any) => {
   const [isOpen, setIsOpen] = React.useState(false)
-
+  const [downloadUrl, setDownloadUrl] = React.useState("")
+  const [message, setMessage] = React.useState("")
+  const handleSubmit = () => {
+    const url = getDownloadUrl(fileName)
+  }
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
@@ -29,27 +35,29 @@ const DownloadModal = () => {
               </Dialog.Close>
             </div>
             <Dialog.Title>Download Data</Dialog.Title>
-            <form className="p-4 md:p-5">
-              <div className="flex flex-col justify-center mb-4">
-                <CustomInput label={"name"} placeholder={"Your name"} />
-                <CustomInput label={"institution"} placeholder={"Your institution"} />
-                <CustomInput label={"email"} placeholder={"Your email"} />
-                <CustomTextarea label={"description"} placeholder={"Why you need this file"} />
-              </div>
-              <div className="flex flex-row gap-2">
-                <button className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500">
-                  <PlusIcon />
-                  <span className="pt-1">Validate Email</span>
-                </button>
-                <button
-                  type="submit"
-                  disabled
-                  className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400"
-                >
-                  Download File
-                </button>
-              </div>
-            </form>
+            <p>{message}</p>
+            <Form.Root>
+              <CustomInput label={"name"} placeholder={"Your name"} />
+              <CustomInput label={"institution"} placeholder={"Your institution"} />
+              <CustomInput
+                label={"email"}
+                placeholder={"Your email"}
+                match={"typeMismatch"}
+                errorMessage={"Please provide a valid email"}
+              />
+              <CustomTextarea label={"description"} placeholder={"Why you need this file"} />
+
+              <Form.Submit className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400">
+                <PlusIcon />
+                <span className="pt-1">Validate Email</span>
+              </Form.Submit>
+              <button
+                disabled
+                className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400"
+              >
+                <a href={downloadUrl}>Download File</a>
+              </button>
+            </Form.Root>
           </Dialog.Content>
         </Dialog.Overlay>
       </Dialog.Portal>
