@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app"
 import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore"
 import {
+  EmailAuthProvider,
   getAuth,
-  isSignInWithEmailLink,
+  linkWithCredential,
   sendSignInLinkToEmail,
   signInWithEmailLink,
 } from "firebase/auth"
@@ -14,37 +15,16 @@ const app = initializeApp(firebaseConfig)
 
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app)
-const auth = getAuth()
+export const auth = getAuth()
 const storage = getStorage()
-// TODO: move to modal --  const user = auth.currentUser
 
 // Magic link for auth
 export const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
-  url: "https://mmp-site-b1c9b.web.app/finishSignUp",
+  url: "http://localhost:4321/data",
   // This must be true.
   handleCodeInApp: true,
-  iOS: {
-    bundleId: "com.example.ios",
-  },
-  android: {
-    packageName: "com.example.android",
-    installApp: true,
-    minimumVersion: "12",
-  },
-  dynamicLinkDomain: "example.page.link",
-}
-
-export const addUserFirestore = async (user) => {
-  // check if user exists; if not, add them to db
-  const userRef = doc(db, "users", user.uid)
-  const userSnap = await getDoc(userRef)
-  if (!userSnap.exists()) {
-    await setDoc(doc(db, "users", user.uid), {
-      email: user.email,
-    })
-  }
 }
 
 export const finishSignIn = async (email) => {
@@ -52,9 +32,8 @@ export const finishSignIn = async (email) => {
   try {
     const result = await signInWithEmailLink(auth, email, window.location.href)
     window.localStorage.removeItem("emailForSignIn")
-    if (result.additionalUserInfo.isNewUser) {
-      await addUserFirestore(result.user)
-    }
+    const credential = EmailAuthProvider.credentialWithLink(email, window.location.href)
+    await linkWithCredential(result.user, credential)
     return result.user
   } catch (error) {
     throw new Error(error)
