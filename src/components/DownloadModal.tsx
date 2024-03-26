@@ -3,38 +3,93 @@ import * as Dialog from "@radix-ui/react-dialog"
 import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useForm, Controller, type SubmitHandler } from "react-hook-form"
-import { getDownloadUrl } from "../firebase"
+import {
+  getAuth,
+  isSignInWithEmailLink,
+  sendSignInLinkToEmail,
+  signInWithEmailLink,
+} from "firebase/auth"
+// import { getDownloadUrl, actionCodeSettings, finishSignIn } from "../firebase"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
+import { CheckboxGroup } from "./CheckboxGroup.tsx"
 
 export interface Inputs {
   name: string
   institution: string
   email: string
   description: string
+  files: Array<string>
 }
 
-const DownloadModal = ({ fileName }: never) => {
+const DownloadModal = () => {
+  const auth = getAuth()
   const [isOpen, setIsOpen] = React.useState(false)
   const [downloadUrl, setDownloadUrl] = React.useState("")
   const [message, setMessage] = React.useState("")
-
-  // on load, check if user has valid email
 
   const {
     handleSubmit,
     control,
     register,
+    setValue,
     formState: { errors },
   } = useForm<Inputs>()
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // push data to history table
 
+  const options = [
+    { value: "codebook_life", label: "LIFE" },
+    {
+      value: "codebook_pers",
+      label: "PERS",
+    },
+    { value: "codebook_commun", label: "COMMUN" },
+    { value: "codebook_mig", label: "MIG" },
+    {
+      value: "codebook_house",
+      label: "HOUSE",
+    },
+    { value: "codebook_spouse", label: "SPOUSE" },
+    { value: "codebook_pratio", label: "PRATIO" },
+  ]
+
+  // on load, check if user has validated email; set download url
+  if (isSignInWithEmailLink(auth, window.location.href)) {
+    // Additional state parameters can also be passed via URL.
+    // This can be used to continue the user's intended action before triggering
+    let email = window.localStorage.getItem("emailForSignIn")
+    if (!email) {
+      // User opened the link on a different device. To prevent session fixation
+      // attacks, ask the user to provide the associated email again. For example:
+      email = window.prompt("Please provide your email for confirmation")
+    }
+    try {
+      const files = JSON.parse(window.localStorage.getItem("fileNameList") as string)
+      console.log(files.length)
+      // if (user.emailVerified && files) {
+      //   const urls = files.map(async (fileName: string) => await getDownloadUrl(fileName))
+      //   console.log(urls)
+      //
+      //   // TODO: push data to history table if signed in
+      // }
+    } catch (e) {
+      const error = e as string
+      setMessage(`Error: ${error}`)
+    }
+  }
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    console.log(data)
+    console.log(data.files)
     // send validation email
-
-    // set session storage
-
-    const url = getDownloadUrl(fileName)
+    try {
+      //const result = await sendSignInLinkToEmail(auth, data.email, actionCodeSettings)
+      window.localStorage.setItem("emailForSignIn", data.email)
+      window.localStorage.setItem("fileNameList", JSON.stringify(data.files))
+      //return result
+    } catch (e) {
+      const error = e as string
+      setMessage(`Error: ${error}`)
+    }
   }
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -60,6 +115,12 @@ const DownloadModal = ({ fileName }: never) => {
             <Dialog.Title>Download Data</Dialog.Title>
             <p>{message}</p>
             <Form.Root onSubmit={handleSubmit(onSubmit)}>
+              <CheckboxGroup
+                label={"files"}
+                options={options}
+                register={register}
+                setValue={setValue}
+              />
               <Controller
                 name="name"
                 control={control}
@@ -102,16 +163,21 @@ const DownloadModal = ({ fileName }: never) => {
                   />
                 )}
               />
+
               <Form.Submit className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400">
                 <PlusIcon />
                 <span className="pt-1">Validate Email</span>
               </Form.Submit>
-              <button
-                disabled
-                className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400"
-              >
-                <a href={downloadUrl}>Download File</a>
-              </button>
+              <Form.Field name="download">
+                <Form.Control asChild>
+                  <button
+                    disabled
+                    className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400"
+                  >
+                    <a href={downloadUrl}>Download File</a>
+                  </button>
+                </Form.Control>
+              </Form.Field>
             </Form.Root>
           </Dialog.Content>
         </Dialog.Overlay>
