@@ -16,10 +16,10 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 const auth = getAuth()
 const storage = getStorage()
-const user = auth.currentUser
+// TODO: move to modal --  const user = auth.currentUser
 
 // Magic link for auth
-const actionCodeSettings = {
+export const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
   url: "https://mmp-site-b1c9b.web.app/finishSignUp",
@@ -47,27 +47,19 @@ export const addUserFirestore = async (user) => {
   }
 }
 
-// // Check the link is a sign-in with email link
-// if (isSignInWithEmailLink(auth, window.location.href)) {
-//   // Additional state parameters can also be passed via URL.
-//   // This can be used to continue the user's intended action before triggering
-//   let email = window.localStorage.getItem("emailForSignIn")
-//   if (!email) {
-//     // User opened the link on a different device. To prevent session fixation
-//     // attacks, ask the user to provide the associated email again. For example:
-//     email = window.prompt("Please provide your email for confirmation")
-//   }
-//   // The client SDK will parse the code from the link for you.
-//   try {
-//     const result = await signInWithEmailLink(auth, email, window.location.href)
-//     window.localStorage.removeItem("emailForSignIn")
-//     if (result.additionalUserInfo.isNewUser) {
-//       await addUserFirestore(result.user)
-//     }
-//   } catch (error) {
-//     throw new Error(error)
-//   }
-// }
+export const finishSignIn = async (email) => {
+  // The client SDK will parse the code from the link for you.
+  try {
+    const result = await signInWithEmailLink(auth, email, window.location.href)
+    window.localStorage.removeItem("emailForSignIn")
+    if (result.additionalUserInfo.isNewUser) {
+      await addUserFirestore(result.user)
+    }
+    return result.user
+  } catch (error) {
+    throw new Error(error)
+  }
+}
 export const sendAuthenticateLink = async (email) => {
   try {
     const result = await sendSignInLinkToEmail(auth, email, actionCodeSettings)
@@ -78,10 +70,11 @@ export const sendAuthenticateLink = async (email) => {
   }
 }
 export const getDownloadUrl = async (fileName) => {
-  const lifeRef = ref(storage, `MMP174/${fileName}.pdf`)
+  // TODO: loop over parameter list and then return array
+  const fileRef = ref(storage, `MMP174/${fileName}.pdf`)
 
   try {
-    return await getDownloadURL(lifeRef)
+    return await getDownloadURL(fileRef)
   } catch (error) {
     throw new Error(error)
   }
