@@ -3,12 +3,12 @@ import * as Dialog from "@radix-ui/react-dialog"
 import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useForm, Controller, type SubmitHandler } from "react-hook-form"
-import {
-  getAuth,
-  isSignInWithEmailLink,
-  sendSignInLinkToEmail,
-  signInWithEmailLink,
-} from "firebase/auth"
+// import {
+//   getAuth,
+//   isSignInWithEmailLink,
+//   sendSignInLinkToEmail,
+//   signInWithEmailLink,
+// } from "firebase/auth"
 // import { getDownloadUrl, actionCodeSettings, finishSignIn } from "../firebase"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
@@ -23,18 +23,12 @@ export interface Inputs {
 }
 
 const DownloadModal = () => {
-  const auth = getAuth()
+  //const auth = getAuth()
   const [isOpen, setIsOpen] = React.useState(false)
   const [downloadUrl, setDownloadUrl] = React.useState("")
   const [message, setMessage] = React.useState("")
 
-  const {
-    handleSubmit,
-    control,
-    register,
-    setValue,
-    formState: { errors },
-  } = useForm<Inputs>()
+  const { handleSubmit, control, register, setValue } = useForm<Inputs>()
 
   const options = [
     { value: "codebook_life", label: "LIFE" },
@@ -52,30 +46,30 @@ const DownloadModal = () => {
     { value: "codebook_pratio", label: "PRATIO" },
   ]
 
-  // on load, check if user has validated email; set download url
-  if (isSignInWithEmailLink(auth, window.location.href)) {
-    // Additional state parameters can also be passed via URL.
-    // This can be used to continue the user's intended action before triggering
-    let email = window.localStorage.getItem("emailForSignIn")
-    if (!email) {
-      // User opened the link on a different device. To prevent session fixation
-      // attacks, ask the user to provide the associated email again. For example:
-      email = window.prompt("Please provide your email for confirmation")
-    }
-    try {
-      const files = JSON.parse(window.localStorage.getItem("fileNameList") as string)
-      console.log(files.length)
-      // if (user.emailVerified && files) {
-      //   const urls = files.map(async (fileName: string) => await getDownloadUrl(fileName))
-      //   console.log(urls)
-      //
-      //   // TODO: push data to history table if signed in
-      // }
-    } catch (e) {
-      const error = e as string
-      setMessage(`Error: ${error}`)
-    }
-  }
+  // // on load, check if user has validated email; set download url
+  // if (isSignInWithEmailLink(auth, window.location.href)) {
+  //   // Additional state parameters can also be passed via URL.
+  //   // This can be used to continue the user's intended action before triggering
+  //   let email = window.localStorage.getItem("emailForSignIn")
+  //   if (!email) {
+  //     // User opened the link on a different device. To prevent session fixation
+  //     // attacks, ask the user to provide the associated email again. For example:
+  //     email = window.prompt("Please provide your email for confirmation")
+  //   }
+  //   try {
+  //     const files = JSON.parse(window.localStorage.getItem("fileNameList") as string)
+  //     console.log(files.length)
+  //     // if (user.emailVerified && files) {
+  //     //   const urls = files.map(async (fileName: string) => await getDownloadUrl(fileName))
+  //     //   console.log(urls)
+  //     //
+  //     //   // TODO: push data to history table if signed in
+  //     // }
+  //   } catch (e) {
+  //     const error = e as string
+  //     setMessage(`Error: ${error}`)
+  //   }
+  // }
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data)
@@ -116,6 +110,7 @@ const DownloadModal = () => {
             <p>{message}</p>
             <Form.Root onSubmit={handleSubmit(onSubmit)}>
               <CheckboxGroup
+                title={"Choose files to download:"}
                 label={"files"}
                 options={options}
                 register={register}

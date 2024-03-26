@@ -12,6 +12,7 @@ interface options {
 }
 
 type CheckBoxProps = {
+  title: string
   label: Path<Inputs>
   errorMessage?: string
   options: Array<options>
@@ -30,6 +31,7 @@ type CheckBoxProps = {
     | "valid"
 }
 export const CheckboxGroup = ({
+  title,
   label,
   options,
   match,
@@ -49,19 +51,20 @@ export const CheckboxGroup = ({
   }
   return (
     <Form.Field name={label} className="py-2 my-4 mx-2">
+      <Form.Label>{title}</Form.Label>
       <Form.Control asChild>
         <input
           id={label}
-          type={"hidden"}
+          type={"text"}
           {...register(label)}
           onChange={(e) => {
             setValue(label, e.target.value)
           }}
+          className="hidden"
+          required
         />
       </Form.Control>
-      <Form.Message className="text-red-600 text-lg" match="valueMissing">
-        Please choose at least one file
-      </Form.Message>
+
       {match !== undefined && (
         <>
           <Form.Message match={match}>{errorMessage}</Form.Message>
@@ -80,9 +83,9 @@ export const CheckboxGroup = ({
                   handleFileArray("remove", option.value)
                 }
               }}
-              className="bg-white w-[24px] h-[24px] border-r-4 items-center justify-center shadow-md"
+              className="w-[24px] h-[24px] border-r-4 items-center justify-center shadow-md"
             >
-              <Checkbox.Indicator className="">
+              <Checkbox.Indicator>
                 <CheckIcon />
               </Checkbox.Indicator>
             </Checkbox.Root>
@@ -90,6 +93,9 @@ export const CheckboxGroup = ({
           </div>
         )
       })}
+      <Form.Message className="text-red-600 text-lg" match="valueMissing">
+        Please choose at least one of the {label}
+      </Form.Message>
     </Form.Field>
   )
 }
