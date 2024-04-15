@@ -1,0 +1,9 @@
+@import url("https://use.typekit.net/jng2int.css");
+
+@tailwind base;
+@tailwind components;
+@layer base {
+    :root {
+        @apply font-body;
+    }
+}
