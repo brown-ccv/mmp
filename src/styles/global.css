@@ -114,15 +114,4 @@
         @apply gap-1;
         @apply pt-6;
     }
-
-    .single-column {
-        @apply grid;
-        @apply grid-cols-1;
-        @apply p-12;
-
-    }
-
-    .single-column > * {
-        @apply grid-cols-2;
-    }
 }
