@@ -5,5 +5,120 @@
 @layer base {
     :root {
         @apply font-body;
+        @apply text-base;
+    }
+
+    h1, h2, h3, h4 {
+        @apply font-header;
+        @apply text-neutral-900;
+    }
+
+    h1, h2 {
+        @apply font-bold;
+    }
+
+    h1 {
+        @apply text-5xl;
+    }
+
+    h2 {
+        @apply text-3xl;
+    }
+
+    h3 {
+        @apply text-2xl;
+    }
+
+    p {
+        @apply text-xl;
+        @apply text-neutral-700;
+    }
+
+    p.small {
+        @apply text-base;
+        @apply text-neutral-500;
+    }
+
+    title {
+        @apply gap-6;
+        @apply pt-10;
+    }
+
+    input, select {
+        @apply bg-white;
+        @apply rounded-full;
+        @apply shadow-inner;
+        @apply w-60;
+        @apply flex;
+        @apply items-center;
+        @apply py-5;
+        @apply px-8;
+    }
+
+    input[placeholder] {
+        @apply text-neutral-300;
+    }
+
+    input.disabled, select.disabled {
+        @apply bg-gray;
+    }
+
+    input:focus {
+        @apply shadow-inner-focus;
+    }
+
+    nav {
+        @apply flex;
+        @apply items-center;
+        @apply py-8;
+        @apply text-neutral-500;
+        @apply uppercase;
+    }
+
+    nav a:active {
+        @apply text-neutral-900;
+        @apply border-b-2;
+        @apply border-neutral-900;
+    }
+
+    main {
+        @apply flex;
+        @apply flex-col;
+        @apply gap-6;
+    }
+
+    header {
+        @apply flex;
+        @apply justify-between;
+        @apply items-center;
+        @apply self-stretch;
+        @apply h-5;
+        @apply pt-16;
+        @apply pb-48;
+    }
+
+    footer {
+        @apply flex;
+        @apply items-center;
+        @apply self-stretch;
+        @apply p-16;
+    }
+}
+
+@layer components {
+    .subtitle {
+        @apply gap-1;
+        @apply pt-6;
+    }
+
+    .single-column {
+        @apply grid;
+        @apply grid-cols-1;
+        @apply p-12;
+
+    }
+
+    .single-column > * {
+        @apply grid-cols-2;
     }
 }
