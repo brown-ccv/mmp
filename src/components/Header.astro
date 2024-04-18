@@ -35,7 +35,7 @@ const { isHidden = true } = Astro.props
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
-                      class="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
+                      class="text-lg py-2.5 px-4 text-black no-underline hover:text-gray-600"
           >{data.toUpperCase()}</HeaderLink>)
       }
     </div>
