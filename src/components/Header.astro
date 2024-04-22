@@ -27,14 +27,15 @@ const { isHidden = true } = Astro.props
 
 </script>
 
-<header class="m-0 p-3 bg-white shadow">
-  <nav class="flex items-center justify-between">
-    <h2 class="m-0 text-lg"><a class="text-black hover:text-gray-600 decoration-0" href="/">{SITE_TITLE}</a></h2>
+<header>
+  <h2><a class="hover:text-gray-600 decoration-0" href="/">{SITE_TITLE}</a></h2>
+  <nav>
+
     <div class="hidden lg:flex">
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
-                      class="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
+                      class="text-lg py-2.5 px-4 text-black no-underline hover:text-gray-600"
           >{data.toUpperCase()}</HeaderLink>)
       }
     </div>
