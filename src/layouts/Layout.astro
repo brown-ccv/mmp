@@ -14,13 +14,10 @@ const { title, description, heroImage } = Astro.props
     <BaseHead title={title} description={description} />
   </head>
 
-  <body class="single-column">
+  <body class="grid grid-cols-1 px-8 md:px-16">
     <Header />
     <main>
       <article>
-        <div>
-          {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-        </div>
         <div>
           <div>
             <h1>{title}</h1>
@@ -31,16 +28,5 @@ const { title, description, heroImage } = Astro.props
       </article>
     </main>
     <Footer />
-    <style>
-      .single-column {
-        @apply grid;
-        @apply grid-cols-1;
-        @apply p-12;
-      }
-
-      .single-column > * {
-        @apply grid-cols-2;
-      }
-    </style>
   </body>
 </html>
