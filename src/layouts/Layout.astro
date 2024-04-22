@@ -31,15 +31,16 @@ const { title, description, heroImage } = Astro.props
       </article>
     </main>
     <Footer />
-  </body><style>
-    .single-column {
-      @apply grid;
-      @apply grid-cols-1;
-      @apply p-12;
-    }
+    <style>
+      .single-column {
+        @apply grid;
+        @apply grid-cols-1;
+        @apply p-12;
+      }
 
-    .single-column > * {
-      @apply grid-cols-2;
-    }
-  </style>
+      .single-column > * {
+        @apply grid-cols-2;
+      }
+    </style>
+  </body>
 </html>
