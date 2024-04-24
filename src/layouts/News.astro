@@ -1,8 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content"
-import BaseHead from "../components/BaseHead.astro"
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro"
+import Layout from "./Layout.astro"
 import FormattedDate from "../components/FormattedDate.astro"
 
 type Props = CollectionEntry<"news">["data"]
@@ -10,38 +8,28 @@ type Props = CollectionEntry<"news">["data"]
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-
-  <body class="single-column">
-    <Header />
-    <main>
-      <article>
+<Layout title="title" description="description">
+  <article>
+    <div>
+      {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+    </div>
+    <div>
+      <div>
         <div>
-          {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+          <FormattedDate date={pubDate} />
+          {
+            updatedDate && (
+              <div class="last-updated-on">
+                Last updated on
+                <FormattedDate date={updatedDate} />
+              </div>
+            )
+          }
         </div>
-        <div>
-          <div>
-            <div>
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on
-                    <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <h1>{title}</h1>
-            <hr />
-          </div>
-          <slot />
-        </div>
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+        <h1>{title}</h1>
+        <hr />
+      </div>
+      <slot />
+    </div>
+  </article>
+</Layout>
