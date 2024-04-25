@@ -144,17 +144,23 @@ collections:
         widget: markdown
   - name: news
     label: News
-    identifier_field: date
+    identifier_field: pubDate
     create: true
     folder: src/content/news
     fields:
-      - name: date
+      - name: pubDate
         i18n: duplicate
         label: Date
         widget: datetime
-        date_format: MM.yyyy
+        date_format: MM.dd.yyyy
         time_format: false
-        format: MM.yyyy
-      - name: post
+        format: MM.dd.yyyy
+      - name: title
+        label: Title
+        widget: text
+      - name: description
+        label: Short Description
+        widget: text
+      - name: body
         label: Post
         widget: markdown
