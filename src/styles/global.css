@@ -107,6 +107,15 @@
         @apply self-stretch;
         @apply p-16;
     }
+
+    button[role="checkbox"] {
+        @apply bg-neutral-50;
+        @apply rounded;
+        @apply flex;
+        @apply items-center;
+        @apply justify-center;
+        @apply shadow-md;
+    }
 }
 
 @layer components {

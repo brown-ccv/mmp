@@ -4,15 +4,23 @@ import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
 
+export interface Inputs {
+  name: string
+  institution: string
+  email: string
+  description: string
+  files: Array<string>
+}
+
 const DownloadModal = () => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <button className="sm:inline-flex items-center justify-center w-8 h-8 rounded-lg text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200">
+        <button className="sm:inline-flex w-fit items-center rounded-lg text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200">
+          <span>Download data</span>
           <DownloadIcon />
-          <span className="sr-only">Download data</span>
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
