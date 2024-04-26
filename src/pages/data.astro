@@ -1,11 +1,43 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import DownloadModal from "../components/DownloadModal"
+
+const options = [
+  { value: "codebook_life", label: "LIFE" },
+  {
+    value: "codebook_pers",
+    label: "PERS",
+  },
+  { value: "codebook_commun", label: "COMMUN" },
+  { value: "codebook_mig", label: "MIG" },
+  {
+    value: "codebook_house",
+    label: "HOUSE",
+  },
+  { value: "codebook_spouse", label: "SPOUSE" },
+  { value: "codebook_pratio", label: "PRATIO" },
+]
 ---
 
 <Layout title="Data" description="Data files and information">
-  <div class="flex">
-    <p>Download a File</p>
+  <div class="flex flex-col">
+    <p>Download</p>
+    <table>
+      <tr class="bg-neutral-300 text-left">
+        <th>File Name</th>
+        <th>Category</th>
+        <th>Description</th>
+      </tr>
+      {
+        options.map((option) => (
+          <tr>
+            <td>{option.label}</td>
+            <td>{option.value}</td>
+            <td>test description</td>
+          </tr>
+        ))
+      }
+    </table>
     <DownloadModal client:only />
   </div>
 </Layout>
