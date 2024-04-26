@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useForm } from "react-hook-form"
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "@radix-ui/react-icons"
 
@@ -20,7 +19,7 @@ const DataTable = () => {
     { value: "codebook_pratio", label: "PRATIO" },
   ]
   const [isCheckAll, setIsCheckAll] = useState(false)
-  const [isCheck, setIsCheck] = useState([])
+  const [isCheck, setIsCheck] = useState<string[]>([])
 
   const handleSelectAll = () => {
     const newIsCheckAll = !isCheckAll // Toggle isCheckAll
@@ -35,12 +34,16 @@ const DataTable = () => {
     }
   }
 
-  const handleSelect = (e: { target: any }) => {
-    const checkedItem = e.target
-    setIsCheck([...isCheck, checkedItem.id])
-    if (checkedItem.getAttribute("data-state") == "checked") {
-      setIsCheck(isCheck.filter((item) => item !== checkedItem.id))
-    }
+  const handleSelect = (value: string) => {
+    setIsCheck((prevIsCheck) => {
+      if (prevIsCheck.includes(value)) {
+        // Remove the item from the state if it's already checked
+        return prevIsCheck.filter((item) => item !== value)
+      } else {
+        // Add the item to the state if it's not checked
+        return [...prevIsCheck, value]
+      }
+    })
   }
 
   const selectedFiles = files.map(({ label, value }) => {
@@ -52,7 +55,7 @@ const DataTable = () => {
             id={value}
             className="mx-1 w-[24px] h-[24px] border"
             checked={isCheck.includes(value)}
-            onClick={handleSelect}
+            onClick={() => handleSelect(value)}
           >
             <Checkbox.Indicator>
               <CheckIcon />
