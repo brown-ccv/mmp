@@ -11,7 +11,7 @@ const { isHidden = true } = Astro.props
 
       let isHidden = true
       const button = this.querySelector("button")
-      const menuElement: HTMLElement = document.getElementById("#menu-body")!
+      const menuElement: HTMLElement = document.getElementById("menu-body")!
       button?.addEventListener("click", () => {
         isHidden = !isHidden
         if (isHidden) {
@@ -35,7 +35,7 @@ const { isHidden = true } = Astro.props
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
-                      class="text-lg py-2.5 px-4 text-black no-underline hover:text-gray-600"
+                      class="text-base pt-2.5 px-4 text-neutral-500 hover:text-gray-600 active:text-neutral-900 "
           >{data.toUpperCase()}</HeaderLink>)
       }
     </div>
@@ -51,15 +51,16 @@ const { isHidden = true } = Astro.props
       </button>
 
     </navbar-hamburger>
+    <div id="menu-body" data-hidden={isHidden} class="hidden">
+      <ul class="flex flex-col items-end font-medium mt-4 absolute top-16 right-6 md:right-14">
+        {
+          LINKS.map((data) =>
+            <HeaderLink href=`/${data}`
+                        class="text-base pt-2.5 px-4 text-neutral-500 hover:text-gray-600 active:text-neutral-900"
+            >{data.toUpperCase()}</HeaderLink>)
+        }
+      </ul>
+    </div>
   </nav>
-  <div id="menu-body" data-hidden={isHidden} class="hidden">
-    <ul class="flex flex-col items-end font-medium mt-4">
-      {
-        LINKS.map((data) =>
-          <HeaderLink href=`/${data}`
-                      class="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
-          >{data.toUpperCase()}</HeaderLink>)
-      }
-    </ul>
-  </div>
+
 </header>
