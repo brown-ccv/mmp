@@ -4,19 +4,52 @@ import { CheckIcon } from "@radix-ui/react-icons"
 
 const DataTable = () => {
   const files = [
-    { value: "codebook_life", label: "LIFE" },
+    {
+      value: "codebook_life",
+      label: "LIFE",
+      category: "codebook",
+      description:
+        "Event-history file for each household head from the year of birth until the survey year",
+    },
     {
       value: "codebook_pers",
       label: "PERS",
+      category: "codebook",
+      description: "Cross-sectional file for every person who appears in table A",
     },
-    { value: "codebook_commun", label: "COMMUN" },
-    { value: "codebook_mig", label: "MIG" },
+    {
+      value: "codebook_commun",
+      label: "COMMUN",
+      category: "codebook",
+      description:
+        "Community-level file that provides information at the time of the survey and it is complemented with other information using the Mexican Census",
+    },
+    {
+      value: "codebook_mig",
+      label: "MIG",
+      category: "codebook",
+      description: "Cross-sectional file for each head of household that migrated to the U.S",
+    },
     {
       value: "codebook_house",
       label: "HOUSE",
+      category: "codebook",
+      description:
+        "Cross-sectional file which contains information at the household-level for all households surveyed",
     },
-    { value: "codebook_spouse", label: "SPOUSE" },
-    { value: "codebook_pratio", label: "PRATIO" },
+    {
+      value: "codebook_spouse",
+      label: "SPOUSE",
+      category: "codebook",
+      description:
+        "Event-history file for each household head from the year of birth until the survey year",
+    },
+    {
+      value: "codebook_pratio",
+      label: "PRATIO",
+      category: "codebook",
+      description: "Contains the variables for annual migration prevalence ratio",
+    },
   ]
   const [isCheckAll, setIsCheckAll] = useState(false)
   const [isCheck, setIsCheck] = useState<string[]>([])
@@ -46,38 +79,40 @@ const DataTable = () => {
     })
   }
 
-  const selectedFiles = files.map(({ label, value }) => {
+  const selectedFiles = files.map(({ label, value, category, description }) => {
     return (
       <tr key={value}>
-        <td className="flex py-1">
-          <Checkbox.Root
-            name={label}
-            id={value}
-            className="mx-1 w-[24px] h-[24px] border"
-            checked={isCheck.includes(value)}
-            onClick={() => handleSelect(value)}
-          >
-            <Checkbox.Indicator>
-              <CheckIcon />
-            </Checkbox.Indicator>
-          </Checkbox.Root>
-          {label}
+        <td className="p-2">
+          <div className="flex">
+            <Checkbox.Root
+              name={label}
+              id={value}
+              className="mx-1 w-[24px] h-[24px] border"
+              checked={isCheck.includes(value)}
+              onClick={() => handleSelect(value)}
+            >
+              <Checkbox.Indicator>
+                <CheckIcon />
+              </Checkbox.Indicator>
+            </Checkbox.Root>
+            <p className="text-base"> {label}</p>
+          </div>
         </td>
-        <td>{value}</td>
-        <td>Test Description</td>
+        <td className="p-2">{category}</td>
+        <td className="p-2">{description}</td>
       </tr>
     )
   })
 
   return (
-    <table className="min-w-full">
+    <table className="table-fixed border-spacing-2">
       <thead>
         <tr className="bg-neutral-300 text-left">
-          <th className="flex">
+          <th className="flex w-[200px]">
             <Checkbox.Root
               name="selectAll"
               id="selectAll"
-              className="mx-1 w-[24px] h-[24px]"
+              className="mx-1 w-[24px] h-[24px] text-neutral-900"
               onCheckedChange={handleSelectAll}
             >
               <Checkbox.Indicator>
@@ -86,7 +121,7 @@ const DataTable = () => {
             </Checkbox.Root>
             File Name
           </th>
-          <th>Category</th>
+          <th className="w-[200px]">Category</th>
           <th>Description</th>
         </tr>
       </thead>
