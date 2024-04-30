@@ -1,7 +1,9 @@
 import { useState } from "react"
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "@radix-ui/react-icons"
+import { getCollection } from "astro:content"
 
+const allFiles = await getCollection("data")
 const DataTable = () => {
   const files = [
     {
@@ -60,7 +62,7 @@ const DataTable = () => {
 
     if (newIsCheckAll) {
       // If select all is checked, set isCheck to all file values
-      setIsCheck(files.map((file) => file.value))
+      setIsCheck(allFiles.map((file) => file.data.file))
     } else {
       // If select all is unchecked, clear isCheck
       setIsCheck([])
@@ -79,27 +81,27 @@ const DataTable = () => {
     })
   }
 
-  const selectedFiles = files.map(({ label, value, category, description }) => {
+  const selectedFiles = allFiles.map(({ data }) => {
     return (
-      <tr key={value}>
+      <tr key={data.file}>
         <td className="p-2">
           <div className="flex">
             <Checkbox.Root
-              name={label}
-              id={value}
+              name={data.file}
+              id={data.file}
               className="mx-1 w-[24px] h-[24px] border"
-              checked={isCheck.includes(value)}
-              onClick={() => handleSelect(value)}
+              checked={isCheck.includes(data.file)}
+              onClick={() => handleSelect(data.file)}
             >
               <Checkbox.Indicator>
                 <CheckIcon />
               </Checkbox.Indicator>
             </Checkbox.Root>
-            <p className="text-base"> {label}</p>
+            <p className="text-base"> {data.title}</p>
           </div>
         </td>
-        <td className="p-2">{category}</td>
-        <td className="p-2">{description}</td>
+        <td className="p-2">{data.cat}</td>
+        <td className="p-2">{data.description}</td>
       </tr>
     )
   })
