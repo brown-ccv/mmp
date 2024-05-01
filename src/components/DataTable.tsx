@@ -1,58 +1,19 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "@radix-ui/react-icons"
-import { getCollection } from "astro:content"
 
-const allFiles = await getCollection("data")
-const DataTable = () => {
-  const files = [
-    {
-      value: "codebook_life",
-      label: "LIFE",
-      category: "codebook",
-      description:
-        "Event-history file for each household head from the year of birth until the survey year",
-    },
-    {
-      value: "codebook_pers",
-      label: "PERS",
-      category: "codebook",
-      description: "Cross-sectional file for every person who appears in table A",
-    },
-    {
-      value: "codebook_commun",
-      label: "COMMUN",
-      category: "codebook",
-      description:
-        "Community-level file that provides information at the time of the survey and it is complemented with other information using the Mexican Census",
-    },
-    {
-      value: "codebook_mig",
-      label: "MIG",
-      category: "codebook",
-      description: "Cross-sectional file for each head of household that migrated to the U.S",
-    },
-    {
-      value: "codebook_house",
-      label: "HOUSE",
-      category: "codebook",
-      description:
-        "Cross-sectional file which contains information at the household-level for all households surveyed",
-    },
-    {
-      value: "codebook_spouse",
-      label: "SPOUSE",
-      category: "codebook",
-      description:
-        "Event-history file for each household head from the year of birth until the survey year",
-    },
-    {
-      value: "codebook_pratio",
-      label: "PRATIO",
-      category: "codebook",
-      description: "Contains the variables for annual migration prevalence ratio",
-    },
-  ]
+interface DataTableProps {
+  allFiles: {
+    data: {
+      title: string
+      cat: string
+      file: string
+      description?: string
+    }
+  }[]
+}
+
+const DataTable: React.FC<DataTableProps> = ({ allFiles }) => {
   const [isCheckAll, setIsCheckAll] = useState(false)
   const [isCheck, setIsCheck] = useState<string[]>([])
 
@@ -60,7 +21,7 @@ const DataTable = () => {
     const newIsCheckAll = !isCheckAll // Toggle isCheckAll
     setIsCheckAll(newIsCheckAll)
 
-    if (newIsCheckAll) {
+    if (newIsCheckAll && allFiles) {
       // If select all is checked, set isCheck to all file values
       setIsCheck(allFiles.map((file) => file.data.file))
     } else {
