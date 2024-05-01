@@ -4,14 +4,6 @@ import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
 
-export interface Inputs {
-  name: string
-  institution: string
-  email: string
-  description: string
-  files: Array<string>
-}
-
 const DownloadModal = () => {
   const [isOpen, setIsOpen] = React.useState(false)
 
