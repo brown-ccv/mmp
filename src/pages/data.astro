@@ -9,9 +9,6 @@ const files = await getCollection("data")
 <Layout title="Data" description="Data files and information">
   <div class="flex flex-col">
     <p>Download</p>
-    <ul>
-      {files.map((file) => <li>{file.data.title}</li>)}
-    </ul>
     <DataTable allFiles={files} client:only="react" />
     <DownloadModal client:only="react" />
   </div>
