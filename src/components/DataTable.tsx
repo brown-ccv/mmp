@@ -13,56 +13,61 @@ interface DataTableProps {
   }[]
 }
 
+interface FileProps {
+  title: string
+  cat: string
+  file: string
+  description?: string
+  selected: boolean
+}
+
 const DataTable: React.FC<DataTableProps> = ({ allFiles }) => {
+  const initialFiles = allFiles.map((file) => {
+    const temp = file.data
+    return { ...temp, selected: false }
+  })
   const [isCheckAll, setIsCheckAll] = useState(false)
-  const [isCheck, setIsCheck] = useState<string[]>([])
+  const [files, setFiles] = useState<FileProps[]>(initialFiles)
 
   const handleSelectAll = () => {
     const newIsCheckAll = !isCheckAll // Toggle isCheckAll
     setIsCheckAll(newIsCheckAll)
-
-    if (newIsCheckAll && allFiles) {
-      // If select all is checked, set isCheck to all file values
-      setIsCheck(allFiles.map((file) => file.data.file))
-    } else {
-      // If select all is unchecked, clear isCheck
-      setIsCheck([])
-    }
-  }
-
-  const handleSelect = (value: string) => {
-    setIsCheck((prevIsCheck) => {
-      if (prevIsCheck.includes(value)) {
-        // Remove the item from the state if it's already checked
-        return prevIsCheck.filter((item) => item !== value)
-      } else {
-        // Add the item to the state if it's not checked
-        return [...prevIsCheck, value]
-      }
+    const filesClone = [...files]
+    filesClone.forEach((file) => {
+      file.selected = newIsCheckAll
     })
+    setFiles([...filesClone])
   }
 
-  const selectedFiles = allFiles.map(({ data }) => {
+  const handleSelect = (selected: boolean, i: number) => {
+    const temp = files[i]
+    temp.selected = !selected
+    const filesClone = [...files]
+    filesClone[i] = temp
+    setFiles([...filesClone])
+  }
+
+  const selectedFiles = files.map(({ title, file, selected, cat, description }, i) => {
     return (
-      <tr key={data.file}>
+      <tr key={i}>
         <td className="p-2">
           <div className="flex">
             <Checkbox.Root
-              name={data.file}
-              id={data.file}
-              className="mx-1 w-[24px] h-[24px] border"
-              checked={isCheck.includes(data.file)}
-              onClick={() => handleSelect(data.file)}
+              name={file}
+              id={file}
+              className="mx-1 w-6 h-6 border"
+              checked={selected}
+              onClick={() => handleSelect(selected, i)}
             >
               <Checkbox.Indicator>
                 <CheckIcon />
               </Checkbox.Indicator>
             </Checkbox.Root>
-            <p className="text-base"> {data.title}</p>
+            <p className="text-base"> {title}</p>
           </div>
         </td>
-        <td className="p-2">{data.cat}</td>
-        <td className="p-2">{data.description}</td>
+        <td className="p-2">{cat}</td>
+        <td className="p-2">{description}</td>
       </tr>
     )
   })
@@ -75,7 +80,7 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles }) => {
             <Checkbox.Root
               name="selectAll"
               id="selectAll"
-              className="mx-1 w-[24px] h-[24px] text-neutral-900"
+              className="mx-1 w-6 h-6 text-neutral-900"
               onCheckedChange={handleSelectAll}
             >
               <Checkbox.Indicator>
