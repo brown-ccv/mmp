@@ -1,11 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import DownloadModal from "../components/DownloadModal"
+import DataTable from "../components/DataTable"
+import { getCollection } from "astro:content"
+const files = await getCollection("data")
 ---
 
 <Layout title="Data" description="Data files and information">
-  <div class="flex">
-    <p>Download the LIFE Codebook:</p>
+  <div class="flex flex-col">
+    <p>Download</p>
+    <DataTable allFiles={files} client:only="react" />
     <DownloadModal client:only="react" />
   </div>
 </Layout>

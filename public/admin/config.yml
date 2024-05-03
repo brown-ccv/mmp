@@ -84,17 +84,17 @@ collections:
         label: Title
         widget: string
       - name: description
-
         label: Description
         widget: text
       - name: file
         i18n: duplicate
         label: File
         widget: file
+        public_folder: public/files
       - name: cat
         label: Category
         widget: select
-        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Code Book', 'Appendices' ]
+        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
   - name: graphs
     label: Graphs & Figures
     create: true
@@ -144,17 +144,26 @@ collections:
         widget: markdown
   - name: news
     label: News
-    identifier_field: date
+    identifier_field: pubDate
     create: true
     folder: src/content/news
     fields:
-      - name: date
+      - name: pubDate
         i18n: duplicate
         label: Date
         widget: datetime
-        date_format: MM.yyyy
+        date_format: MM.dd.yyyy
         time_format: false
-        format: MM.yyyy
-      - name: post
+        format: MM.dd.yyyy
+      - name: heroImage
+        label: Featured Image
+        widget: image
+      - name: title
+        label: Title
+        widget: text
+      - name: description
+        label: Short Description
+        widget: text
+      - name: body
         label: Post
         widget: markdown
