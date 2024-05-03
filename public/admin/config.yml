@@ -84,17 +84,17 @@ collections:
         label: Title
         widget: string
       - name: description
-
         label: Description
         widget: text
       - name: file
         i18n: duplicate
         label: File
         widget: file
+        public_folder: public/files
       - name: cat
         label: Category
         widget: select
-        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Code Book', 'Appendices' ]
+        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
   - name: graphs
     label: Graphs & Figures
     create: true

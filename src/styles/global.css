@@ -107,6 +107,22 @@
         @apply self-stretch;
         @apply p-16;
     }
+
+    button[role="checkbox"] {
+        @apply bg-neutral-50;
+        @apply rounded;
+        @apply flex;
+        @apply items-center;
+        @apply justify-center;
+        @apply shadow-md;
+    }
+
+    th {
+        @apply font-bold;
+        @apply p-2;
+        @apply text-left;
+        @apply text-white;
+    }
 }
 
 @layer components {
