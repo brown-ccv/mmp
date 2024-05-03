@@ -1,9 +1,9 @@
-import { useState } from "react"
+import React, { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useForm, Controller, type SubmitHandler } from "react-hook-form"
-import { auth, getDownloadUrl } from "../firebase"
+import { auth } from "../firebase"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
 
@@ -15,23 +15,28 @@ export interface Inputs {
   files: Array<string>
 }
 
-const DownloadModal = () => {
+interface DownloadModalProps {
+  filesToDownload: Array<string>
+}
+
+const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [downloadUrl, setDownloadUrl] = useState("")
   const [message, setMessage] = useState("")
   const { handleSubmit, control, register, setValue } = useForm<Inputs>()
 
   const setDownloadUrls = (files: string[]) => {
-    const urls = files.map(async (fileName: string) => await getDownloadUrl(fileName))
-    console.log(urls)
+    console.log(files)
 
-    // TODO: setDownloadUrl(urls)
+    setDownloadUrl("files")
+    setMessage("Get da files")
 
     // TODO: push data to history table if signed in
   }
 
-  const onSubmit: SubmitHandler<Inputs> = async (data: { files: string[] }) => {
-    setDownloadUrls(data.files)
+  const onSubmit: SubmitHandler<Inputs> = async () => {
+    setValue("files", filesToDownload)
+    setDownloadUrls(filesToDownload)
   }
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>

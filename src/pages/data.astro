@@ -6,5 +6,5 @@ const files = await getCollection("data")
 ---
 
 <Layout title="Data" description="Data files and information">
-  <DataForm allFiles={files} />
+  <DataForm allFiles={files} client:only="react" />
 </Layout>

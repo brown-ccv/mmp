@@ -1,6 +1,8 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "@radix-ui/react-icons"
+
+type fileListFunctionType = (a: string[]) => void
 
 interface DataTableProps {
   allFiles: {
@@ -11,6 +13,7 @@ interface DataTableProps {
       description?: string
     }
   }[]
+  fileListFunction: fileListFunctionType
 }
 
 interface FileProps {
@@ -21,13 +24,17 @@ interface FileProps {
   selected: boolean
 }
 
-const DataTable: React.FC<DataTableProps> = ({ allFiles }) => {
+const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => {
   const initialFiles = allFiles.map((file) => {
     const temp = file.data
     return { ...temp, selected: false }
   })
   const [isCheckAll, setIsCheckAll] = useState(false)
   const [files, setFiles] = useState<FileProps[]>(initialFiles)
+
+  useEffect(() => {
+    fileListFunction(files.map((file) => file.file))
+  }, [files])
 
   const handleSelectAll = () => {
     const newIsCheckAll = !isCheckAll // Toggle isCheckAll
