@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react"
+import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useForm, Controller, type SubmitHandler } from "react-hook-form"
-import { isSignInWithEmailLink, sendSignInLinkToEmail } from "firebase/auth"
-import { auth, getDownloadUrl, actionCodeSettings, finishSignIn } from "../firebase"
+import { auth, getDownloadUrl } from "../firebase"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
-import { CheckboxGroup } from "./CheckboxGroup.tsx"
 
 export interface Inputs {
   name: string
@@ -18,74 +16,22 @@ export interface Inputs {
 }
 
 const DownloadModal = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const [downloadUrl, setDownloadUrl] = React.useState("")
-  const [message, setMessage] = React.useState("")
-  const [user, setUser] = useState(auth.currentUser)
+  const [isOpen, setIsOpen] = useState(false)
+  const [downloadUrl, setDownloadUrl] = useState("")
+  const [message, setMessage] = useState("")
   const { handleSubmit, control, register, setValue } = useForm<Inputs>()
 
-  const options = [
-    { value: "codebook_life", label: "LIFE" },
-    {
-      value: "codebook_pers",
-      label: "PERS",
-    },
-    { value: "codebook_commun", label: "COMMUN" },
-    { value: "codebook_mig", label: "MIG" },
-    {
-      value: "codebook_house",
-      label: "HOUSE",
-    },
-    { value: "codebook_spouse", label: "SPOUSE" },
-    { value: "codebook_pratio", label: "PRATIO" },
-  ]
+  const setDownloadUrls = (files: string[]) => {
+    const urls = files.map(async (fileName: string) => await getDownloadUrl(fileName))
+    console.log(urls)
 
-  useEffect(() => {
-    // on load, check if user has validated email; set download url
-    const getUser = async (email: any) => {
-      setUser(await finishSignIn(email))
-    }
-    if (isSignInWithEmailLink(auth, window.location.href)) {
-      // Additional state parameters can also be passed via URL.
-      // This can be used to continue the user's intended action before triggering
-      let email = window.localStorage.getItem("emailForSignIn")
-      if (!email) {
-        // User opened the link on a different device. To prevent session fixation
-        // attacks, ask the user to provide the associated email again. For example:
-        email = window.prompt("Please provide your email for confirmation")
-      }
-      try {
-        getUser(email)
-        const files = JSON.parse(window.localStorage.getItem("fileNameList") as string)
-        console.log(files.length)
-        if (user && user.emailVerified && files) {
-          setIsOpen(true)
-          const urls = files.map(async (fileName: string) => await getDownloadUrl(fileName))
-          console.log(urls)
-          setDownloadUrl(urls)
+    // TODO: setDownloadUrl(urls)
 
-          // TODO: push data to history table if signed in
-        }
-      } catch (e) {
-        const error = e as string
-        setMessage(`Error: ${error}`)
-      }
-    }
-  }, [])
+    // TODO: push data to history table if signed in
+  }
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data)
-    console.log(data.files)
-    // send validation email
-    try {
-      const result = await sendSignInLinkToEmail(auth, data.email, actionCodeSettings)
-      window.localStorage.setItem("emailForSignIn", data.email)
-      window.localStorage.setItem("fileNameList", JSON.stringify(data.files))
-      return result
-    } catch (e) {
-      const error = e as string
-      setMessage(`Error: ${error}`)
-    }
+  const onSubmit: SubmitHandler<Inputs> = async (data: { files: string[] }) => {
+    setDownloadUrls(data.files)
   }
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -108,16 +54,9 @@ const DownloadModal = () => {
                 <span className="sr-only">Close</span>
               </Dialog.Close>
             </div>
-            <Dialog.Title>Download Data</Dialog.Title>
+            <Dialog.Title>Download Data:</Dialog.Title>
             <p>{message}</p>
             <Form.Root onSubmit={handleSubmit(onSubmit)}>
-              <CheckboxGroup
-                title={"Choose files to download:"}
-                label={"files"}
-                options={options}
-                register={register}
-                setValue={setValue}
-              />
               <Controller
                 name="name"
                 control={control}
@@ -161,7 +100,10 @@ const DownloadModal = () => {
                 )}
               />
 
-              <Form.Submit className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400">
+              <Form.Submit
+                className={`flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400 ${auth.currentUser ? "disabled" : ""}`}
+                disabled={!!auth.currentUser}
+              >
                 <PlusIcon />
                 <span className="pt-1">Validate Email</span>
               </Form.Submit>
