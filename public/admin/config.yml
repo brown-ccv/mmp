@@ -5,6 +5,8 @@ backend:
   repo: brown-ccv/mmp
   base_url: /
 media_folder: public/files
+media_library:
+  max_file_size: 734003200
 i18n:
   structure: multiple_folders
   locales: [ en, es, pt ]

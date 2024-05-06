@@ -123,7 +123,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
               const name = file.replace(/.+?(?=[^_]+$)/, "").replace(/\.[^.]*$/, "")
 
               return (
-                <a key={file} href={file} download={file}>
+                <a className="p-2" key={file} href={file} download={file}>
                   {name.toUpperCase()}
                 </a>
               )

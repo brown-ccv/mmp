@@ -1,0 +1,7 @@
+---
+title: SPOUSE
+description: event-history file for each household head from the year of birth
+  until the survey year
+file: /public/files/codebook_spouse.pdf
+cat: Codebook
+---
