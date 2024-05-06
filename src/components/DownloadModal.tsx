@@ -3,7 +3,6 @@ import * as Dialog from "@radix-ui/react-dialog"
 import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useForm, Controller, type SubmitHandler } from "react-hook-form"
-import { auth } from "../firebase"
 import { CustomInput } from "./CustomInput.tsx"
 import { CustomTextarea } from "./CustomTextarea.tsx"
 
@@ -104,8 +103,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
               />
 
               <Form.Submit
-                className={`flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400 ${auth.currentUser ? "disabled" : ""}`}
-                disabled={!!auth.currentUser}
+                className={`flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400`}
               >
                 <PlusIcon />
                 <span className="pt-1">Validate Email</span>
