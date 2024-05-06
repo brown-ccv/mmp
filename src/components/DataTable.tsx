@@ -33,7 +33,8 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => 
   const [files, setFiles] = useState<FileProps[]>(initialFiles)
 
   useEffect(() => {
-    fileListFunction(files.map((file) => file.file))
+    const newSelectedFiles = files.filter((file) => file.selected)
+    fileListFunction(newSelectedFiles.map((file) => file.file))
   }, [files])
 
   const handleSelectAll = () => {

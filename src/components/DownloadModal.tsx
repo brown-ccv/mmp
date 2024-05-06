@@ -21,14 +21,12 @@ interface DownloadModalProps {
 
 const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [downloadUrl, setDownloadUrl] = useState("")
   const [message, setMessage] = useState("")
   const { handleSubmit, control, register, setValue } = useForm<Inputs>()
 
   const setDownloadUrls = (files: string[]) => {
     console.log(files)
 
-    setDownloadUrl("files")
     setMessage("Get da files")
 
     // TODO: push data to history table if signed in
@@ -117,12 +115,19 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
                   <button
                     disabled
                     className="flex items-center gap-2 rounded-lg px-5 py-2.5 bg-black text-white text-sm text-center font-medium hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-500 disabled:bg-gray-400"
-                  >
-                    <a href={downloadUrl}>Download File</a>
-                  </button>
+                  ></button>
                 </Form.Control>
               </Form.Field>
             </Form.Root>
+            {filesToDownload.map((file) => {
+              const name = file.replace(/.+?(?=[^_]+$)/, "").replace(/\.[^.]*$/, "")
+
+              return (
+                <a href={file} download={file}>
+                  {name.toUpperCase()}
+                </a>
+              )
+            })}
           </Dialog.Content>
         </Dialog.Overlay>
       </Dialog.Portal>
