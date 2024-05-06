@@ -23,17 +23,12 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
   const [message, setMessage] = useState("")
   const { handleSubmit, control, register, setValue } = useForm<Inputs>()
 
-  const setDownloadUrls = (files: string[]) => {
-    console.log(files)
-
-    setMessage("Get da files")
+  const onSubmit: SubmitHandler<Inputs> = async () => {
+    // TODO: authentication check
+    setValue("files", filesToDownload)
+    setMessage("Checking if signed in")
 
     // TODO: push data to history table if signed in
-  }
-
-  const onSubmit: SubmitHandler<Inputs> = async () => {
-    setValue("files", filesToDownload)
-    setDownloadUrls(filesToDownload)
   }
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
