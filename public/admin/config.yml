@@ -4,7 +4,7 @@ backend:
   name: github
   repo: brown-ccv/mmp
   base_url: /
-media_folder: public/images
+media_folder: public/files
 i18n:
   structure: multiple_folders
   locales: [ en, es, pt ]
@@ -90,7 +90,6 @@ collections:
         i18n: duplicate
         label: File
         widget: file
-        public_folder: public/files
       - name: cat
         label: Category
         widget: select
