@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
 import {
   EmailAuthProvider,
   getAuth,
@@ -7,16 +6,12 @@ import {
   sendSignInLinkToEmail,
   signInWithEmailLink,
 } from "firebase/auth"
-import { getDownloadURL, getStorage, ref } from "firebase/storage"
 import firebaseConfig from "./firebase-config.json"
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig)
+export const app = initializeApp(firebaseConfig)
 
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app)
 export const auth = getAuth()
-const storage = getStorage()
 
 // Magic link for auth
 export const actionCodeSettings = {
@@ -46,15 +41,5 @@ export const sendAuthenticateLink = async (email) => {
     return result
   } catch (error) {
     return error.message
-  }
-}
-export const getDownloadUrl = async (fileName) => {
-  // TODO: loop over parameter list and then return array
-  const fileRef = ref(storage, `MMP174/${fileName}.pdf`)
-
-  try {
-    return await getDownloadURL(fileRef)
-  } catch (error) {
-    throw new Error(error)
   }
 }
