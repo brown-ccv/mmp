@@ -16,6 +16,10 @@ collections:
     folder: src/content/people
     create: true
     fields:
+      - name: type
+        label: Staff Type
+        widget: select
+        options: [ 'Leadership', 'Advisors', 'Supporting Staff' ]
       - name: name
         label: Name
         widget: string
