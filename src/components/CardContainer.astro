@@ -1,0 +1,23 @@
+---
+import Card from "./Card"
+const { color, title, people } = Astro.props
+
+interface PersonProps {
+  data: {
+    title: string
+    name: string
+    avatar: string
+  }
+}
+---
+
+<div class="flex flex-row items-start py-28">
+  <h2 class={`${color} [writing-mode:vertical-lr] rotate-180 px-12`}>{title}</h2>
+  <div class="flex flex-col">
+    {
+      people.map((person: PersonProps) => {
+        return <Card title={person.data.title} name={person.data.name} image={person.data.avatar} />
+      })
+    }
+  </div>
+</div>
