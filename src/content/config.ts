@@ -29,7 +29,10 @@ const people = defineCollection({
     type: z.string(),
     name: z.string(),
     title: z.string(),
-    avatar: z.string(),
+    avatar: z.string().optional(),
+    email: z.string().optional(),
+    phone: z.string().optional(),
+    address: z.string().optional(),
   }),
 })
 export const collections = { news: news, data: files, people: people }
