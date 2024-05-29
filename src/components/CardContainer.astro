@@ -6,17 +6,32 @@ interface PersonProps {
   data: {
     title: string
     name: string
-    avatar: string
+    avatar?: string
+    email?: string
+    address?: string
+    phone?: string
   }
 }
 ---
 
-<div class="flex flex-row items-start py-28">
-  <h2 class={`${color} [writing-mode:vertical-lr] rotate-180 px-12`}>{title}</h2>
-  <div class="flex flex-col">
+<div class="flex flex-row items-start space-x-12">
+  <h2 class={`${color} [writing-mode:vertical-lr] rotate-180`}>{title}</h2>
+  <div class="flex flex-col space-y-24">
     {
-      people.map((person: PersonProps) => {
-        return <Card title={person.data.title} name={person.data.name} image={person.data.avatar} />
+      people.map((person: PersonProps, i: number) => {
+        return (
+          <>
+            <Card
+              position={i}
+              title={person.data.title}
+              name={person.data.name}
+              image={person.data.avatar}
+              email={person.data.email}
+              phone={person.data.phone}
+              address={person.data.address}
+            />
+          </>
+        )
       })
     }
   </div>
