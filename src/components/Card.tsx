@@ -12,7 +12,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ position, image, title, name, address, phone, email }) => {
   // strip 'public/' from the avatar string since astro's public folder is available without this in the link
-  image = image?.replace("/public", "")
+  const link = image?.replace("/public", "")
   return (
     <div
       className={`flex flex-row items-center ${
@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({ position, image, title, name, address, phon
         <div>
           <img
             className="object-cover rounded-full w-64 h-64 min-w-64 min-h-64 hidden md:block"
-            src={image}
+            src={link}
             alt={`${name}'s image`}
           />
         </div>
