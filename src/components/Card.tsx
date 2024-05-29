@@ -13,16 +13,14 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ position, image, title, name, address, phone, email }) => {
   return (
     <div
-      className={
-        position % 2
-          ? "flex items-center flex-row-reverse text-right"
-          : "flex flex-row items-center"
-      }
+      className={` flex flex-row items-center ${
+        position % 2 ? "md:flex-row-reverse md:text-right" : ""
+      }`}
     >
       {image && (
         <div>
           <img
-            className="object-cover w-72 h-72 rounded-full"
+            className="object-cover rounded-full w-64 h-64 min-w-64 min-h-64 hidden md:block"
             src={image}
             alt={`${name}'s image`}
           />
