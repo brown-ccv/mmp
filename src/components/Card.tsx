@@ -13,7 +13,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ position, image, title, name, address, phone, email }) => {
   return (
     <div
-      className={` flex flex-row items-center ${
+      className={`flex flex-row items-center ${
         position % 2 ? "md:flex-row-reverse md:text-right" : ""
       }`}
     >
