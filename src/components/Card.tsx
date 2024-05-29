@@ -15,7 +15,7 @@ const Card: React.FC<CardProps> = ({ position, image, title, name, address, phon
     <div
       className={
         position % 2
-          ? "flex flex-row items-center flex-row-reverse text-right"
+          ? "flex items-center flex-row-reverse text-right"
           : "flex flex-row items-center"
       }
     >
