@@ -11,6 +11,8 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ position, image, title, name, address, phone, email }) => {
+  // strip 'public/' from the avatar string since astro's public folder is available without this in the link
+  image = image?.replace("/public", "")
   return (
     <div
       className={`flex flex-row items-center ${
