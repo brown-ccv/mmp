@@ -24,7 +24,7 @@ const Card: React.FC<CardProps> = ({ position, image, title, name, address, phon
           <img
             className="object-cover rounded-full w-64 h-64 min-w-64 min-h-64 hidden md:block"
             src={link}
-            alt={`${name}'s image`}
+            alt={name}
           />
         </div>
       )}
