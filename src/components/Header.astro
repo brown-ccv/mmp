@@ -3,6 +3,8 @@ import HeaderLink from "./HeaderLink.astro"
 import { SITE_TITLE, LINKS } from "../consts"
 
 const { isHidden = true } = Astro.props
+const pathname = Astro.url.pathname
+const path = pathname.match(/^\/$/) ? pathname : pathname.slice(0, -1)
 ---
 <script>
   class NavbarHamburger extends HTMLElement {
@@ -28,9 +30,8 @@ const { isHidden = true } = Astro.props
 </script>
 
 <header>
-  <h2><a class="hover:text-gray-600 decoration-0" href="/">{SITE_TITLE}</a></h2>
+  <h2><a class={pathname !== "/" ? `hover:text-gray-600 decoration-0` : "hidden"} href="/">{SITE_TITLE}</a></h2>
   <nav>
-
     <div class="hidden lg:flex">
       {
         LINKS.map((data) =>
