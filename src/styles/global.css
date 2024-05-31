@@ -75,14 +75,7 @@
         @apply flex;
         @apply items-center;
         @apply py-8;
-        @apply text-neutral-500;
         @apply uppercase;
-    }
-
-    nav a:active {
-        @apply text-neutral-900;
-        @apply border-b-2;
-        @apply border-neutral-900;
     }
 
     main {
