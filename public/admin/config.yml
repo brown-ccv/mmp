@@ -16,6 +16,10 @@ collections:
     folder: src/content/people
     create: true
     fields:
+      - name: type
+        label: Staff Type
+        widget: select
+        options: [ 'Leadership', 'Advisors', 'Supporting Staff' ]
       - name: name
         label: Name
         widget: string
@@ -23,6 +27,7 @@ collections:
         label: Title
         widget: string
       - name: avatar
+        required: false
         i18n: duplicate
         label: Photo
         widget: image
@@ -30,15 +35,17 @@ collections:
         label: Company/University
         widget: string
       - name: address
+        required: false
         i18n: duplicate
         label: Mailing Address
         widget: text
       - name: phone
+        required: false
         i18n: duplicate
         label: Phone Number
         widget: string
-        pattern: [ '^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$', 'Phone number must follow standard guidelines' ]
       - name: email
+        required: false
         i18n: duplicate
         label: Email
         widget: string
