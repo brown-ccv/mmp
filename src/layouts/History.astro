@@ -1,0 +1,15 @@
+---
+import type { CollectionEntry } from "astro:content"
+import Layout from "./Layout.astro"
+type Props = CollectionEntry<"history">["data"]
+
+const { title, description } = Astro.props
+---
+
+<Layout title={title} description={description}>
+  <article>
+    <div class="flex flex-col gap-3.5">
+      <slot />
+    </div>
+  </article>
+</Layout>
