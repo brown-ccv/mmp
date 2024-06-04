@@ -7,11 +7,11 @@ interface HoverCardItemProps {
   title: string
   content: string | React.ReactNode
   footer?: string | React.ReactNode
-  children: React.ReactNode
+  trigger: React.ReactNode
 }
 
 const HoverCardItem: React.FC<HoverCardItemProps> = ({
-  children,
+  trigger,
   alt,
   title,
   content,
@@ -22,7 +22,7 @@ const HoverCardItem: React.FC<HoverCardItemProps> = ({
     <HoverCard.Root openDelay={2}>
       <HoverCard.Trigger asChild>
         <a className="cursor-pointer" rel="noreferrer noopener">
-          {children}
+          {trigger}
         </a>
       </HoverCard.Trigger>
       <HoverCard.Portal>

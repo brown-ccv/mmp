@@ -46,7 +46,7 @@ const MiniMapSvg = () => {
             </div>
           </>
         }
-        children={<circle cx="99" cy="103" r="16" fill="#317A7C" />}
+        trigger={<circle cx="99" cy="103" r="16" fill="#317A7C" />}
       ></HoverCardItem>
 
       <mask id="path-3-inside-2_65_1451" fill="white">
@@ -67,7 +67,7 @@ const MiniMapSvg = () => {
             <p>Princeton, NJ 08544</p>
           </>
         }
-        children={<circle cx="524" cy="58" r="16" fill="#317A7C" />}
+        trigger={<circle cx="524" cy="58" r="16" fill="#317A7C" />}
       ></HoverCardItem>
     </svg>
   )
