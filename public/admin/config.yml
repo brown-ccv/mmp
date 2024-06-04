@@ -134,11 +134,13 @@ collections:
         widget: select
         options: [ 'Border Crossing and Working', 'Everyday Life and Return', 'Those Who Stay' ]
       - name: interviewee
+        required: false
         i18n: duplicate
         label: Who conducted the Interview?
       - name: year
+        required: false
         i18n: duplicate
-        label: Year
+        label: Interview Date
         widget: datetime
         date_format: MM.yyyy
         time_format: false
@@ -146,7 +148,11 @@ collections:
       - name: description
         label: Short Description
         widget: text
-      - name: story
+      - name: lede
+        required: false
+        label: Forward
+        widget: markdown
+      - name: body
         label: Full Story
         widget: markdown
   - name: news
