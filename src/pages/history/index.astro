@@ -1,0 +1,64 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "../../layouts/Layout.astro"
+const posts = await getCollection("history")
+const border = posts.filter((post) => post.data.category === "Border Crossing and Working")
+const life = posts.filter((post) => post.data.category === "Everyday Life and Return")
+const stay = posts.filter((post) => post.data.category === "Those Who Stay")
+---
+
+<Layout title="Oral History" description="Stories related to US migration">
+  <div class="flex flex-col gap-12">
+    <section>
+      <h2 class="pb-2">Border Crossing and Working</h2>
+      <ul class="flex flex-col items-start gap-6">
+        {
+          border.map((post) => (
+            <li class="flex items-start self-stretch gap-4">
+              <div class="flex flex-col w-[28rem] gap-1">
+                <a href={`/history/${post.slug}/`}>
+                  <h3 class="title font-medium underline">{post.data.title}</h3>
+                </a>
+                <p class="text-sm">{post.data.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+    <section>
+      <h2 class="pb-2">Everyday Life and Return</h2>
+      <ul class="flex flex-col items-start gap-6">
+        {
+          life.map((post) => (
+            <li class="flex items-start self-stretch gap-4">
+              <div class="flex flex-col w-[28rem] gap-1">
+                <a href={`/history/${post.slug}/`}>
+                  <h3 class="title font-medium underline">{post.data.title}</h3>
+                </a>
+                <p class="text-sm">{post.data.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+    <section>
+      <h2 class="pb-2">Those Who Stay</h2>
+      <ul class="flex flex-col items-start gap-6">
+        {
+          stay.map((post) => (
+            <li class="flex items-start self-stretch gap-4">
+              <div class="flex flex-col w-[28rem] gap-1">
+                <a href={`/history/${post.slug}/`}>
+                  <h3 class="title font-medium underline">{post.data.title}</h3>
+                </a>
+                <p class="text-sm">{post.data.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</Layout>
