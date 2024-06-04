@@ -124,4 +124,31 @@
         @apply gap-1;
         @apply pt-6;
     }
+
+    .HoverCardContent {
+        @apply bg-white;
+        @apply rounded;
+        @apply p-5;
+        @apply w-72;
+        @apply duration-300;
+        @apply ease-in-out;
+        box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+        will-change: transform, opacity;
+    }
+
+    .HoverCardContent[data-side='top'] {
+        animation-name: slideDownAndFade;
+    }
+
+    .HoverCardContent[data-side='right'] {
+        animation-name: slideLeftAndFade;
+    }
+
+    .HoverCardContent[data-side='bottom'] {
+        animation-name: slideUpAndFade;
+    }
+
+    .HoverCardContent[data-side='left'] {
+        animation-name: slideRightAndFade;
+    }
 }
