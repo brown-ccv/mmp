@@ -21,6 +21,8 @@ const MiniMapSvg = () => {
       />
       <HoverCardItem
         title={"MEXICO"}
+        image={"/images/udg.gif"}
+        alt={"Universidad de Guadalajara logo"}
         content={
           <>
             <p>Depto. de Estudios Sobre Movimientos Sociales (DESMOS)</p>
