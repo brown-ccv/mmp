@@ -1,9 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import Arrow from "../components/svg/Arrow"
 ---
 
-<Layout title="Map" description="Mesoamerican Migration Project">
+<Layout title="Map of MMP Communities" description="Mesoamerican Migration Project">
   <div class="flex flex-col gap-6">
+    <section class="flex flex-col gap-3.5">
+      <img src="/images/MMP_Map.jpg" />
+    </section>
     <section class="flex flex-col gap-3.5">
       <h2>Design</h2>
       <p>
@@ -34,10 +38,12 @@ import Layout from "../layouts/Layout.astro"
         surveys are combined with those conducted in Mexico to generate a representative binational
         sample.
       </p>
-    </section>
-    <section class="flex flex-col gap-3.5">
-      <h2>Map of MMP Communities</h2>
-      <img src="/images/MMP_Map.jpg" />
+      <h3 class="flex items-center gap-3.5 text-secondary-blue-500 font-semibold">
+        Read the documentation
+        <a role="button" href="/documentation">
+          <Arrow />
+        </a>
+      </h3>
     </section>
   </div>
 </Layout>
