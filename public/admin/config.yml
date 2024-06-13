@@ -81,6 +81,7 @@ collections:
     label: Data
     create: true
     folder: src/content/data
+    media_folder: files
     fields:
       - name: title
         label: Title
