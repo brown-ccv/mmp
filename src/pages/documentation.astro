@@ -30,26 +30,40 @@ import CircleIcon from "../components/svg/Circle"
           select four specific locations to represent each of four levels of urbanization:
         </p>
 
-        <div class="grid grid-flow-col items-center">
+        <div class="flex flex-col py-6 gap-4 md:grid-cols-2 md:grid md:items-center">
           <div>
-            <CircleIcon styling="fill-secondary-blue-500" />
-            <p class="font-semibold">Ranchos</p>
-            <p class="italic">fewer than 2,500 inhabitants</p>
+            <div class="flex items-center">
+              <CircleIcon styling="fill-secondary-blue-500" />
+              <p class="font-semibold px-2">Ranchos</p>
+            </div>
+
+            <p class="italic px-2">fewer than 2,500 inhabitants</p>
           </div>
           <div>
-            <CircleIcon styling="fill-primary-500" />
-            <p class="font-semibold">Pueblos (Towns)</p>
-            <p class="italic">2,500 to 10,000 inhabitants</p>
+            <div class="flex items-center">
+              <CircleIcon styling="fill-primary-500" />
+              <p class="font-semibold px-2">Pueblos (Towns)</p>
+            </div>
+
+            <p class="italic px-2">2,500 to 10,000 inhabitants</p>
           </div>
           <div>
-            <CircleIcon styling="fill-secondary-brown-500" />
-            <p class="font-semibold">Mid-sized Cities</p>
-            <p class="italic">10,000 to 100,000 inhabitants</p>
+            <div class="flex items-center">
+              <CircleIcon styling="fill-secondary-brown-500" />
+              <p class="font-semibold px-2">Mid-sized Cities</p>
+            </div>
+
+            <p class="italic px-2">10,000 to 100,000 inhabitants</p>
           </div>
           <div>
-            <CircleIcon styling="fill-secondary-blue-700" />
-            <p class="font-semibold">Large City</p>
-            <p class="italic">usually a particular neighborhood within in a state’s capital city</p>
+            <div class="flex items-center">
+              <CircleIcon styling="fill-secondary-blue-700" />
+              <p class="font-semibold px-2">Large City</p>
+            </div>
+
+            <p class="italic px-2">
+              usually a particular neighborhood within in a state’s capital city
+            </p>
           </div>
         </div>
       </div>
@@ -133,7 +147,7 @@ import CircleIcon from "../components/svg/Circle"
           <CircleIcon styling="fill-primary-500" />
           <h3 class="text-primary-500 font-semibold px-2">Phase 1</h3>
         </div>
-        <p>
+        <p class="px-2">
           A particularly important task in the first phase of the questionnaire is the
           identification of people with prior migrant experience in either the United States or
           Mexico. For those individuals with migrant experience the interviewer records the total
@@ -147,7 +161,7 @@ import CircleIcon from "../components/svg/Circle"
           <CircleIcon styling="fill-secondary-blue-500" />
           <h3 class="text-secondary-blue-500 font-semibold px-2">Phase 2</h3>
         </div>
-        <p>
+        <p class="px-2">
           The second phase of the ethnosurvey questionnaire compiles a year-by-year life history for
           all household heads, including a childbearing history, a property history, a housing
           history, a business history, and a labor history. The goal of this phase is to capture
@@ -159,7 +173,7 @@ import CircleIcon from "../components/svg/Circle"
           <CircleIcon styling="fill-secondary-brown-500" />
           <h3 class="text-secondary-brown-500 font-semibold px-2">Phase 3</h3>
         </div>
-        <p>
+        <p class="px-2">
           The third and final phase of the questionnaire gathers information about the household
           head's experiences on his or her most recent trip to the United States, including the mode
           of border-crossing, the kind and number of accompanying relatives, the kind and number of
@@ -196,8 +210,7 @@ import CircleIcon from "../components/svg/Circle"
           When working with pooled data from multiple communities, these weights give you the option
           to adjust your estimates in order to take into account the relative sizes of all the
           sampling frames. Whether you will need to weight your estimates or not will depend on what
-          your goal is. The document below contains a detailed explanation on our computation of the
-          weights, and suggests criteria to use them or disregard them.
+          your goal is.
         </p>
       </div>
     </section>
