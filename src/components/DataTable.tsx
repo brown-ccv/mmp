@@ -58,8 +58,8 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => 
   const selectedFiles = files.map(({ title, file, selected, cat, description }, i) => {
     return (
       <tr key={i}>
-        <td className="p-2">
-          <div className="flex">
+        <td>
+          <div className="flex gap-4">
             <Checkbox.Root
               name={file}
               id={file}
@@ -74,8 +74,8 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => 
             <p className="text-base"> {title}</p>
           </div>
         </td>
-        <td className="p-2">{cat}</td>
-        <td className="p-2">{description}</td>
+        <td>{cat}</td>
+        <td>{description}</td>
         <td>
           <a
             className="text-secondary-blue-700 hover:text-secondary-blue-500"
@@ -90,7 +90,7 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => 
   return (
     <table className="table-fixed border-spacing-2">
       <thead>
-        <tr className="bg-neutral-300 text-left">
+        <tr className="bg-neutral-100 text-left text-neutral-900">
           <th className="flex w-[200px]">
             <Checkbox.Root
               name="selectAll"

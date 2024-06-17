@@ -104,7 +104,6 @@
 
     button[role="checkbox"] {
         @apply bg-neutral-50;
-        @apply rounded;
         @apply flex;
         @apply items-center;
         @apply justify-center;
@@ -113,9 +112,16 @@
 
     th {
         @apply font-bold;
-        @apply p-2;
+        @apply px-4;
+        @apply py-3;
         @apply text-left;
-        @apply text-white;
+        @apply gap-4;
+    }
+
+    td {
+        @apply text-neutral-700;
+        @apply px-4;
+        @apply py-3;
     }
 }
 
