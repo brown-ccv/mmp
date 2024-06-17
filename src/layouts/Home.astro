@@ -6,7 +6,7 @@ import Footer from "../components/Footer.astro"
 interface Props {
   title: string
   description: string
-  lede?: string
+  lede: string
 }
 
 const { title, description, lede } = Astro.props
@@ -22,8 +22,9 @@ const { title, description, lede } = Astro.props
     <main>
       <article class="max-w-[1000px]">
         <div>
-          <div class="flex flex-col gap-3 pb-6">
+          <div class="flex flex-col gap-3 pb-6 md:w-1/2">
             <h1 class="title">{title}</h1>
+            <h3 class="pb-48">{lede}</h3>
           </div>
           <hr class="pb-6" />
           <slot />
