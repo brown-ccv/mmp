@@ -76,6 +76,13 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => 
         </td>
         <td className="p-2">{cat}</td>
         <td className="p-2">{description}</td>
+        <td>
+          <a
+            className="text-secondary-blue-700 hover:text-secondary-blue-500"
+            target="_blank"
+            href={file}
+          >{`${title}.pdf`}</a>
+        </td>
       </tr>
     )
   })
@@ -99,6 +106,7 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => 
           </th>
           <th className="w-[200px]">Category</th>
           <th>Description</th>
+          <th>File</th>
         </tr>
       </thead>
 
