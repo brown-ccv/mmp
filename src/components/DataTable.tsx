@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "@radix-ui/react-icons"
 
-type fileListFunctionType = (a: string[]) => void
+type updateFileListType = (a: string[]) => void
 
 interface DataTableProps {
   allFiles: {
@@ -13,7 +13,7 @@ interface DataTableProps {
       description?: string
     }
   }[]
-  fileListFunction: fileListFunctionType
+  updateFileList: updateFileListType // function that updates file list in the parent component
 }
 
 interface FileProps {
@@ -24,7 +24,7 @@ interface FileProps {
   selected: boolean
 }
 
-const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => {
+const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
   const initialFiles = allFiles.map((file) => {
     const temp = file.data
     return { ...temp, selected: false }
@@ -34,7 +34,9 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, fileListFunction }) => 
 
   useEffect(() => {
     const newSelectedFiles = files.filter((file) => file.selected)
-    fileListFunction(newSelectedFiles.map((file) => file.file))
+    // updateFileList is from parent -- updates parent state to pass to the form
+    // used for eventual history table to show what files user downloaded
+    updateFileList(newSelectedFiles.map((file) => file.file))
   }, [files])
 
   const handleSelectAll = () => {

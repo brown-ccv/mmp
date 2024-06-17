@@ -16,12 +16,9 @@ interface DataFormProps {
 const DataForm: React.FC<DataFormProps> = ({ allFiles }) => {
   const [fileList, setFileList] = useState<Array<string>>([])
 
-  const updateFileList = (newArray: Array<string>) => {
-    setFileList(newArray)
-  }
   return (
     <div className="flex flex-col">
-      <DataTable allFiles={allFiles} fileListFunction={updateFileList} />
+      <DataTable allFiles={allFiles} updateFileList={(e) => setFileList(e)} />
       <DownloadModal filesToDownload={fileList} />
     </div>
   )
