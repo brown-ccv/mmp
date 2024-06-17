@@ -21,7 +21,6 @@ const DataForm: React.FC<DataFormProps> = ({ allFiles }) => {
   }
   return (
     <div className="flex flex-col">
-      <p>Download</p>
       <DataTable allFiles={allFiles} fileListFunction={updateFileList} />
       <DownloadModal filesToDownload={fileList} />
     </div>
