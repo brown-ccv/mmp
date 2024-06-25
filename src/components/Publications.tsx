@@ -9,6 +9,7 @@ interface PubObject {
   data: {
     classification: string
     citation: string
+    image?: string
     url?: string
     pdf?: string
   }
@@ -67,7 +68,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
 
   return (
     <>
-      <section className="flex flex-col lg:flex-row items-center content-center justify-center space-x-6 py-14">
+      <section className="flex flex-col lg:flex-row gap-4 py-14">
         <div>
           <label className="pl-1">Search for a Publication</label>
           <input
@@ -84,11 +85,12 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
             options={classificationOptions}
             isMulti={true}
             isSearchable={false}
+            closeMenuOnSelect={false}
             defaultValue={classificationOptions}
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
-                minWidth: "240px",
+                minWidth: "526px",
                 borderRadius: "9999px",
                 background: "#FAFAFA",
                 boxShadow:
@@ -109,17 +111,33 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
       </section>
 
       {shownPubs && (
-        <section className="">
+        <section className="flex flex-col gap-6">
           {classificationOptions.map((option) => {
             return (
               <article>
                 <h2>{option.label}</h2>
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-1 lg:grid-cols-2">
                   {shownPubs.map((publication, i) => {
                     if (publication.data.classification === option.value) {
                       return (
-                        <div key={i}>
-                          <p>{publication.data.citation}</p>
+                        <div key={i} className="flex gap-5">
+                          {publication.data.image && (
+                            <img
+                              className="hidden md:block drop-shadow-md"
+                              src={publication.data.image}
+                            />
+                          )}
+                          <div className="flex flex-col gap-10">
+                            <p>{publication.data.citation}</p>
+                            {publication.data.pdf && (
+                              <button
+                                className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
+                                onClick={() => console.log(publication.data.pdf)}
+                              >
+                                View PDF
+                              </button>
+                            )}
+                          </div>
                         </div>
                       )
                     }
