@@ -61,20 +61,33 @@ collections:
     label: Publications
     folder: src/content/pubs
     create: true
-    slug: '{{year}}-{{month}}-{{day}}_{{title}}_{{slug}}'
+    identifier_field: citation
     fields:
       - name: classification
         label: Classification
         widget: select
         options: [ 'Book', 'Chapter', 'Article', 'Dissertation' ]
+      - name: pubDate
+        i18n: duplicate
+        label: Publish Date
+        widget: datetime
+        date_format: MM.yyyy
+        time_format: false
       - name: citation
         i18n: duplicate
         label: Citation
         widget: text
       - name: url
+        required: false
         i18n: duplicate
         label: Link to Publication
         widget: string
+      - name: pdf
+        required: false
+        i18n: duplicate
+        label: PDF
+        widget: file
+        public_folder: public/pubs
   - name: data
     label: Data
     create: true

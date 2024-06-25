@@ -1,0 +1,124 @@
+import React, { useEffect, useState } from "react"
+import Select from "react-select"
+
+interface PubProps {
+  publications: Array<PubObject>
+}
+
+interface PubObject {
+  data: {
+    classification: string
+    citation: string
+    url?: string
+    pdf?: string
+  }
+}
+
+const PublicationSection: React.FC<PubProps> = ({ publications }) => {
+  const classificationOptions = [
+    { value: "Book", label: "Books" },
+    {
+      value: "Article",
+      label: "Articles",
+    },
+    { value: "Dissertation", label: "Dissertations" },
+    { value: "Chapter", label: "Chapters" },
+  ]
+
+  const [shownPubs, setShownPubs] = useState(publications)
+  const [searchInput, setSearchInput] = useState("")
+  const [classificationFilter, setClassificationFilter] = useState(classificationOptions)
+  const handleChange = (e: {
+    preventDefault: () => void
+    target: { value: React.SetStateAction<string> }
+  }) => {
+    e.preventDefault()
+    setSearchInput(e.target.value)
+  }
+
+  useEffect(() => {
+    let currentPubs = publications
+    // filter based on classification
+    if (classificationFilter.length > 0) {
+      const filteredClassifications = classificationFilter.map(({ value }) => value)
+      currentPubs = currentPubs.filter((pub) =>
+        filteredClassifications.includes(pub.data.classification)
+      )
+    }
+
+    if (searchInput.length > 0) {
+      // do a search for Pubs
+      const foundPublications = currentPubs.filter(
+        (pub: { data: { citation: string | string[] } }) => {
+          if (pub.data && pub.data.citation.includes(searchInput)) {
+            return pub
+          }
+        }
+      )
+      if (foundPublications.length > 0) {
+        currentPubs = foundPublications
+      } else {
+        currentPubs = []
+      }
+    }
+
+    setShownPubs(currentPubs)
+  }, [searchInput, classificationFilter])
+
+  return (
+    <>
+      <section className="flex flex-col lg:flex-row items-center content-center justify-center space-x-6">
+        <div>
+          <label className="pl-1">Search for a Publication</label>
+          <input
+            type="text"
+            placeholder="Search here"
+            onChange={handleChange}
+            value={searchInput}
+            className="min-w-[460px]"
+          />
+        </div>
+        <div>
+          <label className="pl-1">Show</label>
+          <Select
+            options={classificationOptions}
+            isMulti={true}
+            isSearchable={false}
+            defaultValue={classificationOptions}
+            styles={{
+              control: (baseStyles) => ({
+                ...baseStyles,
+                minWidth: "240px",
+                borderRadius: "9999px",
+                background: "#FAFAFA",
+                boxShadow:
+                  "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)",
+                paddingTop: ".75rem",
+                paddingBottom: ".75rem",
+                paddingLeft: "2rem",
+                paddingRight: "2rem",
+              }),
+            }}
+            onChange={(e) => {
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              setClassificationFilter(e)
+            }}
+          />
+        </div>
+      </section>
+
+      {shownPubs &&
+        shownPubs.map((publication, i) => {
+          return (
+            <div key={i}>
+              <p>{publication.data.classification}</p>
+              <p>{publication.data.citation}</p>
+            </div>
+          )
+        })}
+    </>
+  )
+}
+
+export default PublicationSection
