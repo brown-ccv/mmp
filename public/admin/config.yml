@@ -84,6 +84,11 @@ collections:
         i18n: duplicate
         label: Citation
         widget: text
+      - name: image
+        required: false
+        i18n: duplicate
+        label: Image
+        widget: image
       - name: url
         required: false
         i18n: duplicate

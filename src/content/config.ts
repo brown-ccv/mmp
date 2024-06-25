@@ -29,6 +29,7 @@ const publications = defineCollection({
     classification: z.string(),
     pubDate: z.coerce.date(),
     citation: z.string(),
+    image: z.string().optional(),
     pdf: z.string().optional(),
     url: z.string().optional(),
   }),
