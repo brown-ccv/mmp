@@ -1,0 +1,11 @@
+---
+import Layout from "../layouts/Layout.astro"
+import PublicationSection from "../components/Publications"
+import { getCollection } from "astro:content"
+
+const pubs = await getCollection("pubs")
+---
+
+<Layout title="Publications" description="Publications associated with MMP">
+  <PublicationSection publications={pubs} client:only="react" />
+</Layout>

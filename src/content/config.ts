@@ -22,4 +22,15 @@ const files = defineCollection({
     file: z.string(),
   }),
 })
-export const collections = { news: news, data: files }
+
+const publications = defineCollection({
+  type: "content",
+  schema: z.object({
+    classification: z.string(),
+    pubDate: z.coerce.date(),
+    citation: z.string(),
+    pdf: z.string().optional(),
+    url: z.string().optional(),
+  }),
+})
+export const collections = { news: news, data: files, publications: publications }
