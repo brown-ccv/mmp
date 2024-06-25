@@ -114,20 +114,22 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
         <section className="flex flex-col gap-6">
           {classificationOptions.map((option) => {
             return (
-              <article>
-                <h2>{option.label}</h2>
-                <div className="grid grid-cols-1 lg:grid-cols-2">
+              <article key={option.value}>
+                <h2 className="py-2">{option.label}</h2>
+                <div className="flex flex-wrap lg:flex-nowrap gap-8">
                   {shownPubs.map((publication, i) => {
                     if (publication.data.classification === option.value) {
                       return (
-                        <div key={i} className="flex gap-5">
+                        <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           {publication.data.image && (
-                            <img
-                              className="hidden md:block drop-shadow-md"
-                              src={publication.data.image}
-                            />
+                            <div className="hidden md:block drop-shadow-md">
+                              <img
+                                className="drop-shadow-md object-cover w-48 h-72"
+                                src={publication.data.image}
+                              />
+                            </div>
                           )}
-                          <div className="flex flex-col gap-10">
+                          <div className="flex flex-col gap-10 ">
                             <p>{publication.data.citation}</p>
                             {publication.data.pdf && (
                               <button
