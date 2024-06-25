@@ -67,12 +67,12 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
 
   return (
     <>
-      <section className="flex flex-col lg:flex-row items-center content-center justify-center space-x-6">
+      <section className="flex flex-col lg:flex-row items-center content-center justify-center space-x-6 py-14">
         <div>
           <label className="pl-1">Search for a Publication</label>
           <input
             type="text"
-            placeholder="Search here"
+            placeholder="🔍 Search here"
             onChange={handleChange}
             value={searchInput}
             className="min-w-[460px]"
@@ -108,15 +108,28 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
         </div>
       </section>
 
-      {shownPubs &&
-        shownPubs.map((publication, i) => {
-          return (
-            <div key={i}>
-              <p>{publication.data.classification}</p>
-              <p>{publication.data.citation}</p>
-            </div>
-          )
-        })}
+      {shownPubs && (
+        <section className="">
+          {classificationOptions.map((option) => {
+            return (
+              <article>
+                <h2>{option.label}</h2>
+                <div className="grid grid-cols-2">
+                  {shownPubs.map((publication, i) => {
+                    if (publication.data.classification === option.value) {
+                      return (
+                        <div key={i}>
+                          <p>{publication.data.citation}</p>
+                        </div>
+                      )
+                    }
+                  })}
+                </div>
+              </article>
+            )
+          })}
+        </section>
+      )}
     </>
   )
 }
