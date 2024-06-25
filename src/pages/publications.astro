@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro"
 import PublicationSection from "../components/Publications"
 import { getCollection } from "astro:content"
 
-const pubs = await getCollection("pubs")
+const pubs = await getCollection("publications")
 ---
 
 <Layout title="Publications" description="Publications associated with MMP">

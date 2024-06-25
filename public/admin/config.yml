@@ -64,9 +64,9 @@ collections:
         date_format: yyyy
         time_format: false
         format: yyyy
-  - name: pubs
+  - name: publications
     label: Publications
-    folder: src/content/pubs
+    folder: src/content/publications
     create: true
     identifier_field: citation
     fields:
@@ -99,7 +99,7 @@ collections:
         i18n: duplicate
         label: PDF
         widget: file
-        public_folder: public/pubs
+        public_folder: public/publications
   - name: data
     label: Data
     create: true
