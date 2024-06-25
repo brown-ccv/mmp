@@ -33,4 +33,17 @@ const publications = defineCollection({
     url: z.string().optional(),
   }),
 })
-export const collections = { news: news, data: files, publications: publications }
+
+const people = defineCollection({
+  type: "content",
+  schema: z.object({
+    type: z.string(),
+    name: z.string(),
+    title: z.string(),
+    avatar: z.string().optional(),
+    email: z.string().optional(),
+    phone: z.string().optional(),
+    address: z.string().optional(),
+  }),
+})
+export const collections = { news: news, data: files, people: people, publications: publications }

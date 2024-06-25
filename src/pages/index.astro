@@ -1,5 +1,69 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Home from "../layouts/Home.astro"
+import CircleIcon from "../components/svg/Circle"
+import MiniMapSvg from "../components/svg/MiniMaps"
+import FootPrint from "../components/svg/FootPrint"
 ---
 
-<Layout title="Home" description="Mesoamerican Migration Project" />
+<Home
+  title="MESOAMERICAN MIGRATION PROJECT"
+  description="Mesoamerican Migration Project"
+  lede="Furthering understanding of Mexican migration to the United States"
+>
+  <div class="hidden xl:block absolute top-24 left-24">
+    <FootPrint />
+  </div>
+  <div class="space-y-24">
+    <section class="space-y-6 py-6 lg:w-3/4">
+      <p>
+        The Mexican Migration Project (MMP) was created in 1982 by an interdisciplinary team of
+        researchers to further our understanding of the complex process of Mexican migration to the
+        United States. The project is a binational research effort co-directed by Jorge Durand,
+        professor of Social Anthropology at the University of Guadalajara (Mexico), and Douglas S.
+        Massey, professor of Sociology and Public Affairs, with a joint appointment in the Woodrow
+        Wilson School, at Princeton University (US).
+      </p>
+      <p>
+        Since its inception, the MMP's main focus has been to gather social as well as economic
+        information on Mexican-US migration. The data collected has been compiled in a comprehensive
+        database that is available to the public free of charge for research and educational
+        purposes through this web-site.
+      </p>
+      <p>
+        The MMP is a unique source of data that enables researchers to track patterns and processes
+        of contemporary Mexican immigration to the United States. The project is a
+        multi-disciplinary research effort that generates public use data on the characteristics and
+        behavior of Mexican migrants.
+      </p>
+    </section>
+    <section class="space-y-4">
+      <h3 class="title font-semibold">Project Aims</h3>
+      <div class="flex space-x-6">
+        <div>
+          <CircleIcon styling="fill-secondary-blue-500" />
+          <p>Gather and maintain high quality data on Mexican migration to the US</p>
+        </div>
+        <div>
+          <CircleIcon styling="fill-primary-500" />
+          <p>Make data public and confidential</p>
+        </div>
+        <div>
+          <CircleIcon styling="fill-secondary-brown-500" />
+          <p>Investigate the evolving transnational dynamics of migration</p>
+        </div>
+      </div>
+    </section>
+    <section class="space-y-4 lg:w-3/4">
+      <h3 class="title font-semibold">Where are we located?</h3>
+      <p>
+        The MMP has offices, in Mexico, at the Departamento de Investigacion sobre Movimientos
+        Sociales of the University of Guadalajara and, in the United States, at the Office of
+        Population Research of Princeton University. To contact our offices in Mexico or the United
+        States, please contact us at the following addresses or email us:
+      </p>
+      <div class="flex justify-end">
+        <MiniMapSvg client:only="react" />
+      </div>
+    </section>
+  </div>
+</Home>

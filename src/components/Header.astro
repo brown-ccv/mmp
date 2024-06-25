@@ -3,6 +3,8 @@ import HeaderLink from "./HeaderLink.astro"
 import { SITE_TITLE, LINKS } from "../consts"
 
 const { isHidden = true } = Astro.props
+const pathname = Astro.url.pathname
+const path = pathname.match(/^\/$/) ? pathname : pathname.slice(0, -1)
 ---
 <script>
   class NavbarHamburger extends HTMLElement {
@@ -11,7 +13,7 @@ const { isHidden = true } = Astro.props
 
       let isHidden = true
       const button = this.querySelector("button")
-      const menuElement: HTMLElement = document.getElementById("#menu-body")!
+      const menuElement: HTMLElement = document.getElementById("menu-body")!
       button?.addEventListener("click", () => {
         isHidden = !isHidden
         if (isHidden) {
@@ -28,14 +30,13 @@ const { isHidden = true } = Astro.props
 </script>
 
 <header>
-  <h2><a class="hover:text-gray-600 decoration-0" href="/">{SITE_TITLE}</a></h2>
+  <h2><a class={pathname !== "/" ? `hover:text-gray-600 decoration-0` : "hidden"} href="/">{SITE_TITLE}</a></h2>
   <nav>
-
     <div class="hidden lg:flex">
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
-                      class="text-lg py-2.5 px-4 text-black no-underline hover:text-gray-600"
+                      class="text-base pt-2.5 px-4 text-neutral-500 hover:text-gray-600 active:text-neutral-900 "
           >{data.toUpperCase()}</HeaderLink>)
       }
     </div>
@@ -51,15 +52,16 @@ const { isHidden = true } = Astro.props
       </button>
 
     </navbar-hamburger>
+    <div id="menu-body" data-hidden={isHidden} class="hidden">
+      <ul class="flex flex-col items-end font-medium mt-4 absolute top-16 right-6 md:right-14">
+        {
+          LINKS.map((data) =>
+            <HeaderLink href=`/${data}`
+                        class="text-base pt-2.5 px-4 text-neutral-500 hover:text-gray-600 active:text-neutral-900"
+            >{data.toUpperCase()}</HeaderLink>)
+        }
+      </ul>
+    </div>
   </nav>
-  <div id="menu-body" data-hidden={isHidden} class="hidden">
-    <ul class="flex flex-col items-end font-medium mt-4">
-      {
-        LINKS.map((data) =>
-          <HeaderLink href=`/${data}`
-                      class="text-lg py-2.5 px-4 text-black decoration-0 hover:text-gray-600"
-          >{data.toUpperCase()}</HeaderLink>)
-      }
-    </ul>
-  </div>
+
 </header>
