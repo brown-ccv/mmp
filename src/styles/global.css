@@ -33,7 +33,7 @@
         @apply text-2xl;
     }
 
-    p {
+    p, a {
         @apply text-xl;
         @apply text-neutral-700;
     }
@@ -52,37 +52,30 @@
         @apply bg-white;
         @apply rounded-full;
         @apply shadow-inner;
-        @apply w-60;
-        @apply flex;
-        @apply items-center;
+        @apply min-w-60;
         @apply py-5;
         @apply px-8;
     }
-
-    input[placeholder] {
+    
+    input::placeholder {
         @apply text-neutral-300;
+    }
+
+    input:focus {
+        @apply outline-none;
+        @apply shadow-inner-focus;
     }
 
     input.disabled, select.disabled {
         @apply bg-gray;
     }
 
-    input:focus {
-        @apply shadow-inner-focus;
-    }
 
     nav {
         @apply flex;
         @apply items-center;
         @apply py-8;
         @apply uppercase;
-    }
-
-    main {
-        @apply flex;
-        @apply flex-col;
-        @apply items-center;
-        @apply gap-6;
     }
 
     header {

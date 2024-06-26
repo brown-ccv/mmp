@@ -44,12 +44,18 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
           onClick={() => setIsOpen(false)}
         />
         <Dialog.Overlay className="fixed top-0 left-0 right-0 bottom-0 grid place-items-center z-10 w-screen overflow-y-auto">
-          <Dialog.Content className="rounded-lg text-left shadow-xl max-h-fit transition-all bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4 sm:my-8 sm:w-full sm:max-w-lg">
-            <div className="flex justify-end">
-              <Dialog.Close className="text-gray-400 bg-transparent  rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center hover:bg-gray-200 hover:text-gray-900">
-                <Cross2Icon />
-                <span className="sr-only">Close</span>
-              </Dialog.Close>
+          <Dialog.Content className="flex flex-col gap-12 rounded-lg text-left shadow-xl max-h-fit transition-all bg-neutral-50 px-4 pb-4 pt-5 sm:p-6 sm:pb-4 sm:my-8 sm:w-full sm:max-w-lg">
+            <div>
+              <div className="flex justify-end">
+                <Dialog.Close className="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center hover:bg-gray-200 hover:text-gray-900">
+                  <Cross2Icon />
+                  <span className="sr-only">Close</span>
+                </Dialog.Close>
+              </div>
+              <Dialog.Title>Download Data</Dialog.Title>
+              <p>
+                By downloading these data, you agree to the <a href="#">usage guidelines</a>
+              </p>
             </div>
             <Dialog.Title>Download Data:</Dialog.Title>
             <p>{message}</p>
