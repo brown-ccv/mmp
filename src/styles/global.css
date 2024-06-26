@@ -88,7 +88,7 @@
     nav {
         @apply py-8;
         @apply uppercase;
-        @apply text-[14px];
+        @apply text-sm;
     }
 
     main {
