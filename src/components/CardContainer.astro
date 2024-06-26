@@ -22,6 +22,7 @@ interface PersonProps {
         return (
           <>
             <Card
+              client:load
               position={i}
               title={person.data.title}
               name={person.data.name}

@@ -11,13 +11,13 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ position, image, title, name, address, phone, email }) => {
+  const [showDetails, setShowDetails] = React.useState(false)
+
   // strip 'public/' from the avatar string since astro's public folder is available without this in the link
   const link = image?.replace("/public", "")
   return (
     <div
-      className={`flex flex-row items-center ${
-        position % 2 ? "md:flex-row-reverse md:text-right" : ""
-      }`}
+      className={`flex flex-row gap-8 ${position % 2 ? "md:flex-row-reverse md:text-right" : ""}`}
     >
       {image && (
         <div>
@@ -28,20 +28,31 @@ const Card: React.FC<CardProps> = ({ position, image, title, name, address, phon
           />
         </div>
       )}
-      <div className="px-8">
+      <div>
         <div>
-          <p className="text-xl font-semibold">{name}</p>
-          <p className="italic">{title}</p>
+          <a className="text-xl font-semibold underline text-neutral-900" href="#">
+            {name}
+          </a>
+          <p className="text-neutral-700 italic">{title}</p>
         </div>
-        <div>
-          {address && <p className="text-base">{address}</p>}
-          {phone && <p className="text-base">{phone}</p>}
-          {email && (
-            <a className="text-base hover:text-neutral-300" href={`mailto:${email}`}>
-              {email}
-            </a>
-          )}
-        </div>
+        {showDetails ? (
+          <div>
+            <button onClick={() => setShowDetails(false)}>- Contact info</button>
+            <div className="flex flex-wrap gap-x-12">
+              {Boolean(phone) && <p className="text-base">{phone}</p>}
+              {Boolean(email) && (
+                <a className="hover:text-neutral-300 text-base" href={`mailto:${email}`}>
+                  {email}
+                </a>
+              )}
+              {Boolean(address) && <p className="text-base">{address}</p>}
+            </div>
+          </div>
+        ) : (
+          <button className="text-neutral-700" onClick={() => setShowDetails(true)}>
+            + Contact info
+          </button>
+        )}
       </div>
     </div>
   )

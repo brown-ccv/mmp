@@ -17,18 +17,12 @@ const { title, description, lede } = Astro.props
     <BaseHead title={title} description={description} />
   </head>
 
-  <body class="grid grid-cols-1 px-16 xl:px-64">
+  <body class="three-column-wrapper">
     <Header />
     <main>
-      <article class="max-w-[1000px]">
-        <div>
-          <div class="flex flex-col gap-3 pb-6">
-            <h1 class="title">{title}</h1>
-          </div>
-          <hr class="pb-6" />
-          <slot />
-        </div>
-      </article>
+      <h1 class="title">{title}</h1>
+      <hr class="pb-6" />
+      <slot />
     </main>
     <Footer />
   </body>
