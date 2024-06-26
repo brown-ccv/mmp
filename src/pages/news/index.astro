@@ -13,13 +13,13 @@ const posts = (await getCollection("news")).sort(
     {
       posts.map((post) => (
         <li class="flex justify-around gap-10">
-          <p class="text-sm text-neutral-500 max-w-16 min-w-16">
+          <p class="text-sm text-neutral-500 w-16 flex-none">
             <FormattedDate date={post.data.pubDate} />
           </p>
-          <a class="hidden md:block" href={`/news/${post.slug}/`}>
-            <img class="min-w-[320px]" width={320} height={320} src={post.data.heroImage} alt="" />
+          <a class="hidden flex-none w-80 h-48 md:block" href={`/news/${post.slug}/`}>
+            <img class="object-cover w-full h-full" src={post.data.heroImage} alt="" />
           </a>
-          <div class="flex flex-col gap-1 max-w-md">
+          <div class="flex flex-col gap-1 shrink">
             <a href={`/news/${post.slug}/`}>
               <h3 class="title font-medium underline">{post.data.title}</h3>
             </a>
