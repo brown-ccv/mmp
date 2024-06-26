@@ -113,17 +113,6 @@
 }
 
 @layer components {
-    .three-column-wrapper {
-        display: grid;
-        grid-template-columns: 1fr min(1000px, 100%) 1fr;
-
-        padding-inline: 64px;
-    }
-
-    .three-column-wrapper > * {
-        grid-column: 2;
-    }
-
     .subtitle {
         @apply gap-1;
         @apply pt-6;
