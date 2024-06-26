@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import Select from "react-select"
+import PubPlaceholder from "./svg/PubPlaceholder.tsx"
 
 interface PubProps {
   publications: Array<PubObject>
@@ -116,20 +117,23 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
             return (
               <article key={option.value}>
                 <h2 className="py-2">{option.label}</h2>
-                <div className="flex flex-wrap lg:flex-nowrap gap-8">
+                <div className="flex flex-wrap lg:flex-nowrap gap-12">
                   {shownPubs.map((publication, i) => {
                     if (publication.data.classification === option.value) {
                       return (
                         <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                          {publication.data.image && (
-                            <div className="hidden md:block drop-shadow-md">
+                          <div className="hidden md:block drop-shadow-md">
+                            {publication.data.image ? (
                               <img
                                 className="drop-shadow-md object-cover w-48 h-72"
                                 src={publication.data.image}
                               />
-                            </div>
-                          )}
-                          <div className="flex flex-col gap-10 ">
+                            ) : (
+                              <PubPlaceholder />
+                            )}
+                          </div>
+
+                          <div className="flex flex-col gap-8 ">
                             <p>{publication.data.citation}</p>
                             {publication.data.pdf && (
                               <button
