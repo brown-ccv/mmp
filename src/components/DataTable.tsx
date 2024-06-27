@@ -64,7 +64,7 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
   })
 
   return (
-    <div className="w-full overflow-x-scroll">
+    <div className="w-full overflow-x-scroll no-scrollbar">
       <table className="table-fixed border-spacing-2">
         <thead>
           <tr className="bg-neutral-100 text-left text-neutral-900">
