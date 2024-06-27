@@ -4,7 +4,9 @@ backend:
   name: github
   repo: brown-ccv/mmp
   base_url: /
-media_folder: public/images
+media_folder: public/files
+media_library:
+  max_file_size: 734003200
 i18n:
   structure: multiple_folders
   locales: [ en, es, pt ]
@@ -104,6 +106,7 @@ collections:
     label: Data
     create: true
     folder: src/content/data
+    media_folder: files
     fields:
       - name: title
         label: Title
@@ -115,7 +118,6 @@ collections:
         i18n: duplicate
         label: File
         widget: file
-        public_folder: public/files
       - name: cat
         label: Category
         widget: select

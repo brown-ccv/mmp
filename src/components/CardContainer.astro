@@ -7,9 +7,7 @@ interface PersonProps {
     title: string
     name: string
     avatar?: string
-    email?: string
-    address?: string
-    phone?: string
+    institution: string
   }
 }
 ---
@@ -22,13 +20,12 @@ interface PersonProps {
         return (
           <>
             <Card
+              client:load
               position={i}
               title={person.data.title}
               name={person.data.name}
               image={person.data.avatar}
-              email={person.data.email}
-              phone={person.data.phone}
-              address={person.data.address}
+              institution={person.data.institution}
             />
           </>
         )

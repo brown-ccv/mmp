@@ -6,6 +6,7 @@ const people = await getCollection("people")
 const leadership = people.filter((person) => person.data.type === "Leadership")
 const advisors = people.filter((person) => person.data.type === "Advisors")
 const support = people.filter((person) => person.data.type === "Supporting Staff")
+console.log(people)
 ---
 
 <Layout title="Staff" description="Our Leadership, Advisors, and Staff">

@@ -1,57 +1,41 @@
 import React, { useState } from "react"
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "@radix-ui/react-icons"
+import type { FileItem } from "./DataForm.tsx"
+
+type updateFileListType = (fileToUpdate: FileItem, selection: boolean) => void
 
 interface DataTableProps {
   allFiles: {
-    data: {
-      title: string
-      cat: string
-      file: string
-      description?: string
-    }
+    title: string
+    cat: string
+    file: string
+    description?: string
+    selected: boolean
   }[]
+  updateFileList: updateFileListType // function that updates file list in the parent component
 }
 
-interface FileProps {
-  title: string
-  cat: string
-  file: string
-  description?: string
-  selected: boolean
-}
-
-const DataTable: React.FC<DataTableProps> = ({ allFiles }) => {
-  const initialFiles = allFiles.map((file) => {
-    const temp = file.data
-    return { ...temp, selected: false }
-  })
+const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
   const [isCheckAll, setIsCheckAll] = useState(false)
-  const [files, setFiles] = useState<FileProps[]>(initialFiles)
 
   const handleSelectAll = () => {
     const newIsCheckAll = !isCheckAll // Toggle isCheckAll
     setIsCheckAll(newIsCheckAll)
-    const filesClone = [...files]
-    filesClone.forEach((file) => {
-      file.selected = newIsCheckAll
+    allFiles.forEach((file) => {
+      updateFileList(file, newIsCheckAll)
     })
-    setFiles([...filesClone])
   }
 
   const handleSelect = (selected: boolean, i: number) => {
-    const temp = files[i]
-    temp.selected = !selected
-    const filesClone = [...files]
-    filesClone[i] = temp
-    setFiles([...filesClone])
+    updateFileList(allFiles[i], !selected)
   }
 
-  const selectedFiles = files.map(({ title, file, selected, cat, description }, i) => {
+  const selectedFiles = allFiles.map(({ title, file, selected, cat, description }, i) => {
     return (
       <tr key={i}>
-        <td className="p-2">
-          <div className="flex">
+        <td>
+          <div className="flex gap-4">
             <Checkbox.Root
               name={file}
               id={file}
@@ -66,8 +50,15 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles }) => {
             <p className="text-base"> {title}</p>
           </div>
         </td>
-        <td className="p-2">{cat}</td>
-        <td className="p-2">{description}</td>
+        <td>{cat}</td>
+        <td>{description}</td>
+        <td>
+          <a
+            className="text-secondary-blue-700 hover:text-secondary-blue-500"
+            target="_blank"
+            href={file}
+          >{`${title}.pdf`}</a>
+        </td>
       </tr>
     )
   })
@@ -75,7 +66,7 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles }) => {
   return (
     <table className="table-fixed border-spacing-2">
       <thead>
-        <tr className="bg-neutral-300 text-left">
+        <tr className="bg-neutral-100 text-left text-neutral-900">
           <th className="flex w-[200px]">
             <Checkbox.Root
               name="selectAll"
@@ -91,6 +82,7 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles }) => {
           </th>
           <th className="w-[200px]">Category</th>
           <th>Description</th>
+          <th>File</th>
         </tr>
       </thead>
 
