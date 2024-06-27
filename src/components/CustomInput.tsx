@@ -22,16 +22,10 @@ export const CustomInput = React.forwardRef<
       | "valid"
   } & ReturnType<UseFormRegister<Inputs>>
 >(({ onChange, onBlur, name, label, placeholder, match, errorMessage }, ref) => (
-  <Form.Field name={label} className="py-2 my-4 mx-2">
+  <Form.Field name={name} className="flex flex-col gap-2">
+    <Form.Label>{label}</Form.Label>
     <Form.Control asChild>
-      <input
-        name={name}
-        onChange={onChange}
-        onBlur={onBlur}
-        id={label}
-        placeholder={placeholder}
-        required
-      />
+      <input name={name} onChange={onChange} onBlur={onBlur} placeholder={placeholder} required />
     </Form.Control>
     <Form.Message className="text-red-600 text-lg" match="valueMissing">
       Please enter your {label}

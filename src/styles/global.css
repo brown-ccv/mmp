@@ -33,8 +33,7 @@
         @apply text-2xl;
     }
 
-    p, a {
-        @apply text-xl;
+    p, a, label {
         @apply text-neutral-700;
     }
 
@@ -57,15 +56,16 @@
         @apply rounded-full;
         @apply shadow-inner;
         @apply min-w-60;
-        @apply py-5;
-        @apply px-8;
+        @apply w-max;
+        @apply py-3;
+        @apply px-5;
     }
     
-    input::placeholder {
+    input::placeholder, textarea::placeholder {
         @apply text-neutral-300;
     }
 
-    input:focus {
+    input:focus, textarea:focus {
         @apply outline-none;
         @apply shadow-inner-focus;
     }
@@ -74,6 +74,14 @@
         @apply bg-gray;
     }
 
+    textarea {
+        @apply bg-white;
+        @apply shadow-inner;
+        @apply border-none;
+        @apply rounded-lg;
+        @apply p-3;
+        @apply w-full;
+    }
 
     nav {
         @apply flex;

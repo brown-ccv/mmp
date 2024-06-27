@@ -44,7 +44,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
           onClick={() => setIsOpen(false)}
         />
         <Dialog.Overlay className="grid place-items-center fixed top-0 left-0 right-0 bottom-0 z-10 w-screen overflow-y-auto p-12">
-          <Dialog.Content className="flex flex-col gap-12 rounded-lg shadow-xl bg-neutral-50 p-9">
+          <Dialog.Content className="flex flex-col gap-8 rounded-lg shadow-xl bg-neutral-50 p-9">
             <div>
               <div className="flex justify-end">
                 <Dialog.Close className="text-gray-400 bg-transparent rounded-lg text-sm w-8 h-8 inline-flex justify-center items-center hover:bg-gray-200 hover:text-gray-900">
@@ -59,22 +59,22 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
                 </p>
               </div>
             </div>
-            <Form.Root onSubmit={handleSubmit(onSubmit)}>
+            <Form.Root className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
               {message ? <p>{message}</p> : null}
               <Controller
                 name="name"
                 control={control}
                 render={() => (
-                  <CustomInput label={"name"} placeholder={"Your name"} {...register("name")} />
+                  <CustomInput label="Name" placeholder="Heather Yu" {...register("name")} />
                 )}
               />
               <Controller
-                name={"institution"}
+                name="institution"
                 control={control}
                 render={() => (
                   <CustomInput
-                    label={"institution"}
-                    placeholder={"Your institution"}
+                    label="Institution"
+                    placeholder="Brown University"
                     {...register("institution")}
                   />
                 )}
@@ -84,10 +84,10 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
                 control={control}
                 render={() => (
                   <CustomInput
-                    label={"email"}
-                    placeholder={"Your email"}
-                    match={"typeMismatch"}
-                    errorMessage={"Please provide a valid email"}
+                    label="Email"
+                    placeholder="heather@example.com"
+                    match="typeMismatch"
+                    errorMessage="Please provide a valid email"
                     {...register("email")}
                   />
                 )}
@@ -97,8 +97,8 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
                 control={control}
                 render={() => (
                   <CustomTextarea
-                    label={"description"}
-                    placeholder={"Why you need this file"}
+                    label="Description"
+                    placeholder="Why you need this file..."
                     {...register("description")}
                   />
                 )}
