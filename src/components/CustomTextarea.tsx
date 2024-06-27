@@ -24,7 +24,7 @@ export const CustomTextarea = React.forwardRef<
         required
       />
     </Form.Control>
-    <Form.Message className="text-red-600 text-lg" match="valueMissing">
+    <Form.Message className="text-primary-300" match="valueMissing">
       Please enter your {label}
     </Form.Message>
   </Form.Field>
