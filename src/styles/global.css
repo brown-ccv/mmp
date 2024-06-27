@@ -38,6 +38,10 @@
         @apply text-neutral-700;
     }
 
+    a {
+        @apply underline;
+    }
+
     p.small {
         @apply text-base;
         @apply text-neutral-500;

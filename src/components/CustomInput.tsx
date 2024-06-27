@@ -26,11 +26,9 @@ export const CustomInput = React.forwardRef<
     <Form.Control asChild>
       <input
         name={name}
-        ref={ref}
         onChange={onChange}
         onBlur={onBlur}
         id={label}
-        className="text-gray-400 text-sm font-medium outline-none border-b-2 w-full"
         placeholder={placeholder}
         required
       />
