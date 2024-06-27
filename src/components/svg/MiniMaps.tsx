@@ -1,4 +1,3 @@
-import React from "react"
 import HoverCardItem from "../HoverCard.tsx"
 
 const MiniMapSvg = () => {

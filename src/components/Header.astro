@@ -4,7 +4,6 @@ import { SITE_TITLE, LINKS } from "../consts"
 
 const { isHidden = true } = Astro.props
 const pathname = Astro.url.pathname
-const path = pathname.match(/^\/$/) ? pathname : pathname.slice(0, -1)
 ---
 <script>
   class NavbarHamburger extends HTMLElement {
@@ -30,20 +29,19 @@ const path = pathname.match(/^\/$/) ? pathname : pathname.slice(0, -1)
 </script>
 
 <header>
-  <h2><a class={pathname !== "/" ? `hover:text-gray-600 decoration-0` : "hidden"} href="/">{SITE_TITLE}</a></h2>
+  <h2><a class={`no-underline ${pathname !== "/" ? `hover:text-gray-600` : "hidden"}`} href="/">{SITE_TITLE}</a></h2>
   <nav>
     <div class="hidden lg:flex">
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
-                      class="text-base pt-2.5 px-4 text-neutral-500 hover:text-gray-600 active:text-neutral-900 "
+                      class="text-base pt-2.5 px-4 text-neutral-500 hover:text-gray-600 active:text-neutral-900"
           >{data.toUpperCase()}</HeaderLink>)
       }
     </div>
     <!--hamburger-->
     <navbar-hamburger class="lg:hidden max-w-screen-xl flex flex-wrap items-center justify-between p-2">
-      <button type="button"
-              class="inline-flex items-center justify-center p-2 w-10 h-10 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
+      <button class="items-center justify-center p-2 w-10 h-10 text-sm text-neutral-900 rounded-lg focus:outline-none hover:bg-opacity-0 hover:shadow-none">
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { set } from "react-hook-form"
 import DataTable from "../components/DataTable"
 import DownloadModal from "../components/DownloadModal"
 
@@ -41,9 +40,9 @@ const DataForm: React.FC<DataFormProps> = ({ allFiles }) => {
   }
 
   return (
-    <div className="flex flex-col">
-      <DataTable allFiles={files} updateFileList={updateFileList} />
+    <div className="flex flex-col gap-4">
       <DownloadModal filesToDownload={files.map((file) => file.file)} />
+      <DataTable allFiles={files} updateFileList={updateFileList} />
     </div>
   )
 }

@@ -2,6 +2,8 @@
 
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
+
 @layer base {
     :root {
         @apply font-body;
@@ -107,12 +109,20 @@
         @apply p-16;
     }
 
+    button {
+        @apply flex gap-2 items-center py-2 px-3 w-max rounded-full text-neutral-50 transition-all;
+    }
+
+    button:hover {
+        @apply bg-primary-700 shadow-md;
+    }
+
     button[role="checkbox"] {
         @apply bg-neutral-50;
-        @apply flex;
-        @apply items-center;
         @apply justify-center;
         @apply shadow-md;
+        @apply rounded-md;
+        @apply text-neutral-900;
     }
 
     th {

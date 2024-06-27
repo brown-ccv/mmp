@@ -25,7 +25,14 @@ export const CustomInput = React.forwardRef<
   <Form.Field name={name} className="flex flex-col gap-2">
     <Form.Label>{label}</Form.Label>
     <Form.Control asChild>
-      <input name={name} onChange={onChange} onBlur={onBlur} placeholder={placeholder} required />
+      <input
+        name={name}
+        onChange={onChange}
+        onBlur={onBlur}
+        placeholder={placeholder}
+        ref={ref}
+        required
+      />
     </Form.Control>
     <Form.Message className="text-red-600 text-lg" match="valueMissing">
       Please enter your {label}
