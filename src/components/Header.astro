@@ -32,11 +32,11 @@ const path = pathname.match(/^\/$/) ? pathname : pathname.slice(0, -1)
 <header>
   <h2><a class={pathname !== "/" ? `hover:text-gray-600 decoration-0` : "hidden"} href="/">{SITE_TITLE}</a></h2>
   <nav>
-    <div class="hidden lg:flex">
+    <div class="hidden lg:flex lg:gap-8">
       {
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
-                      class="text-base pt-2.5 px-4 text-neutral-500 hover:text-gray-600 active:text-neutral-900 "
+                      class="text-base text-neutral-500 hover:text-gray-600 active:text-neutral-900 "
           >{data.toUpperCase()}</HeaderLink>)
       }
     </div>
@@ -53,7 +53,7 @@ const path = pathname.match(/^\/$/) ? pathname : pathname.slice(0, -1)
 
     </navbar-hamburger>
     <div id="menu-body" data-hidden={isHidden} class="hidden">
-      <ul class="flex flex-col items-end font-medium mt-4 absolute top-16 right-6 md:right-14">
+      <ul class="flex flex-col items-end bg-neutral-50 font-medium mt-4 absolute top-16 right-0 md:right-14">
         {
           LINKS.map((data) =>
             <HeaderLink href=`/${data}`
