@@ -24,7 +24,6 @@
 
     body > * {
         grid-column: 2;
-        @apply max-w-[1000px];
         @apply px-3;
     }
 
