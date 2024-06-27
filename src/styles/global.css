@@ -133,9 +133,12 @@
     button[role="checkbox"] {
         @apply bg-neutral-50;
         @apply justify-center;
-        @apply shadow-md;
-        @apply rounded-md;
+        @apply rounded-none;
         @apply text-neutral-900;
+    }
+
+    button[role="checkbox"]:hover {
+        @apply shadow-none;
     }
 
     th {
