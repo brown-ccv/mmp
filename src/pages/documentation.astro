@@ -4,9 +4,9 @@ import CircleIcon from "../components/svg/Circle"
 ---
 
 <Layout title="Documentation" description="About the Project">
-  <div class="flex flex-col gap-6">
-    <section class="flex flex-col gap-3.5">
-      <h2>Selecting Communities</h2>
+  <div class="space-y-10">
+    <section class="space-y-4 readable">
+      <h2 class="mb-8">Selecting Communities</h2>
       <p>
         The process of selecting communities for the Mexican Migration has traditionally relied on
         anthropological methods. Communities are chosen after a personal reconnaissance of the
@@ -20,7 +20,7 @@ import CircleIcon from "../components/svg/Circle"
         <p>
           Until 2000, we lacked access to a valid measure to indicate the intensity of emigration
           from specific municipalities and the only measure indicating migration was the sex ratio.
-          The only demographic fact regularly considered was the community’s sex ratio, which offer
+          The only demographic fact regularly considered was the community's sex ratio, which offer
           general picture of the intensity of the process of international migration because in
           Mexico emigration is so heavily male. After an initial round of fieldwork, investigators
           compared their preliminary data with census statistics and formation available from
@@ -30,7 +30,7 @@ import CircleIcon from "../components/svg/Circle"
           select four specific locations to represent each of four levels of urbanization:
         </p>
 
-        <div class="flex flex-col py-6 gap-4 md:grid-cols-2 md:grid md:items-center">
+        <div class="gap-4 px-10 py-6 md:grid-cols-2 md:grid">
           <div>
             <div class="flex items-center">
               <CircleIcon styling="fill-secondary-blue-500" />
@@ -62,12 +62,11 @@ import CircleIcon from "../components/svg/Circle"
             </div>
 
             <p class="italic px-2">
-              usually a particular neighborhood within in a state’s capital city
+              usually a particular neighborhood within in a state's capital city
             </p>
           </div>
         </div>
       </div>
-
       <p>
         In the pueblos and ranchos, investigators conduct a complete census of dwellings and
         undertake random selection from the resulting list. In mid-sized cities and urban
@@ -102,13 +101,13 @@ import CircleIcon from "../components/svg/Circle"
         sources to confirm the existence of migrants before making the final selection.
       </p>
     </section>
-    <section class="flex flex-col gap-3.5">
-      <h2>Ethnosurvey</h2>
+    <section class="space-y-4 readable">
+      <h2 class="mb-8">Ethnosurvey</h2>
       <p>
         The Ethnosurvey is eclectic and draws on methods and approaches well-known in sociology,
         anthropology, psychology, and education. Its contribution and complexity lies in the way all
         these methods are combined within a single study. The main idea for the Ethnosurvey is “to
-        complement qualitative and quantitative procedures, so one’s weakenesses become the other’s
+        complement qualitative and quantitative procedures, so one's weakenesses become the other's
         strength, yielding a body of data with greater reliability and more internal validity than
         is possible to achieve using either method alone.” (Massey 1987).
       </p>
@@ -129,8 +128,8 @@ import CircleIcon from "../components/svg/Circle"
         as the Community Data Inventory.
       </p>
     </section>
-    <section class="flex flex-col gap-3.5">
-      <h2>Interview Process</h2>
+    <section class="space-y-4 readable">
+      <h2 class="mb-8">Interview Process</h2>
       <p>
         The questionnaires are applied in three phases. In the first phase, basic social and
         demographic data are collected from all members of the household. The interview begins by
@@ -142,51 +141,53 @@ import CircleIcon from "../components/svg/Circle"
         listing the head, spouse, and children, other household members are identified and their
         relationship to the head clarified.
       </p>
-      <div>
-        <div class="flex items-center">
-          <CircleIcon styling="fill-primary-500" />
-          <h3 class="text-primary-500 font-semibold px-2">Phase 1</h3>
+      <div class="space-y-4 px-12">
+        <div>
+          <div class="flex items-center mb-2 gap-2">
+            <CircleIcon width={20} height={20} styling="fill-primary-500" />
+            <h3 class="text-primary-500 font-semibold">Phase 1</h3>
+          </div>
+          <p>
+            A particularly important task in the first phase of the questionnaire is the
+            identification of people with prior migrant experience in either the United States or
+            Mexico. For those individuals with migrant experience the interviewer records the total
+            number of U.S. trips, as well as information about the first and most recent U.S. trips,
+            including the year, duration, destination, U.S. occupation, legal status, and hourly
+            wage. This exercise is then repeated for first and most recent migrations within Mexico.
+          </p>
         </div>
-        <p class="px-2">
-          A particularly important task in the first phase of the questionnaire is the
-          identification of people with prior migrant experience in either the United States or
-          Mexico. For those individuals with migrant experience the interviewer records the total
-          number of U.S. trips, as well as information about the first and most recent U.S. trips,
-          including the year, duration, destination, U.S. occupation, legal status, and hourly wage.
-          This exercise is then repeated for first and most recent migrations within Mexico.
-        </p>
-      </div>
-      <div>
-        <div class="flex items-center">
-          <CircleIcon styling="fill-secondary-blue-500" />
-          <h3 class="text-secondary-blue-500 font-semibold px-2">Phase 2</h3>
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <CircleIcon width={20} height={20} styling="fill-secondary-blue-500" />
+            <h3 class="text-secondary-blue-500 font-semibold">Phase 2</h3>
+          </div>
+          <p>
+            The second phase of the ethnosurvey questionnaire compiles a year-by-year life history
+            for all household heads, including a childbearing history, a property history, a housing
+            history, a business history, and a labor history. The goal of this phase is to capture
+            occupational mobility, health status, migration history, and family formation.
+          </p>
         </div>
-        <p class="px-2">
-          The second phase of the ethnosurvey questionnaire compiles a year-by-year life history for
-          all household heads, including a childbearing history, a property history, a housing
-          history, a business history, and a labor history. The goal of this phase is to capture
-          occupational mobility, health status, migration history, and family formation.
-        </p>
-      </div>
-      <div>
-        <div class="flex items-center">
-          <CircleIcon styling="fill-secondary-brown-500" />
-          <h3 class="text-secondary-brown-500 font-semibold px-2">Phase 3</h3>
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <CircleIcon width={20} height={20} styling="fill-secondary-brown-500" />
+            <h3 class="text-secondary-brown-500 font-semibold">Phase 3</h3>
+          </div>
+          <p>
+            The third and final phase of the questionnaire gathers information about the household
+            head's experiences on his or her most recent trip to the United States, including the
+            mode of border-crossing, the kind and number of accompanying relatives, the kind and
+            number of relatives already present in the United States, the number of social ties that
+            had been formed with U.S. citizens, English language ability, job characteristics, and
+            use of U.S. social services.
+          </p>
         </div>
-        <p class="px-2">
-          The third and final phase of the questionnaire gathers information about the household
-          head's experiences on his or her most recent trip to the United States, including the mode
-          of border-crossing, the kind and number of accompanying relatives, the kind and number of
-          relatives already present in the United States, the number of social ties that had been
-          formed with U.S. citizens, English language ability, job characteristics, and use of U.S.
-          social services.
-        </p>
       </div>
     </section>
-    <section class="flex flex-col gap-3.5">
-      <h2>Data Coding/Weights</h2>
-      <div class="flex flex-col gap-3.5">
-        <h3 class="font-semibold">Data Coding and File Construction</h3>
+    <section class="space-y-8 readable">
+      <h2 class="mb-8">Data Coding/Weights</h2>
+      <div class="space-y-4">
+        <h3 class="font-semibold mb-6">Data Coding and File Construction</h3>
         <p>
           After the ethnosurvey questionnaires are completed and revised, data are entered in
           Mexico. The entry programs perform initial screening, range checks, and simple tests for
@@ -199,8 +200,8 @@ import CircleIcon from "../components/svg/Circle"
           the file: COMMUN.
         </p>
       </div>
-      <div class="flex flex-col gap-3.5">
-        <h3 class="font-semibold">Weights</h3>
+      <div class="space-y-4">
+        <h3 class="font-semibold mb-6">Weights</h3>
         <p>
           The MMP database provides community- and sample-specific weights. For each community, you
           will see a single weight for all the households in the home country sample and another

@@ -22,25 +22,28 @@ interface DataFormProps {
 }
 
 const DataForm: React.FC<DataFormProps> = ({ allFiles }) => {
-  const initialFiles = allFiles.map((file) => {
-    const temp = file.data
-    return { ...temp, selected: false }
-  })
-  const [files, setFiles] = useState(initialFiles)
-
-  const updateFileList = (fileToUpdate: FileItem, selection: boolean) => {
-    const filesClone = [...files]
-    const updatedFiles = filesClone.map((file) => {
-      if (file.file === fileToUpdate.file) {
-        file.selected = selection
-      }
-      return file
+  const [files, setFiles] = useState(
+    allFiles.map((file) => {
+      return { ...file.data, selected: false }
     })
+  )
+
+  /**
+   * Given a target file name and new `selected` field for that file, update the matching file object in{@link files}
+   * with the new value for `selected`.
+   */
+  const updateFileList = ({ file: targetFile }: FileItem, selection: boolean) => {
+    const updatedFiles = files.map(({ file, selected, ...rest }) => {
+      return file === targetFile
+        ? { file, selected: selection, ...rest }
+        : { file, selected, ...rest }
+    })
+
     setFiles(updatedFiles)
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="space-y-4">
       <DownloadModal filesToDownload={files.map((file) => file.file)} />
       <DataTable allFiles={files} updateFileList={updateFileList} />
     </div>
