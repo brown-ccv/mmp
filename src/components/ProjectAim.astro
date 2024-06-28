@@ -1,0 +1,29 @@
+---
+interface Props {
+  color: "blue" | "primary" | "brown"
+}
+
+const { color } = Astro.props
+---
+
+<div class="flex-1 flex flex-col gap-4">
+  <span
+    class={color === "blue"
+      ? "text-secondary-blue-500"
+      : color === "primary"
+        ? "text-primary-500"
+        : "text-secondary-brown-500"}
+  >
+    <slot name="icon" />
+  </span>
+  <hr
+    class={`h-1 w-36 border-none ${
+      color === "blue"
+        ? "bg-secondary-blue-500"
+        : color === "primary"
+          ? "bg-primary-500"
+          : "bg-secondary-brown-500"
+    } `}
+  />
+  <p><slot /></p>
+</div>
