@@ -13,7 +13,7 @@ const posts = (await getCollection("news")).sort(
     {
       posts.map((post) => (
         <li class="flex gap-10">
-          <p class="flex-none md:w-40 text-sm text-neutral-500">
+          <p class="flex-none w-24 md:w-40 text-sm text-neutral-500">
             <FormattedDate date={post.data.pubDate} />
           </p>
           <a class="relative hidden w-80 h-72 flex-none md:block" href={`/news/${post.slug}/`}>
