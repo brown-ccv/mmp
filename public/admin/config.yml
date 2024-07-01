@@ -4,7 +4,7 @@ backend:
   name: github
   repo: brown-ccv/mmp
   base_url: /
-media_folder: public/files
+media_folder: public/images
 media_library:
   max_file_size: 734003200
 i18n:
@@ -69,6 +69,7 @@ collections:
   - name: publications
     label: Publications
     folder: src/content/publications
+    media_folder: /publications
     create: true
     identifier_field: citation
     fields:
@@ -101,7 +102,6 @@ collections:
         i18n: duplicate
         label: PDF
         widget: file
-        public_folder: public/publications
   - name: data
     label: Data
     create: true
