@@ -117,7 +117,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
             return (
               <article key={option.value}>
                 <h2 className="py-2">{option.label}</h2>
-                <div className="flex flex-wrap lg:flex-nowrap gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2  gap-12">
                   {shownPubs.map((publication, i) => {
                     if (publication.data.classification === option.value) {
                       return (
@@ -138,7 +138,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                             {publication.data.pdf && (
                               <button
                                 className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
-                                onClick={() => console.log(publication.data.pdf)}
+                                onClick={() => window.open(`${publication.data.pdf}`, "_blank")}
                               >
                                 View PDF
                               </button>
