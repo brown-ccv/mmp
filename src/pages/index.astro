@@ -1,8 +1,9 @@
 ---
 import Home from "../layouts/Home.astro"
-import CircleIcon from "../components/svg/Circle"
 import MiniMapSvg from "../components/svg/MiniMaps"
 import FootPrint from "../components/svg/FootPrint"
+import { GlobeIcon, Pencil1Icon, TargetIcon } from "@radix-ui/react-icons"
+import ProjectAim from "../components/ProjectAim.astro"
 ---
 
 <Home
@@ -14,7 +15,7 @@ import FootPrint from "../components/svg/FootPrint"
     <FootPrint />
   </div>
   <div class="space-y-24">
-    <section class="space-y-6 py-6 lg:w-3/4">
+    <section class="space-y-8 py-6 readable">
       <p>
         The Mexican Migration Project (MMP) was created in 1982 by an interdisciplinary team of
         researchers to further our understanding of the complex process of Mexican migration to the
@@ -36,24 +37,24 @@ import FootPrint from "../components/svg/FootPrint"
         behavior of Mexican migrants.
       </p>
     </section>
-    <section class="space-y-4">
+    <section class="space-y-12">
       <h3 class="title font-semibold">Project Aims</h3>
-      <div class="flex space-x-6">
-        <div>
-          <CircleIcon styling="fill-secondary-blue-500" />
-          <p>Gather and maintain high quality data on Mexican migration to the US</p>
-        </div>
-        <div>
-          <CircleIcon styling="fill-primary-500" />
-          <p>Make data public and confidential</p>
-        </div>
-        <div>
-          <CircleIcon styling="fill-secondary-brown-500" />
-          <p>Investigate the evolving transnational dynamics of migration</p>
-        </div>
+      <div class="flex flex-wrap gap-20 justify-center">
+        <ProjectAim color="blue">
+          <TargetIcon slot="icon" height={36} width={36} />
+          Gather and maintain high quality data on Mexican migration to the US.
+        </ProjectAim>
+        <ProjectAim color="primary">
+          <GlobeIcon slot="icon" height={36} width={36} />
+          Make data public and confidential.
+        </ProjectAim>
+        <ProjectAim color="brown">
+          <Pencil1Icon slot="icon" height={36} width={36} />
+          Investigate the evolving transnational dynamics of migration.
+        </ProjectAim>
       </div>
     </section>
-    <section class="space-y-4 lg:w-3/4">
+    <section class="space-y-12 readable">
       <h3 class="title font-semibold">Where are we located?</h3>
       <p>
         The MMP has offices, in Mexico, at the Departamento de Investigacion sobre Movimientos

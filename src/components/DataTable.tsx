@@ -35,11 +35,11 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
     return (
       <tr key={i}>
         <td>
-          <div className="flex gap-4">
+          <div className="flex items-center gap-4">
             <Checkbox.Root
               name={file}
               id={file}
-              className="mx-1 w-6 h-6 border"
+              className="p-0 w-4 h-4 border"
               checked={selected}
               onClick={() => handleSelect(selected, i)}
             >
@@ -64,30 +64,32 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
   })
 
   return (
-    <table className="table-fixed border-spacing-2">
-      <thead>
-        <tr className="bg-neutral-100 text-left text-neutral-900">
-          <th className="flex w-[200px]">
-            <Checkbox.Root
-              name="selectAll"
-              id="selectAll"
-              className="mx-1 w-6 h-6 text-neutral-900"
-              onCheckedChange={handleSelectAll}
-            >
-              <Checkbox.Indicator>
-                <CheckIcon />
-              </Checkbox.Indicator>
-            </Checkbox.Root>
-            File Name
-          </th>
-          <th className="w-[200px]">Category</th>
-          <th>Description</th>
-          <th>File</th>
-        </tr>
-      </thead>
+    <div className="w-full overflow-x-scroll no-scrollbar">
+      <table className="table-fixed border-spacing-2">
+        <thead>
+          <tr className="bg-neutral-100 text-left text-neutral-900">
+            <th className="flex items-center w-[200px]">
+              <Checkbox.Root
+                name="selectAll"
+                id="selectAll"
+                className="p-0 w-4 h-4 text-neutral-900 border"
+                onCheckedChange={handleSelectAll}
+              >
+                <Checkbox.Indicator>
+                  <CheckIcon />
+                </Checkbox.Indicator>
+              </Checkbox.Root>
+              File Name
+            </th>
+            <th className="w-[200px]">Category</th>
+            <th>Description</th>
+            <th>File</th>
+          </tr>
+        </thead>
 
-      <tbody>{selectedFiles}</tbody>
-    </table>
+        <tbody>{selectedFiles}</tbody>
+      </table>
+    </div>
   )
 }
 export default DataTable
