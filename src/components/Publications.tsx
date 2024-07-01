@@ -1,23 +1,13 @@
 import React, { useState } from "react"
 import Select from "react-select"
+import type { InferEntrySchema } from "astro:content"
+import type { Classification } from "../content/config.ts"
 import PubPlaceholder from "./svg/PubPlaceholder.tsx"
 
 interface PubProps {
-  publications: Array<PubObject>
+  publications: InferEntrySchema<"publications">[]
 }
 
-interface PubObject {
-  data: {
-    classification: Classification
-    author: string
-    citation: string
-    image?: string
-    url?: string
-    pdf?: string
-  }
-}
-
-type Classification = "Book" | "Article" | "Dissertation" | "Chapter"
 const PublicationSection: React.FC<PubProps> = ({ publications }) => {
   const classificationOptions = [
     { value: "Book", label: "Books" },
@@ -39,8 +29,8 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
 
   const shownPubs = publications.filter(
     (pub) =>
-      classificationFilter.map((item) => item.value).includes(pub.data.classification) &&
-      pub.data.citation.toLowerCase().includes(searchInput.toLowerCase())
+      classificationFilter.map((item) => item.value).includes(pub.classification) &&
+      pub.citation.toLowerCase().includes(searchInput.toLowerCase())
   )
   return (
     <>
@@ -90,14 +80,14 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                 <h2 className="py-2">{option.label}</h2>
                 <div className="grid grid-cols-1 lg:grid-cols-2  gap-12">
                   {shownPubs.map((publication, i) => {
-                    if (publication.data.classification === option.value) {
+                    if (publication.classification === option.value) {
                       return (
                         <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
                           <div className="hidden md:block drop-shadow-md">
-                            {publication.data.image ? (
+                            {publication.image ? (
                               <img
                                 className="drop-shadow-md object-cover w-48 h-72"
-                                src={publication.data.image}
+                                src={publication.image}
                               />
                             ) : (
                               <PubPlaceholder />
@@ -105,11 +95,11 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                           </div>
 
                           <div className="flex flex-col gap-8 ">
-                            <p>{publication.data.citation}</p>
-                            {publication.data.pdf && (
+                            <p>{publication.citation}</p>
+                            {publication.pdf && (
                               <button
                                 className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
-                                onClick={() => window.open(`${publication.data.pdf}`, "_blank")}
+                                onClick={() => window.open(`${publication.pdf}`, "_blank")}
                               >
                                 View PDF
                               </button>
