@@ -8,7 +8,7 @@ interface PubProps {
 
 interface PubObject {
   data: {
-    classification: string
+    classification: Classification
     citation: string
     image?: string
     url?: string
@@ -16,11 +16,7 @@ interface PubObject {
   }
 }
 
-interface iOption {
-  label: string
-  value: string
-}
-
+type Classification = "Book" | "Article" | "Dissertation" | "Chapter"
 const PublicationSection: React.FC<PubProps> = ({ publications }) => {
   const classificationOptions = [
     { value: "Book", label: "Books" },
@@ -30,7 +26,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
     },
     { value: "Dissertation", label: "Dissertations" },
     { value: "Chapter", label: "Chapters" },
-  ]
+  ] as const
 
   const [searchInput, setSearchInput] = useState("")
   const [classificationFilter, setClassificationFilter] = useState(classificationOptions)
@@ -79,7 +75,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                 paddingRight: "2rem",
               }),
             }}
-            onChange={(option) => setClassificationFilter(option as Array<iOption>)}
+            onChange={(option) => setClassificationFilter(option)}
           />
         </div>
       </section>
