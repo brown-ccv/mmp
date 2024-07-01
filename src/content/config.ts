@@ -28,9 +28,11 @@ const people = defineCollection({
   schema: z.object({
     type: z.string(),
     name: z.string(),
+    link: z.string(),
     title: z.string(),
     avatar: z.string().optional(),
     institution: z.string(),
+    bio: z.string(),
   }),
 })
 export const collections = { news: news, data: files, people: people }
