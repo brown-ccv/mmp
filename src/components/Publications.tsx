@@ -9,6 +9,7 @@ interface PubProps {
 interface PubObject {
   data: {
     classification: Classification
+    author: string
     citation: string
     image?: string
     url?: string
