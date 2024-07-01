@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Select, { type Option } from "react-select"
+import Select from "react-select"
 import PubPlaceholder from "./svg/PubPlaceholder.tsx"
 
 interface PubProps {
