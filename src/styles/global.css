@@ -105,7 +105,7 @@
         @apply flex;
         @apply items-center;
         @apply self-stretch;
-        @apply p-16;
+        @apply pt-36 pb-16;
     }
 
     button[role="checkbox"] {
