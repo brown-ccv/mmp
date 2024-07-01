@@ -7,5 +7,5 @@ citation: >
   In Lois Ann Lorentzen (Ed.), Hidden Lives and Human Rights in the United
   States: Undestanding the Constroversies and Tragedies of Undocumented
   Immigration (pp. 53-70). Santa Barbara, California: Praeger, 2014.
-image: /publications/hidden-lives.jpg
+image: /pubs/hidden-lives.jpg
 ---

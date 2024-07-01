@@ -7,5 +7,5 @@ citation: >
   tesis sobre el trabajo migrante temporal." In S. M. Lara Flores, J. Pantaleón,
   y M. J. Sánchez Gómez (coordinadores) 1a ed. Hacia el otro norte. Mexicanos en
   Canadá (pp. 175-205). Ciudad Autónoma de Buenos Aires: CLACSO, 2015.
-pdf: /publications/haciaelotronorte.pdf
+pdf: /pubs/haciaelotronorte.pdf
 ---

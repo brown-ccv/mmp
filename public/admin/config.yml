@@ -66,10 +66,10 @@ collections:
         date_format: yyyy
         time_format: false
         format: yyyy
-  - name: publications
+  - name: pubs
     label: Publications
     folder: src/content/publications
-    media_folder: /publications
+    media_folder: public/pubs
     create: true
     identifier_field: citation
     slug: '{{fields.classification}}-{{fields.pubDate}}_{{fields.author}}'

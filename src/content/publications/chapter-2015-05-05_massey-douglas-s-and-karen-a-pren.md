@@ -8,5 +8,5 @@ citation: >
   Acosta Arcarazo and Anja Wiesbrock, editors. Global Migration. Old
   Assumptions, New Dynamics Vol. 2, Chapter 1 (pp. 3-22). Santa Barbara,
   California: Praeger, 2015.
-image: /publications/global-migration.jpg
+image: /pubs/global-migration.jpg
 ---
