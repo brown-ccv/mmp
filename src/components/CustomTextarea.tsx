@@ -10,7 +10,8 @@ export const CustomTextarea = React.forwardRef<
     placeholder: string
   } & ReturnType<UseFormRegister<Inputs>>
 >(({ onChange, onBlur, name, label, placeholder }, ref) => (
-  <Form.Field name={label} className="py-2 my-4 mx-2">
+  <Form.Field name={name} className="flex flex-col gap-2">
+    <Form.Label>{label}</Form.Label>
     <Form.Control asChild>
       <textarea
         rows={4}
@@ -18,13 +19,12 @@ export const CustomTextarea = React.forwardRef<
         ref={ref}
         onChange={onChange}
         onBlur={onBlur}
-        id={label}
         className="text-gray-400 text-sm font-medium outline-none border-b-2 w-full"
         placeholder={placeholder}
         required
       />
     </Form.Control>
-    <Form.Message className="text-red-600 text-lg" match="valueMissing">
+    <Form.Message className="text-primary-300" match="valueMissing">
       Please enter your {label}
     </Form.Message>
   </Form.Field>

@@ -13,15 +13,11 @@ const Card: React.FC<CardProps> = ({ position, image, title, name, institution }
   const link = image?.replace("/public", "")
   return (
     <div
-      className={`flex flex-row gap-8 ${position % 2 ? "md:flex-row-reverse md:text-right" : ""}`}
+      className={`flex flex-wrap gap-x-8 ${position % 2 ? "md:flex-row-reverse md:text-right" : ""}`}
     >
       {image && (
         <div>
-          <img
-            className="object-cover rounded-full w-64 h-64 min-w-64 min-h-64 hidden md:block"
-            src={link}
-            alt={name}
-          />
+          <img className="object-cover rounded-full w-64 h-64" src={link} alt={name} />
         </div>
       )}
       <div>
