@@ -11,6 +11,11 @@
     @apply text-neutral-700;
   }
 
+  html,
+  body {
+    @apply h-full;
+  }
+
   body {
     @apply grid;
     @apply bg-neutral-50;
