@@ -30,7 +30,8 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
   ] as const
 
   const [searchInput, setSearchInput] = useState("")
-  const [classificationFilter, setClassificationFilter] = useState(classificationOptions)
+  const [classificationFilter, setClassificationFilter] =
+    useState<Readonly<{ value: Classification; label: string }[]>>(classificationOptions)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setSearchInput(e.target.value)
