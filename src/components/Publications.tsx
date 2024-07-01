@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Select from "react-select"
+import Select, { type Option } from "react-select"
 import PubPlaceholder from "./svg/PubPlaceholder.tsx"
 
 interface PubProps {
@@ -14,6 +14,11 @@ interface PubObject {
     url?: string
     pdf?: string
   }
+}
+
+interface iOption {
+  label: string
+  value: string
 }
 
 const PublicationSection: React.FC<PubProps> = ({ publications }) => {
@@ -56,7 +61,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
           <label className="pl-1">Show</label>
           <Select
             options={classificationOptions}
-            isMulti={true}
+            isMulti
             isSearchable={false}
             closeMenuOnSelect={false}
             defaultValue={classificationOptions}
@@ -74,9 +79,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                 paddingRight: "2rem",
               }),
             }}
-            onChange={(e) => {
-              setClassificationFilter(e)
-            }}
+            onChange={(option) => setClassificationFilter(option as Array<iOption>)}
           />
         </div>
       </section>
