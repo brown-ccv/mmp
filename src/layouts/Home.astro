@@ -2,7 +2,7 @@
 import BaseHead from "../components/BaseHead.astro"
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
-import FootPrint from "../components/svg/FootPrint"
+import HeaderDivider from "../components/HeaderDivider.astro"
 
 interface Props {
   title: string
@@ -22,13 +22,13 @@ const { title, description, lede } = Astro.props
     <Header />
 
     <main>
-      <article class="max-w-[1000px]">
+      <article>
         <div>
-          <div class="flex flex-col gap-3 pb-6 md:w-1/2">
-            <h1 class="title">{title}</h1>
-            <h3 class="pb-48">{lede}</h3>
+          <div class="flex flex-col gap-3 pb-48 md:w-1/2">
+            <h1>{title}</h1>
+            <h3>{lede}</h3>
           </div>
-          <hr class="pb-6" />
+          <HeaderDivider />
           <slot />
         </div>
       </article>

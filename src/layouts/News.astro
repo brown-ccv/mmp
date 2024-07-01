@@ -17,21 +17,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props
         </div>
       )
     }
-    <div>
-      <div>
-        <div>
-          <FormattedDate date={pubDate} />
-          {
-            updatedDate && (
-              <div class="last-updated-on">
-                Last updated on
-                <FormattedDate date={updatedDate} />
-              </div>
-            )
-          }
+    <FormattedDate date={pubDate} />
+    {
+      updatedDate && (
+        <div class="last-updated-on">
+          Last updated on
+          <FormattedDate date={updatedDate} />
         </div>
-      </div>
-      <slot />
-    </div>
+      )
+    }
   </article>
 </Layout>
+<slot />

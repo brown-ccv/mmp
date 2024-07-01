@@ -28,9 +28,9 @@ const pathname = Astro.url.pathname
 
 </script>
 
-<header>
+<header class="flex justify-between items-center h-5 pt-16 pb-48">
   <h2><a class={`no-underline ${pathname !== "/" ? `hover:text-gray-600` : "hidden"}`} href="/">{SITE_TITLE}</a></h2>
-  <nav>
+  <nav class="py-8 uppercase text-sm">
     <div class="hidden lg:flex lg:gap-8">
       {
         LINKS.map((data) =>
