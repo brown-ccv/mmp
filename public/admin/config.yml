@@ -72,11 +72,15 @@ collections:
     media_folder: /publications
     create: true
     identifier_field: citation
+    slug: '{{fields.classification}}-{{fields.pubDate}}_{{fields.author}}'
     fields:
       - name: classification
         label: Classification
         widget: select
         options: [ 'Book', 'Chapter', 'Article', 'Dissertation' ]
+      - name: author
+        label: Author(s)
+        widget: text
       - name: pubDate
         i18n: duplicate
         label: Publish Date

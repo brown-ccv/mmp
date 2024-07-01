@@ -1,5 +1,6 @@
 ---
 classification: Chapter
+author: Massey, Douglas S. and Karen A. Pren
 pubDate: 2015-05-05
 citation: >
   Massey, Douglas S. and Karen A. Pren. (2015). "Militarization of the

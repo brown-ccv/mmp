@@ -1,5 +1,6 @@
 ---
 classification: Dissertation
+author: Department of Economics, Georgetown University.
 pubDate: 1995-01-01
 citation: >-
   	

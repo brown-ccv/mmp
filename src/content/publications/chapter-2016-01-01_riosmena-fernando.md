@@ -1,5 +1,6 @@
 ---
 classification: Chapter
+author: Riosmena, Fernando
 pubDate: 2016-01-01
 citation: >
   Riosmena, Fernando (2016). "Selección y adaptación en salud: una mirada

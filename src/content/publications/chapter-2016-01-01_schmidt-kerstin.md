@@ -1,5 +1,6 @@
 ---
 classification: Chapter
+author: Schmidt, Kerstin
 pubDate: 2016-01-01
 citation: >
   Schmidt, Kerstin. (2016). "Social Inequality and International Migration

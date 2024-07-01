@@ -1,5 +1,6 @@
 ---
 classification: Chapter
+author: Donato, Katharine M. and Gabriela León-Pérez
 pubDate: 2016-01-01
 citation: 'Donato, Katharine M. and Gabriela León-Pérez. (2016). "Educación,
   género, y migración de Colombia y México a Estados Unidos" in María Gertrudis

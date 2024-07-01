@@ -1,5 +1,6 @@
 ---
 classification: Chapter
+author: Massey, Douglas S
 pubDate: 2015-07-07
 citation: >
   Massey, Douglas S. (2015). "Uninformed Policies and Reactionary Politics." In
