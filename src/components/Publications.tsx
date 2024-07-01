@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import Select from "react-select"
 import PubPlaceholder from "./svg/PubPlaceholder.tsx"
 
@@ -27,46 +27,18 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
     { value: "Chapter", label: "Chapters" },
   ]
 
-  const [shownPubs, setShownPubs] = useState(publications)
   const [searchInput, setSearchInput] = useState("")
   const [classificationFilter, setClassificationFilter] = useState(classificationOptions)
-  const handleChange = (e: {
-    preventDefault: () => void
-    target: { value: React.SetStateAction<string> }
-  }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
 
-  useEffect(() => {
-    let currentPubs = publications
-    // filter based on classification
-    if (classificationFilter.length > 0) {
-      const filteredClassifications = classificationFilter.map(({ value }) => value)
-      currentPubs = currentPubs.filter((pub) =>
-        filteredClassifications.includes(pub.data.classification)
-      )
-    }
-
-    if (searchInput.length > 0) {
-      // do a search for Pubs
-      const foundPublications = currentPubs.filter(
-        (pub: { data: { citation: string | string[] } }) => {
-          if (pub.data && pub.data.citation.includes(searchInput)) {
-            return pub
-          }
-        }
-      )
-      if (foundPublications.length > 0) {
-        currentPubs = foundPublications
-      } else {
-        currentPubs = []
-      }
-    }
-
-    setShownPubs(currentPubs)
-  }, [searchInput, classificationFilter])
-
+  const shownPubs = publications.filter(
+    (pub) =>
+      classificationFilter.map((item) => item.value).includes(pub.data.classification) &&
+      pub.data.citation.toLowerCase().includes(searchInput.toLowerCase())
+  )
   return (
     <>
       <section className="flex flex-col lg:flex-row gap-4 py-14">
@@ -103,8 +75,6 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
               }),
             }}
             onChange={(e) => {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
               setClassificationFilter(e)
             }}
           />
