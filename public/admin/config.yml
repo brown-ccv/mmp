@@ -125,7 +125,7 @@ collections:
       - name: cat
         label: Category
         widget: select
-        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
+        options: [ 'Core', 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
   - name: graphs
     label: Graphs & Figures
     create: true
