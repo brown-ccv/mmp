@@ -50,14 +50,13 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
             <p className="text-base"> {title}</p>
           </div>
         </td>
-        <td>{cat}</td>
         <td>{description}</td>
         <td>
           <a
             className="text-secondary-blue-700 hover:text-secondary-blue-500"
             target="_blank"
             href={file}
-          >{`${title}.pdf`}</a>
+          >{`${title}.${file.split(".").pop()}`}</a>
         </td>
       </tr>
     )
@@ -81,7 +80,6 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
               </Checkbox.Root>
               File Name
             </th>
-            <th className="w-[200px]">Category</th>
             <th>Description</th>
             <th>File</th>
           </tr>
