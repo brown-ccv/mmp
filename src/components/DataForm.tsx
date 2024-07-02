@@ -33,13 +33,13 @@ const DataForm: React.FC<DataFormProps> = ({ allFiles }) => {
    * with the new value for `selected`.
    */
   const updateFileList = ({ file: targetFile }: FileItem, selection: boolean) => {
-    const updatedFiles = files.map(({ file, selected, ...rest }) => {
-      return file === targetFile
-        ? { file, selected: selection, ...rest }
-        : { file, selected, ...rest }
+    setFiles((prevFiles) => {
+      return prevFiles.map(({ file, selected, ...rest }) => {
+        return file === targetFile
+          ? { file, selected: selection, ...rest }
+          : { file, selected, ...rest }
+      })
     })
-
-    setFiles(updatedFiles)
   }
 
   return (
