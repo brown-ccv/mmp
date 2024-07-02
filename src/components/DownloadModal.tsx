@@ -3,9 +3,9 @@ import * as Dialog from "@radix-ui/react-dialog"
 import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useForm, Controller, type SubmitHandler } from "react-hook-form"
-import { CustomInput } from "./CustomInput.tsx"
-import { CustomTextarea } from "./CustomTextarea.tsx"
+import { CustomTextarea } from "./Textarea.tsx"
 import Button from "./Button.tsx"
+import { Input } from "./Input.tsx"
 
 export interface Inputs {
   name: string
@@ -65,17 +65,18 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
               name="name"
               control={control}
               render={() => (
-                <CustomInput label="Name" placeholder="Heather Yu" {...register("name")} />
+                <Input label="Name" placeholder="Heather Yu" {...register("name")} required />
               )}
             />
             <Controller
               name="institution"
               control={control}
               render={() => (
-                <CustomInput
+                <Input
                   label="Institution"
                   placeholder="Brown University"
                   {...register("institution")}
+                  required
                 />
               )}
             />
@@ -83,12 +84,13 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
               name="email"
               control={control}
               render={() => (
-                <CustomInput
+                <Input
                   label="Email"
                   placeholder="heather@example.com"
                   match="typeMismatch"
                   errorMessage="Please provide a valid email"
                   {...register("email")}
+                  required
                 />
               )}
             />
@@ -100,6 +102,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
                   label="Description"
                   placeholder="Why you need this file..."
                   {...register("description")}
+                  required
                 />
               )}
             />
