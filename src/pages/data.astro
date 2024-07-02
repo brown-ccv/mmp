@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro"
 import DataForm from "../components/DataForm"
 import { getCollection } from "astro:content"
-const files = await getCollection("data")
+const files = (await getCollection("data")).filter((file) => file.data.cat === "Core")
 ---
 
 <Layout title="Data" description="Data files and information">
