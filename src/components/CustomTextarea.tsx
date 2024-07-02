@@ -1,19 +1,31 @@
 import React from "react"
+import * as Form from "@radix-ui/react-form"
+import type { UseFormRegister } from "react-hook-form"
+import type { Inputs } from "./DownloadModal.tsx"
 
-interface CustomTextareaProps {
-  label: string
-  placeholder: string
-}
-
-export const CustomTextarea: React.FC<CustomTextareaProps> = ({ label, placeholder }) => {
-  return (
-    <>
+export const CustomTextarea = React.forwardRef<
+  HTMLTextAreaElement,
+  {
+    label: string
+    placeholder: string
+  } & ReturnType<UseFormRegister<Inputs>>
+>(({ onChange, onBlur, name, label, placeholder }, ref) => (
+  <Form.Field name={name} className="flex flex-col gap-2">
+    <Form.Label>{label}</Form.Label>
+    <Form.Control asChild>
       <textarea
         rows={4}
-        id={label}
-        className="text-gray-400 text-sm font-medium outline-none border-b-2 py-2 w-full my-4 mx-2"
+        name={name}
+        ref={ref}
+        onChange={onChange}
+        onBlur={onBlur}
+        className="text-gray-400 text-sm font-medium outline-none border-b-2 w-full"
         placeholder={placeholder}
+        required
       />
-    </>
-  )
-}
+    </Form.Control>
+    <Form.Message className="text-primary-300" match="valueMissing">
+      Please enter your {label}
+    </Form.Message>
+  </Form.Field>
+))

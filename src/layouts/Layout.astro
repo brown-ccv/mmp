@@ -2,10 +2,12 @@
 import BaseHead from "../components/BaseHead.astro"
 import Header from "../components/Header.astro"
 import Footer from "../components/Footer.astro"
+import HeaderDivider from "../components/HeaderDivider.astro"
 
 interface Props {
   title: string
   description: string
+  lede?: string
 }
 
 const { title, description } = Astro.props
@@ -16,19 +18,21 @@ const { title, description } = Astro.props
     <BaseHead title={title} description={description} />
   </head>
 
-  <body class="grid grid-cols-1 px-8 md:px-16">
-    <Header />
-    <main>
-      <article class="max-w-[1000px]">
-        <div>
-          <div class="flex flex-col gap-3 pb-6">
-            <h1 class="title">{title}</h1>
-            <hr />
+  <body>
+    <div class="flex flex-col h-full">
+      <Header />
+      <main class="grow">
+        <article>
+          <div>
+            <div class="space-y-3 pb-6">
+              <h1>{title}</h1>
+            </div>
+            <HeaderDivider />
+            <slot />
           </div>
-          <slot />
-        </div>
-      </article>
-    </main>
-    <Footer />
+        </article>
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>

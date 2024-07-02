@@ -7,28 +7,25 @@ interface PersonProps {
     title: string
     name: string
     avatar?: string
-    email?: string
-    address?: string
-    phone?: string
+    institution: string
   }
 }
 ---
 
-<div class="flex flex-row items-start space-x-12">
+<div class="flex items-start gap-12">
   <h2 class={`${color} [writing-mode:vertical-lr] rotate-180`}>{title}</h2>
-  <div class="flex flex-col space-y-20 flex-1">
+  <div class="flex flex-col gap-20 flex-1">
     {
       people.map((person: PersonProps, i: number) => {
         return (
           <>
             <Card
+              client:load
               position={i}
               title={person.data.title}
               name={person.data.name}
               image={person.data.avatar}
-              email={person.data.email}
-              phone={person.data.phone}
-              address={person.data.address}
+              institution={person.data.institution}
             />
           </>
         )

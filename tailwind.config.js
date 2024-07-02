@@ -118,6 +118,8 @@ module.exports = {
       lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
       xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
       "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+      "book-shadow":
+        "4px 4px 12px 4px rgba(167, 153, 139, 0.35), 12px 12px 4px 0px rgba(167, 153, 139, 0.35);",
       inner:
         "-1px -1px 4px 0px rgba(167, 153, 139, 0.35) inset, 1px 1px 4px 0px rgba(167, 153, 139, 0.35) inset",
       "inner-focus":
