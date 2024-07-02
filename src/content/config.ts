@@ -38,7 +38,7 @@ const history = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    description: z.string().optional(),
+    description: z.string(),
     category: z.string(),
     interviewee: z.string().optional(),
     year: z.string().optional(),
