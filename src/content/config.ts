@@ -1,5 +1,7 @@
 import { defineCollection, z } from "astro:content"
 
+export type Classification = "Book" | "Article" | "Dissertation" | "Chapter"
+
 const news = defineCollection({
   type: "content",
   // Type-check frontmatter using a schema
@@ -23,6 +25,19 @@ const files = defineCollection({
   }),
 })
 
+const publications = defineCollection({
+  type: "content",
+  schema: z.object({
+    classification: z.custom<Classification>(),
+    author: z.string(),
+    pubDate: z.coerce.date(),
+    citation: z.string(),
+    image: z.string().optional(),
+    pdf: z.string().optional(),
+    url: z.string().optional(),
+  }),
+})
+
 const people = defineCollection({
   type: "content",
   schema: z.object({
@@ -33,4 +48,4 @@ const people = defineCollection({
     institution: z.string(),
   }),
 })
-export const collections = { news: news, data: files, people: people }
+export const collections = { news: news, data: files, people: people, publications: publications }

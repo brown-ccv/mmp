@@ -4,7 +4,7 @@ backend:
   name: github
   repo: brown-ccv/mmp
   base_url: /
-media_folder: public/files
+media_folder: public/images
 media_library:
   max_file_size: 734003200
 i18n:
@@ -68,22 +68,44 @@ collections:
         format: yyyy
   - name: pubs
     label: Publications
-    folder: src/content/pubs
+    folder: src/content/publications
+    media_folder: public/pubs
     create: true
-    slug: '{{year}}-{{month}}-{{day}}_{{title}}_{{slug}}'
+    identifier_field: citation
+    slug: '{{fields.classification}}-{{fields.pubDate}}_{{fields.author}}'
     fields:
       - name: classification
         label: Classification
         widget: select
         options: [ 'Book', 'Chapter', 'Article', 'Dissertation' ]
+      - name: author
+        label: Author(s)
+        widget: text
+      - name: pubDate
+        i18n: duplicate
+        label: Publish Date
+        widget: datetime
+        date_format: MM.yyyy
+        time_format: false
       - name: citation
         i18n: duplicate
         label: Citation
         widget: text
+      - name: image
+        required: false
+        i18n: duplicate
+        label: Image
+        widget: image
       - name: url
+        required: false
         i18n: duplicate
         label: Link to Publication
         widget: string
+      - name: pdf
+        required: false
+        i18n: duplicate
+        label: PDF
+        widget: file
   - name: data
     label: Data
     create: true
