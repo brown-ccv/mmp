@@ -1,10 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import CircleIcon from "../components/svg/Circle"
+import DataForm from "../components/DataForm"
+import { getCollection } from "astro:content"
+
+const files = await getCollection("data")
+
+const codebooks = files.filter((file) => file.data.cat === "Codebook")
+const appendix = files.filter((file) => file.data.cat === "Appendices")
 ---
 
 <Layout title="Documentation" description="About the Project">
   <div class="space-y-10">
+    <section class="flex flex-col gap-6">
+      <div>
+        <h2>Codebooks</h2>
+        <DataForm allFiles={codebooks} client:only="react" />
+      </div>
+      <div>
+        <h2>Appendices</h2>
+        <DataForm allFiles={appendix} client:only="react" />
+      </div>
+    </section>
     <section class="space-y-4 readable">
       <h2 class="mb-8">Selecting Communities</h2>
       <p>
