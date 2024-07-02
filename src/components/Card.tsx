@@ -5,27 +5,38 @@ interface CardProps {
   image?: string
   title: string
   name: string
+  link: string
   institution: string
+  bio?: string
 }
 
-const Card: React.FC<CardProps> = ({ position, image, title, name, institution }) => {
+const Card: React.FC<CardProps> = ({ link, image, title, name, institution, bio }) => {
   // strip 'public/' from the avatar string since astro's public folder is available without this in the link
-  const link = image?.replace("/public", "")
+  const imageURL = image?.replace("/public", "")
   return (
-    <div
-      className={`flex flex-wrap gap-x-8 ${position % 2 ? "md:flex-row-reverse md:text-right" : ""}`}
-    >
+    <div className="flex flex-col md:flex-row gap-4 md:gap-8">
       {image && (
-        <div>
-          <img className="object-cover rounded-full w-64 h-64" src={link} alt={name} />
+        <div className="flex-none">
+          <img
+            className="object-cover rounded-full w-40 h-40 md:w-64 md:h-64"
+            src={imageURL}
+            alt={name}
+          />
         </div>
       )}
-      <div>
-        <a className="text-xl font-semibold underline text-neutral-900" href="#">
-          {name}
-        </a>
-        <p className="text-neutral-700 italic">{title}</p>
-        <p className="small">{institution}</p>
+      <div className="space-y-4">
+        <div>
+          <a
+            className="text-xl font-semibold underline text-neutral-900"
+            href={link}
+            target="_blank"
+          >
+            {name}
+          </a>
+          <p className="text-neutral-700 italic">{title}</p>
+          <p className="small">{institution}</p>
+        </div>
+        <p>{bio}</p>
       </div>
     </div>
   )
