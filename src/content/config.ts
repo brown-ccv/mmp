@@ -28,7 +28,7 @@ const people = defineCollection({
   schema: z.object({
     type: z.string(),
     name: z.string(),
-    link: z.string(),
+    link: z.string().optional(),
     title: z.string(),
     avatar: z.string().optional(),
     institution: z.string(),
