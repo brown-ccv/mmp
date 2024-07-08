@@ -14,11 +14,11 @@ const appendix = files.filter((file) => file.data.cat === "Appendices")
   <div class="space-y-10">
     <section class="flex flex-col gap-6">
       <div>
-        <h2>Codebooks</h2>
+        <h2 class="pb-5">Codebooks</h2>
         <DataForm allFiles={codebooks} client:only="react" />
       </div>
       <div>
-        <h2>Appendices</h2>
+        <h2 class="pb-5">Appendices</h2>
         <DataForm allFiles={appendix} client:only="react" />
       </div>
     </section>
