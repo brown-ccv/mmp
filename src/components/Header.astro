@@ -36,12 +36,13 @@ const pathname = Astro.url.pathname
         LINKS.map((data) =>
           <HeaderLink href=`/${data}`
                       class="text-base text-neutral-500 active:text-neutral-900"
-          >{data.toUpperCase()}</HeaderLink>)
+          >{data.toUpperCase().replace("-", " ")}</HeaderLink>)
       }
     </div>
     <!--hamburger-->
     <navbar-hamburger class="lg:hidden max-w-screen-xl flex flex-wrap items-center justify-between p-2">
-      <button class="items-center justify-center p-2 w-10 h-10 text-sm text-neutral-900 rounded-lg focus:outline-none hover:bg-opacity-0 hover:shadow-none">
+      <button
+        class="items-center justify-center p-2 w-10 h-10 text-sm text-neutral-900 rounded-lg focus:outline-none hover:bg-opacity-0 hover:shadow-none">
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
