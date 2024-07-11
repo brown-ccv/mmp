@@ -91,6 +91,9 @@ collections:
         i18n: duplicate
         label: Citation
         widget: text
+      - name: feature
+        label: Featured Publication
+        widget: boolean
       - name: image
         required: false
         i18n: duplicate
