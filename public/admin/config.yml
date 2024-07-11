@@ -109,7 +109,7 @@ collections:
         i18n: duplicate
         label: PDF
         widget: file
-  - name: documentation
+  - name: data
     label: Documentation Data
     create: true
     folder: src/content/data
