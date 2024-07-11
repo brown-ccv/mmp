@@ -32,6 +32,7 @@ const publications = defineCollection({
     author: z.string(),
     pubDate: z.coerce.date(),
     citation: z.string(),
+    feature: z.boolean(),
     image: z.string().optional(),
     pdf: z.string().optional(),
     url: z.string().optional(),
