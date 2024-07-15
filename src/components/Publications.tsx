@@ -78,7 +78,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
           )
         })}
       </section>
-      <Form className="flex flex-col lg:flex-row gap-4 justify-center m-24">
+      <Form className="flex flex-col lg:flex-row gap-4 justify-center my-24">
         <div>
           <Input
             label="Search for a publication"
@@ -87,7 +87,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
             placeholder="Durand, Jorge..."
             value={searchInput}
             onChange={handleChange}
-            className="min-w-96"
+            className="md:min-w-96"
           />
         </div>
         <div className="space-y-2">
