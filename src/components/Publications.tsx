@@ -9,6 +9,7 @@ interface PubProps {
 }
 
 const PublicationSection: React.FC<PubProps> = ({ publications }) => {
+  //console.log(publications)
   const classificationOptions = [
     { value: "Book", label: "Books" },
     {
@@ -23,10 +24,12 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
   const [classificationFilter, setClassificationFilter] = useState<
     SingleValue<Readonly<{ value: Classification; label: string }>>
   >({ value: "Book", label: "Books" })
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
+
   const featuredPubs = publications.filter((pub) => pub.feature)
 
   const shownPubs = publications.filter(
@@ -35,6 +38,21 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
       classificationFilter.value.includes(pub.classification) &&
       pub.citation.toLowerCase().includes(searchInput.toLowerCase())
   )
+  console.log(shownPubs)
+
+  const categoryByYear: Record<string, InferEntrySchema<"publications">[]> = shownPubs.reduce(
+    (pub, i) => {
+      const key = i.pubDate.toISOString().substring(0, 4)
+      pub[key] = pub[key] ?? []
+      pub[key].push(i)
+      return pub
+    },
+    {} as Record<string, InferEntrySchema<"publications">[]>
+  )
+  const pubsByYear = Object.entries(categoryByYear).sort(
+    (a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime()
+  )
+  console.log(pubsByYear)
   return (
     <>
       <section className="flex flex-col gap-6">
@@ -57,83 +75,97 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
           )
         })}
       </section>
-      <section className="flex flex-col lg:flex-row gap-4 py-14">
+      <section className="flex flex-col py-14 gap-4">
         <h2>All Publications</h2>
-        <div>
-          <label className="pl-1">Search for a Publication</label>
-          <input
-            type="text"
-            placeholder="🔍 Search here"
-            onChange={handleChange}
-            value={searchInput}
-            className="min-w-[460px]"
-          />
-        </div>
-        <div>
-          <label className="pl-1">Show</label>
-          <Select
-            options={classificationOptions}
-            isSearchable={false}
-            closeMenuOnSelect={true}
-            defaultValue={classificationFilter}
-            styles={{
-              control: (baseStyles) => ({
-                ...baseStyles,
-                minWidth: "526px",
-                borderRadius: "9999px",
-                background: "#FAFAFA",
-                boxShadow:
-                  "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)",
-                paddingTop: ".75rem",
-                paddingBottom: ".75rem",
-                paddingLeft: "2rem",
-                paddingRight: "2rem",
-              }),
-            }}
-            onChange={(option) => setClassificationFilter(option)}
-          />
+        <div className="flex flex-col lg:flex-row gap-4">
+          <div>
+            <label className="pl-1">Search for a Publication</label>
+            <input
+              type="text"
+              placeholder="🔍 Search here"
+              onChange={handleChange}
+              value={searchInput}
+              className="min-w-[460px]"
+            />
+          </div>
+          <div>
+            <label className="pl-1">Show</label>
+            <Select
+              options={classificationOptions}
+              isSearchable={false}
+              closeMenuOnSelect={true}
+              defaultValue={classificationFilter}
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  minWidth: "526px",
+                  borderRadius: "9999px",
+                  background: "#FAFAFA",
+                  boxShadow:
+                    "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)",
+                  paddingTop: ".75rem",
+                  paddingBottom: ".75rem",
+                  paddingLeft: "2rem",
+                  paddingRight: "2rem",
+                }),
+              }}
+              onChange={(option) => setClassificationFilter(option)}
+            />
+          </div>
         </div>
       </section>
 
-      {shownPubs && (
+      {pubsByYear && (
         <section className="flex flex-col gap-6">
           {classificationOptions.map((option) => {
             if (classificationFilter && classificationFilter.label === option.label) {
               return (
                 <article key={option.value}>
                   <h2 className="py-2">{option.label}</h2>
-                  <div className="grid grid-cols-1 lg:grid-cols-2  gap-12">
-                    {shownPubs.map((publication, i) => {
-                      if (publication.classification === option.value) {
-                        return (
-                          <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            {option.label === "Books" && (
-                              <div className="hidden md:block drop-shadow-md">
-                                {publication.image ? (
-                                  <img
-                                    className="drop-shadow-md object-cover w-48 h-72"
-                                    src={publication.image}
-                                  />
-                                ) : (
-                                  <PubPlaceholder />
+                  <div className="py-4">
+                    {pubsByYear.map((cat, i) => {
+                      return (
+                        <div key={i} className="flex flex-col gap-4 py-6">
+                          <h3 className="">{cat[0]}</h3>
+                          {cat[1].map((pub) => {
+                            return (
+                              <div
+                                key={pub.citation}
+                                className={
+                                  option.label === "Books"
+                                    ? "grid grid-cols-1 md:grid-cols-2 gap-2"
+                                    : ""
+                                }
+                              >
+                                {option.label === "Books" && (
+                                  <div className="hidden md:block drop-shadow-md">
+                                    {pub.image ? (
+                                      <img
+                                        className="drop-shadow-md object-cover w-48 h-72"
+                                        src={pub.image}
+                                      />
+                                    ) : (
+                                      <PubPlaceholder />
+                                    )}
+                                  </div>
                                 )}
-                              </div>
-                            )}
 
-                            <div className="flex flex-col gap-8 ">
-                              <p>{publication.citation}</p>
-                              {publication.pdf && (
-                                <button
-                                  className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
-                                  onClick={() => window.open(`${publication.pdf}`, "_blank")}
-                                >
-                                  View PDF
-                                </button>
-                              )}
-                            </div>
-                          </div>
-                        )
-                      }
+                                <div className="flex flex-col gap-8 ">
+                                  <p>{pub.citation}</p>
+                                  {pub.pdf && (
+                                    <button
+                                      className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
+                                      onClick={() => window.open(`${pub.pdf}`, "_blank")}
+                                    >
+                                      View PDF
+                                    </button>
+                                  )}
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )
                     })}
                   </div>
                 </article>
