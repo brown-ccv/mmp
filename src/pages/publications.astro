@@ -1,7 +1,7 @@
 ---
+import { getCollection } from "astro:content"
 import Layout from "../layouts/Layout.astro"
 import PublicationSection from "../components/Publications"
-import { getCollection } from "astro:content"
 
 const pubs = (await getCollection("publications")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
