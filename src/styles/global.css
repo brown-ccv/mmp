@@ -67,12 +67,6 @@
   input,
   select {
     @apply bg-white;
-    @apply rounded-full;
-    @apply shadow-inner;
-    @apply min-w-60;
-    @apply w-max;
-    @apply py-3;
-    @apply px-5;
   }
 
   input::placeholder,
@@ -80,7 +74,10 @@
     @apply text-neutral-300;
   }
 
-  input:focus,
+  input:focus {
+    @apply outline-none;
+  }
+
   textarea:focus {
     @apply outline-none;
     @apply shadow-inner-focus;
