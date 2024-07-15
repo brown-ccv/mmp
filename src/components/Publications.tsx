@@ -41,14 +41,6 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
         {featuredPubs.map((publication, i) => {
           return (
             <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              <div className="hidden md:block drop-shadow-md">
-                {publication.image ? (
-                  <img className="drop-shadow-md object-cover w-48 h-72" src={publication.image} />
-                ) : (
-                  <PubPlaceholder />
-                )}
-              </div>
-
               <div className="flex flex-col gap-8 ">
                 <p>{publication.citation}</p>
                 {publication.pdf && (
@@ -114,16 +106,18 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                       if (publication.classification === option.value) {
                         return (
                           <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                            <div className="hidden md:block drop-shadow-md">
-                              {publication.image ? (
-                                <img
-                                  className="drop-shadow-md object-cover w-48 h-72"
-                                  src={publication.image}
-                                />
-                              ) : (
-                                <PubPlaceholder />
-                              )}
-                            </div>
+                            {option.label === "Books" && (
+                              <div className="hidden md:block drop-shadow-md">
+                                {publication.image ? (
+                                  <img
+                                    className="drop-shadow-md object-cover w-48 h-72"
+                                    src={publication.image}
+                                  />
+                                ) : (
+                                  <PubPlaceholder />
+                                )}
+                              </div>
+                            )}
 
                             <div className="flex flex-col gap-8 ">
                               <p>{publication.citation}</p>
