@@ -65,12 +65,12 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                 <div className="flex flex-col gap-8">
                   <p>{publication.citation}</p>
                   {publication.pdf && (
-                    <button
-                      className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
-                      onClick={() => window.open(`${publication.pdf}`, "_blank")}
+                    <a
+                      className="no-underline bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-max"
+                      href={publication.pdf}
                     >
                       View PDF
-                    </button>
+                    </a>
                   )}
                 </div>
               </div>
