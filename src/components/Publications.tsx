@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Select from "react-select"
+import Select, { type SingleValue } from "react-select"
 import type { InferEntrySchema } from "astro:content"
 import type { Classification } from "../content/config.ts"
 import PubPlaceholder from "./svg/PubPlaceholder.tsx"
@@ -21,8 +21,8 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
 
   const [searchInput, setSearchInput] = useState("")
   const [classificationFilter, setClassificationFilter] = useState<
-    Readonly<{ value: Classification; label: string }[]>
-  >([])
+    SingleValue<Readonly<{ value: Classification; label: string }>>
+  >({ value: "Book", label: "Books" })
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setSearchInput(e.target.value)
@@ -31,7 +31,8 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
 
   const shownPubs = publications.filter(
     (pub) =>
-      classificationFilter.map((item) => item.value).includes(pub.classification) &&
+      classificationFilter &&
+      classificationFilter.value.includes(pub.classification) &&
       pub.citation.toLowerCase().includes(searchInput.toLowerCase())
   )
   return (
@@ -72,9 +73,9 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
           <label className="pl-1">Show</label>
           <Select
             options={classificationOptions}
-            isMulti
             isSearchable={false}
-            closeMenuOnSelect={false}
+            closeMenuOnSelect={true}
+            defaultValue={classificationFilter}
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
@@ -97,7 +98,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
       {shownPubs && (
         <section className="flex flex-col gap-6">
           {classificationOptions.map((option) => {
-            if (classificationFilter.find((e) => e.label === option.label)) {
+            if (classificationFilter && classificationFilter.label === option.label) {
               return (
                 <article key={option.value}>
                   <h2 className="py-2">{option.label}</h2>
