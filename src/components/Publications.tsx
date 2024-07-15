@@ -12,7 +12,6 @@ interface PubProps {
 }
 
 const PublicationSection: React.FC<PubProps> = ({ publications }) => {
-  //console.log(publications)
   const classificationOptions = [
     { value: "Book", label: "Books" },
     {
@@ -41,7 +40,6 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
       classificationFilter.value.includes(pub.classification) &&
       pub.citation.toLowerCase().includes(searchInput.toLowerCase())
   )
-  console.log(shownPubs)
 
   const categoryByYear: Record<string, InferEntrySchema<"publications">[]> = shownPubs.reduce(
     (pub, i) => {
@@ -55,7 +53,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
   const pubsByYear = Object.entries(categoryByYear).sort(
     (a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime()
   )
-  console.log(pubsByYear)
+
   return (
     <>
       <section className="flex flex-col gap-6">
