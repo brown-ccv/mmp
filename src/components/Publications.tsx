@@ -1,8 +1,11 @@
 import React, { useState } from "react"
 import Select, { type SingleValue } from "react-select"
 import type { InferEntrySchema } from "astro:content"
+import { Form } from "@radix-ui/react-form"
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons"
 import type { Classification } from "../content/config.ts"
 import PubPlaceholder from "./svg/PubPlaceholder.tsx"
+import { CustomInput } from "./CustomInput.tsx"
 
 interface PubProps {
   publications: InferEntrySchema<"publications">[]
@@ -75,45 +78,51 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
           )
         })}
       </section>
-      <section className="flex flex-col py-14 gap-4">
-        <h2>All Publications</h2>
-        <div className="flex flex-col lg:flex-row gap-4">
-          <div>
-            <label className="pl-1">Search for a Publication</label>
-            <input
-              type="text"
-              placeholder="🔍 Search here"
-              onChange={handleChange}
-              value={searchInput}
-              className="min-w-[460px]"
-            />
-          </div>
-          <div>
-            <label className="pl-1">Show</label>
-            <Select
-              options={classificationOptions}
-              isSearchable={false}
-              closeMenuOnSelect={true}
-              defaultValue={classificationFilter}
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  minWidth: "526px",
-                  borderRadius: "9999px",
-                  background: "#FAFAFA",
-                  boxShadow:
-                    "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)",
-                  paddingTop: ".75rem",
-                  paddingBottom: ".75rem",
-                  paddingLeft: "2rem",
-                  paddingRight: "2rem",
-                }),
-              }}
-              onChange={(option) => setClassificationFilter(option)}
-            />
-          </div>
+      <Form className="flex flex-col lg:flex-row gap-4 justify-center m-24">
+        <div>
+          <CustomInput
+            label="Search for a publication"
+            name="pubQuery"
+            icon={<MagnifyingGlassIcon className="h-full w-full" />}
+            placeholder="Durand, Jorge..."
+            value={searchInput}
+            onChange={handleChange}
+            className="min-w-96"
+          />
         </div>
-      </section>
+        <div className="space-y-2">
+          <label className="pl-1" htmlFor="classification">
+            Show
+          </label>
+          <Select
+            id="classification"
+            options={classificationOptions}
+            isSearchable={false}
+            closeMenuOnSelect={false}
+            defaultValue={classificationFilter}
+            unstyled
+            className="cursor-pointer"
+            classNames={{
+              container: () =>
+                "cursor-pointer bg-white rounded-full shadow-inner min-w-60 w-max py-3 px-5",
+              placeholder: () => "cursor-pointer text-neutral-300",
+              indicatorsContainer: () => "cursor-pointer text-neutral-300 hover:bg-neutral-200",
+              multiValueRemove: () => "hover:bg-neutral-100",
+              valueContainer: () => "gap-2 cursor-pointer",
+              multiValue: () =>
+                "cursor-pointer flex items-center gap-2 text-primary-500 bg-neutral-50 px-2 rounded-lg",
+              menu: () => "cursor-pointr rounded-lg bg-white p-2",
+              // See CSS file for other overrides
+              option: () => "rounded-sm p-1 hover:text-primary-500 hover:bg-neutral-50",
+            }}
+            styles={{
+              control: (baseStyles) => ({ ...baseStyles, minHeight: 0 }),
+              option: (baseStyles) => ({ ...baseStyles, cursor: "pointer" }),
+            }}
+            onChange={(option) => setClassificationFilter(option)}
+          />
+        </div>
+      </Form>
 
       {pubsByYear && (
         <section className="flex flex-col gap-6">
@@ -121,8 +130,8 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
             if (classificationFilter && classificationFilter.label === option.label) {
               return (
                 <article key={option.value}>
-                  <h2 className="py-2">{option.label}</h2>
-                  <div className="py-4">
+                  <h2 className="mb-10">{option.label}</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                     {pubsByYear.map((cat, i) => {
                       return (
                         <div key={i} className="flex flex-col gap-4 py-6">
@@ -132,16 +141,14 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                               <div
                                 key={pub.citation}
                                 className={
-                                  option.label === "Books"
-                                    ? "grid grid-cols-1 md:grid-cols-2 gap-2"
-                                    : ""
+                                  option.label === "Books" ? "flex gap-8 content-start" : ""
                                 }
                               >
                                 {option.label === "Books" && (
-                                  <div className="hidden md:block drop-shadow-md">
+                                  <div className="flex-none hidden md:block shadow-book-shadow w-40 h-72">
                                     {pub.image ? (
                                       <img
-                                        className="drop-shadow-md object-cover w-48 h-72"
+                                        className="flex-none object-cover h-full w-full"
                                         src={pub.image}
                                       />
                                     ) : (
@@ -151,14 +158,14 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                                 )}
 
                                 <div className="flex flex-col gap-8 ">
-                                  <p>{pub.citation}</p>
+                                  <p className="font-bold">{pub.citation}</p>
                                   {pub.pdf && (
-                                    <button
-                                      className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
-                                      onClick={() => window.open(`${pub.pdf}`, "_blank")}
+                                    <a
+                                      className="no-underline bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-max"
+                                      href={pub.pdf}
                                     >
                                       View PDF
-                                    </button>
+                                    </a>
                                   )}
                                 </div>
                               </div>
