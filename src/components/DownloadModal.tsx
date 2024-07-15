@@ -3,7 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog"
 import * as Form from "@radix-ui/react-form"
 import { Cross2Icon, DownloadIcon, PlusIcon } from "@radix-ui/react-icons"
 import { useForm, Controller, type SubmitHandler } from "react-hook-form"
-import { CustomTextarea } from "./Textarea.tsx"
+import { Textarea } from "./Textarea.tsx"
 import Button from "./Button.tsx"
 import { Input } from "./Input.tsx"
 
@@ -98,7 +98,7 @@ const DownloadModal: React.FC<DownloadModalProps> = ({ filesToDownload }) => {
               name="description"
               control={control}
               render={() => (
-                <CustomTextarea
+                <Textarea
                   label="Description"
                   placeholder="Why you need this file..."
                   {...register("description")}

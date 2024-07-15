@@ -9,17 +9,6 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string
 }
 
-// input,
-// select {
-//   @apply bg-white;
-//   @apply rounded-full;
-//   @apply shadow-inner;
-//   @apply min-w-60;
-//   @apply w-max;
-//   @apply py-3;
-//   @apply px-5;
-// }
-
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ label, name, icon, match, errorMessage, ...delegated }: InputProps, ref) => {
     return (

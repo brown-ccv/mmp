@@ -6,7 +6,7 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
   name: string
 }
 
-export const CustomTextarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ name, label, ...delegated }, ref) => (
     <Form.Field name={name} className="flex flex-col gap-2">
       <Form.Label>{label}</Form.Label>
