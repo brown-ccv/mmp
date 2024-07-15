@@ -145,8 +145,14 @@ collections:
         widget: text
         hint: "1987 - 1997"
       - name: file
+        required: false
         i18n: duplicate
-        label: File
+        label: English File
+        widget: file
+      - name: archivo
+        required: false
+        i18n: duplicate
+        label: Archivo Español
         widget: file
       - name: cat
         label: Category
