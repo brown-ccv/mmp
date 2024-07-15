@@ -20,12 +20,14 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
   ] as const
 
   const [searchInput, setSearchInput] = useState("")
-  const [classificationFilter, setClassificationFilter] =
-    useState<Readonly<{ value: Classification; label: string }[]>>(classificationOptions)
+  const [classificationFilter, setClassificationFilter] = useState<
+    Readonly<{ value: Classification; label: string }[]>
+  >([])
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     setSearchInput(e.target.value)
   }
+  const featuredPubs = publications.filter((pub) => pub.feature)
 
   const shownPubs = publications.filter(
     (pub) =>
@@ -34,7 +36,36 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
   )
   return (
     <>
+      <section className="flex flex-col gap-6">
+        <h2>Featured Publications</h2>
+        {featuredPubs.map((publication, i) => {
+          return (
+            <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div className="hidden md:block drop-shadow-md">
+                {publication.image ? (
+                  <img className="drop-shadow-md object-cover w-48 h-72" src={publication.image} />
+                ) : (
+                  <PubPlaceholder />
+                )}
+              </div>
+
+              <div className="flex flex-col gap-8 ">
+                <p>{publication.citation}</p>
+                {publication.pdf && (
+                  <button
+                    className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
+                    onClick={() => window.open(`${publication.pdf}`, "_blank")}
+                  >
+                    View PDF
+                  </button>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </section>
       <section className="flex flex-col lg:flex-row gap-4 py-14">
+        <h2>All Publications</h2>
         <div>
           <label className="pl-1">Search for a Publication</label>
           <input
@@ -52,7 +83,6 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
             isMulti
             isSearchable={false}
             closeMenuOnSelect={false}
-            defaultValue={classificationOptions}
             styles={{
               control: (baseStyles) => ({
                 ...baseStyles,
@@ -75,43 +105,45 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
       {shownPubs && (
         <section className="flex flex-col gap-6">
           {classificationOptions.map((option) => {
-            return (
-              <article key={option.value}>
-                <h2 className="py-2">{option.label}</h2>
-                <div className="grid grid-cols-1 lg:grid-cols-2  gap-12">
-                  {shownPubs.map((publication, i) => {
-                    if (publication.classification === option.value) {
-                      return (
-                        <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                          <div className="hidden md:block drop-shadow-md">
-                            {publication.image ? (
-                              <img
-                                className="drop-shadow-md object-cover w-48 h-72"
-                                src={publication.image}
-                              />
-                            ) : (
-                              <PubPlaceholder />
-                            )}
-                          </div>
+            if (classificationFilter.find((e) => e.label === option.label)) {
+              return (
+                <article key={option.value}>
+                  <h2 className="py-2">{option.label}</h2>
+                  <div className="grid grid-cols-1 lg:grid-cols-2  gap-12">
+                    {shownPubs.map((publication, i) => {
+                      if (publication.classification === option.value) {
+                        return (
+                          <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div className="hidden md:block drop-shadow-md">
+                              {publication.image ? (
+                                <img
+                                  className="drop-shadow-md object-cover w-48 h-72"
+                                  src={publication.image}
+                                />
+                              ) : (
+                                <PubPlaceholder />
+                              )}
+                            </div>
 
-                          <div className="flex flex-col gap-8 ">
-                            <p>{publication.citation}</p>
-                            {publication.pdf && (
-                              <button
-                                className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
-                                onClick={() => window.open(`${publication.pdf}`, "_blank")}
-                              >
-                                View PDF
-                              </button>
-                            )}
+                            <div className="flex flex-col gap-8 ">
+                              <p>{publication.citation}</p>
+                              {publication.pdf && (
+                                <button
+                                  className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
+                                  onClick={() => window.open(`${publication.pdf}`, "_blank")}
+                                >
+                                  View PDF
+                                </button>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      )
-                    }
-                  })}
-                </div>
-              </article>
-            )
+                        )
+                      }
+                    })}
+                  </div>
+                </article>
+              )
+            }
           })}
         </section>
       )}
