@@ -58,23 +58,25 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
     <>
       <section className="flex flex-col gap-6">
         <h2>Featured Publications</h2>
-        {featuredPubs.map((publication, i) => {
-          return (
-            <div key={i} className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              <div className="flex flex-col gap-8 ">
-                <p>{publication.citation}</p>
-                {publication.pdf && (
-                  <button
-                    className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
-                    onClick={() => window.open(`${publication.pdf}`, "_blank")}
-                  >
-                    View PDF
-                  </button>
-                )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {featuredPubs.map((publication, i) => {
+            return (
+              <div key={i} className="">
+                <div className="flex flex-col gap-8">
+                  <p>{publication.citation}</p>
+                  {publication.pdf && (
+                    <button
+                      className="bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-2/3"
+                      onClick={() => window.open(`${publication.pdf}`, "_blank")}
+                    >
+                      View PDF
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </section>
       <Form className="flex flex-col lg:flex-row gap-4 justify-center my-24">
         <div>
@@ -96,7 +98,6 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
             id="classification"
             options={classificationOptions}
             isSearchable={false}
-            closeMenuOnSelect={false}
             defaultValue={classificationFilter}
             unstyled
             className="cursor-pointer"
