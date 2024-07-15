@@ -1,7 +1,7 @@
 ---
+import { getCollection } from "astro:content"
 import Layout from "../layouts/Layout.astro"
 import CardContainer from "../components/CardContainer.astro"
-import { getCollection } from "astro:content"
 const people = await getCollection("people")
 const leadership = people.filter((person) => person.data.type === "Leadership")
 const advisors = people.filter((person) => person.data.type === "Advisors")
