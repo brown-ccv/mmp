@@ -110,7 +110,7 @@ collections:
         label: PDF
         widget: file
   - name: data
-    label: Data
+    label: Core Data
     create: true
     folder: src/content/data
     media_folder: files
@@ -121,6 +121,29 @@ collections:
       - name: description
         label: Description
         widget: text
+      - name: sav
+        label: SPSS File (.sav)
+        widget: file
+      - name: dta
+        label: Stata File (.dta)
+        widget: file
+  - name: supplement
+    label: Other Data
+    create: true
+    folder: src/content/data
+    media_folder: files
+    fields:
+      - name: title
+        label: File Name
+        widget: string
+      - name: description
+        label: Description
+        widget: text
+      - name: version
+        label: Field Season
+        required: false
+        widget: text
+        hint: "1987 - 1997"
       - name: file
         i18n: duplicate
         label: File
@@ -128,54 +151,7 @@ collections:
       - name: cat
         label: Category
         widget: select
-        options: [ 'Core', 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
-  - name: graphs
-    label: Graphs & Figures
-    create: true
-    folder: src/content/graphs
-    fields:
-      - name: title
-        label: Title
-        widget: string
-      - name: year
-        i18n: duplicate
-        label: Year
-        widget: datetime
-        date_format: dd.MM.yyyy
-        time_format: false
-        format: yyyy
-      - name: image
-        i18n: duplicate
-        label: Image
-        widget: image
-  - name: history
-    label: Oral History
-    create: true
-    folder: src/content/history
-    fields:
-      - name: title
-        label: Title
-        widget: string
-      - name: category
-        label: Category
-        widget: select
-        options: [ 'Border Crossing and Working', 'Everyday Life and Return', 'Those Who Stay' ]
-      - name: interviewee
-        i18n: duplicate
-        label: Who conducted the Interview?
-      - name: year
-        i18n: duplicate
-        label: Year
-        widget: datetime
-        date_format: MM.yyyy
-        time_format: false
-        format: MM.yyyy
-      - name: description
-        label: Short Description
-        widget: text
-      - name: story
-        label: Full Story
-        widget: markdown
+        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices', "Community Level Supplementary", "State Level Supplementary", "National Level Supplementary", "MSA Level Supplementary" ]
   - name: news
     label: News
     identifier_field: pubDate
