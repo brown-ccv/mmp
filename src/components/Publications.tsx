@@ -5,7 +5,7 @@ import { Form } from "@radix-ui/react-form"
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons"
 import type { Classification } from "../content/config.ts"
 import PubPlaceholder from "./svg/PubPlaceholder.tsx"
-import { CustomInput } from "./CustomInput.tsx"
+import { Input } from "./Input.tsx"
 
 interface PubProps {
   publications: InferEntrySchema<"publications">[]
@@ -80,7 +80,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
       </section>
       <Form className="flex flex-col lg:flex-row gap-4 justify-center m-24">
         <div>
-          <CustomInput
+          <Input
             label="Search for a publication"
             name="pubQuery"
             icon={<MagnifyingGlassIcon className="h-full w-full" />}
@@ -131,17 +131,17 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
               return (
                 <article key={option.value}>
                   <h2 className="mb-10">{option.label}</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                  <div className="">
                     {pubsByYear.map((cat, i) => {
                       return (
-                        <div key={i} className="flex flex-col gap-4 py-6">
-                          <h3 className="">{cat[0]}</h3>
+                        <div key={i} className="flex flex-col gap-6 py-6">
+                          <h3 className="font-bold">{cat[0]}</h3>
                           {cat[1].map((pub) => {
                             return (
                               <div
                                 key={pub.citation}
                                 className={
-                                  option.label === "Books" ? "flex gap-8 content-start" : ""
+                                  option.label === "Books" ? "flex gap-8 content-start" : "gap-8"
                                 }
                               >
                                 {option.label === "Books" && (
@@ -157,15 +157,17 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                                   </div>
                                 )}
 
-                                <div className="flex flex-col gap-8 ">
-                                  <p className="font-bold">{pub.citation}</p>
+                                <div className="flex flex-col gap-4">
+                                  <p>{pub.citation}</p>
                                   {pub.pdf && (
-                                    <a
-                                      className="no-underline bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-max"
-                                      href={pub.pdf}
-                                    >
-                                      View PDF
-                                    </a>
+                                    <div className={option.label === "Books" ? "" : "ml-2"}>
+                                      <a
+                                        className="no-underline bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-max"
+                                        href={pub.pdf}
+                                      >
+                                        View PDF
+                                      </a>
+                                    </div>
                                   )}
                                 </div>
                               </div>
