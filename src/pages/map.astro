@@ -1,12 +1,17 @@
 ---
 import { ReaderIcon } from "@radix-ui/react-icons"
 import Layout from "../layouts/Layout.astro"
+import { getCollection } from "astro:content"
+
+const data = await getCollection("map")
+
+const maps = data.map((d) => d.data)
 ---
 
 <Layout title="Map of MMP Communities" description="Mesoamerican Migration Project">
   <div class="flex flex-col gap-6">
     <section class="flex flex-col gap-3.5">
-      <img src="/images/MMP_Map.jpg" />
+      {maps.map((map) => <img src={map.image} />)}
     </section>
     <section class="readable">
       <a

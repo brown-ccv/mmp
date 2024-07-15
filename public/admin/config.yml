@@ -13,6 +13,17 @@ i18n:
   # The locale to be used for fields validation and as a baseline for the entry.
   default_locale: en
 collections:
+  - name: map
+    label: Map
+    folder: src/content/map
+    create: false
+    fields:
+      - name: title
+        label: Map Version
+        widget: text
+      - name: image
+        label: MMP Community Map
+        widget: image
   - name: people
     label: People
     folder: src/content/people
