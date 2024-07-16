@@ -1,25 +1,32 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import CircleIcon from "../components/svg/Circle"
-import DataForm from "../components/DataForm"
+import DocumentationTable from "../components/DocumentationTable"
+import Switch from "../components/Switch"
 import { getCollection } from "astro:content"
 
 const files = await getCollection("data")
 
 const codebooks = files.filter((file) => file.data.cat === "Codebook")
 const appendix = files.filter((file) => file.data.cat === "Appendices")
+const questionnaire = files.filter((file) => file.data.cat === "Questionnaire")
 ---
 
 <Layout title="Documentation" description="About the Project">
   <div class="space-y-10">
     <section class="flex flex-col gap-6">
+      <Switch name="language" option1="English" option2="Spanish" client:only="react" />
       <div>
         <h2 class="pb-5">Codebooks</h2>
-        <DataForm allFiles={codebooks} client:only="react" />
+        <DocumentationTable allFiles={codebooks} />
       </div>
       <div>
         <h2 class="pb-5">Appendices</h2>
-        <DataForm allFiles={appendix} client:only="react" />
+        <DocumentationTable allFiles={appendix} />
+      </div>
+      <div>
+        <h2 class="pb-5">Questionnaires</h2>
+        <DocumentationTable allFiles={questionnaire} version={true} />
       </div>
     </section>
     <section class="space-y-4 readable">
