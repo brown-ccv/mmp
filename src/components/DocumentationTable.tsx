@@ -6,7 +6,8 @@ interface DocumentationTableProps {
     data: {
       title: string
       cat: string
-      file: string
+      file?: string
+      archivo: string
       description?: string
       version?: string
     }
@@ -32,14 +33,14 @@ const DocumentationTable: React.FC<DocumentationTableProps> = ({ allFiles, versi
         </thead>
 
         <tbody>
-          {files.map(({ title, file, description, version }, i) => {
+          {files.map(({ title, file, description, version, archivo }, i) => {
             return (
               <tr key={i}>
                 <td>
                   <a
                     className="text-secondary-blue-700 hover:text-secondary-blue-500"
                     target="_blank"
-                    href={file}
+                    href={language === "English" && file ? file : archivo}
                   >
                     {title}
                   </a>
