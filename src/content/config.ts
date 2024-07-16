@@ -22,7 +22,8 @@ const files = defineCollection({
     description: z.string().optional(),
     version: z.string().optional(),
     cat: z.string(),
-    file: z.string(),
+    file: z.string().optional(),
+    archivo: z.string().optional(),
   }),
 })
 
