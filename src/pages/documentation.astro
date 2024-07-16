@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro"
 import CircleIcon from "../components/svg/Circle"
 import DocumentationTable from "../components/DocumentationTable"
-import Switch from "../components/Switch"
 import { getCollection } from "astro:content"
 
 const files = await getCollection("data")
@@ -15,18 +14,17 @@ const questionnaire = files.filter((file) => file.data.cat === "Questionnaire")
 <Layout title="Documentation" description="About the Project">
   <div class="space-y-10">
     <section class="flex flex-col gap-6">
-      <Switch name="language" option1="English" option2="Spanish" client:only="react" />
       <div>
         <h2 class="pb-5">Codebooks</h2>
-        <DocumentationTable allFiles={codebooks} />
+        <DocumentationTable allFiles={codebooks} client:only="react" />
       </div>
       <div>
         <h2 class="pb-5">Appendices</h2>
-        <DocumentationTable allFiles={appendix} />
+        <DocumentationTable allFiles={appendix} client:only="react" />
       </div>
       <div>
         <h2 class="pb-5">Questionnaires</h2>
-        <DocumentationTable allFiles={questionnaire} version={true} />
+        <DocumentationTable allFiles={questionnaire} version={true} client:only="react" />
       </div>
     </section>
     <section class="space-y-4 readable">

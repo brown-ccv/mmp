@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState } from "react"
+import Switch from "./Switch.tsx"
 
 interface DocumentationTableProps {
   allFiles: {
@@ -17,8 +18,10 @@ const DocumentationTable: React.FC<DocumentationTableProps> = ({ allFiles, versi
   const files = allFiles.map((file) => {
     return { ...file.data }
   })
+  const [language, setLanguage] = useState("English")
   return (
     <div className="w-full overflow-x-scroll no-scrollbar">
+      <Switch name="language" option1="English" option2="Spanish" updateSelection={setLanguage} />
       <table className="table-fixed border-spacing-2">
         <thead>
           <tr className="bg-neutral-100 text-left text-neutral-900">
