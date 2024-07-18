@@ -13,6 +13,17 @@ i18n:
   # The locale to be used for fields validation and as a baseline for the entry.
   default_locale: en
 collections:
+  - name: map
+    label: Map
+    folder: src/content/map
+    create: false
+    fields:
+      - name: title
+        label: Map Version
+        widget: text
+      - name: image
+        label: MMP Community Map
+        widget: image
   - name: people
     label: People
     folder: src/content/people
@@ -110,7 +121,7 @@ collections:
         label: PDF
         widget: file
   - name: data
-    label: Data
+    label: Documentation Data
     create: true
     folder: src/content/data
     media_folder: files
@@ -129,53 +140,6 @@ collections:
         label: Category
         widget: select
         options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
-  - name: graphs
-    label: Graphs & Figures
-    create: true
-    folder: src/content/graphs
-    fields:
-      - name: title
-        label: Title
-        widget: string
-      - name: year
-        i18n: duplicate
-        label: Year
-        widget: datetime
-        date_format: dd.MM.yyyy
-        time_format: false
-        format: yyyy
-      - name: image
-        i18n: duplicate
-        label: Image
-        widget: image
-  - name: history
-    label: Oral History
-    create: true
-    folder: src/content/history
-    fields:
-      - name: title
-        label: Title
-        widget: string
-      - name: category
-        label: Category
-        widget: select
-        options: [ 'Border Crossing and Working', 'Everyday Life and Return', 'Those Who Stay' ]
-      - name: interviewee
-        i18n: duplicate
-        label: Who conducted the Interview?
-      - name: year
-        i18n: duplicate
-        label: Year
-        widget: datetime
-        date_format: MM.yyyy
-        time_format: false
-        format: MM.yyyy
-      - name: description
-        label: Short Description
-        widget: text
-      - name: story
-        label: Full Story
-        widget: markdown
   - name: news
     label: News
     identifier_field: pubDate
