@@ -4,6 +4,8 @@ import Home from "../layouts/Home.astro"
 import MiniMapSvg from "../components/svg/MiniMaps"
 import FootPrint from "../components/svg/FootPrint"
 import ProjectAim from "../components/ProjectAim.astro"
+// this import IS used -- see line 21
+import * as lede from "../content/pages/home.md"
 ---
 
 <Home
@@ -15,27 +17,8 @@ import ProjectAim from "../components/ProjectAim.astro"
     <FootPrint />
   </div>
   <div class="space-y-24">
-    <section class="space-y-8 py-6 readable">
-      <p>
-        The Mexican Migration Project (MMP) was created in 1982 by an interdisciplinary team of
-        researchers to further our understanding of the complex process of Mexican migration to the
-        United States. The project is a binational research effort co-directed by Jorge Durand,
-        professor of Social Anthropology at the University of Guadalajara (Mexico), and Douglas S.
-        Massey, professor of Sociology and Public Affairs, with a joint appointment in the Woodrow
-        Wilson School, at Princeton University (US).
-      </p>
-      <p>
-        Since its inception, the MMP's main focus has been to gather social as well as economic
-        information on Mexican-US migration. The data collected has been compiled in a comprehensive
-        database that is available to the public free of charge for research and educational
-        purposes through this web-site.
-      </p>
-      <p>
-        The MMP is a unique source of data that enables researchers to track patterns and processes
-        of contemporary Mexican immigration to the United States. The project is a
-        multi-disciplinary research effort that generates public use data on the characteristics and
-        behavior of Mexican migrants.
-      </p>
+    <section class="space-y-8 readable">
+      <lede.Content />
     </section>
     <section class="space-y-12">
       <h3 class="title font-semibold">Project Aims</h3>
