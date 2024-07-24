@@ -17,7 +17,7 @@ const DataForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await addHistoryData(data)
-    // TODO: go to minted DOI
+    window.location.replace("https://repository.library.brown.edu/studio/item/bdr:p54c6u36/")
   }
   return (
     <Form.Root className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
