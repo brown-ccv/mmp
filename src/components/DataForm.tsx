@@ -20,7 +20,10 @@ const DataForm = () => {
     window.location.replace("https://repository.library.brown.edu/studio/item/bdr:p54c6u36/")
   }
   return (
-    <Form.Root className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+    <Form.Root
+      className="p-6 rounded outline outline-neutral-100 outline-1 shadow-md space-y-4"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Controller
         name="name"
         control={control}
