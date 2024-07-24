@@ -1,10 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro"
-import CircleIcon from "../components/svg/Circle"
 import { ReaderIcon } from "@radix-ui/react-icons"
+import * as lede from "../content/pages/documentation.md"
 ---
 
 <Layout title="Documentation" description="About the Project">
+  <section class="space-y-8 readable pb-12">
+    <lede.Content />
+  </section>
   <a
     href="/study-design"
     class="flex gap-2 items-end text-primary-500 decoration-primary-500 font-bold mt-6 mb-10"
