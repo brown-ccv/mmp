@@ -27,7 +27,7 @@
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "astro": "^4.3.6",
-    "firebase": "^10.8.1",
+    "firebase": "^9.23.0",
     "i": "^0.3.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
