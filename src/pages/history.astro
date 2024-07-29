@@ -1,0 +1,8 @@
+---
+import Layout from "../layouts/Layout.astro"
+import HistoryPage from "../components/HistoryPage"
+---
+
+<Layout title="Admin" description="History Table of Downloads">
+  <HistoryPage client:only="react" />
+</Layout>
