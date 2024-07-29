@@ -1,0 +1,40 @@
+import React, { useState } from "react"
+import { type UserInfo } from "firebase/auth"
+import { handleLogin, handleLogout } from "../firebase"
+import Button from "./Button.tsx"
+
+interface LoginProps {
+  currentUser: UserInfo | null | undefined
+  setUserFunction: (loggedUser: UserInfo | null | undefined) => void
+}
+
+const Login: React.FC<LoginProps> = ({ currentUser, setUserFunction }) => {
+  const [message, setMessage] = useState("")
+
+  const login = async () => {
+    await handleLogin().then((loggedUser) => {
+      if (!loggedUser)
+        setMessage(
+          "You must be an admin on this project in order to see this data. If you believe this to be an error, please reach out to David Lindstrom."
+        )
+      setUserFunction(loggedUser)
+    })
+  }
+  const logout = async () => {
+    await handleLogout()
+    setUserFunction(null)
+  }
+  return (
+    <section className="flex flex-col gap-6">
+      <div>
+        {currentUser ? (
+          <Button onClick={logout}>Logout</Button>
+        ) : (
+          <Button onClick={() => login()}>Login</Button>
+        )}
+      </div>
+      <div>{message && <p>{message}</p>}</div>
+    </section>
+  )
+}
+export default Login
