@@ -36,7 +36,8 @@ const HistoryPage = () => {
         )}
       </section>
       {historyData && (
-        <section>
+        <section className="space-y-2">
+          <p>Number of downloads: {historyData.length}</p>
           <HistoryTable data={historyData} />
         </section>
       )}
