@@ -27,7 +27,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             onChange={(e) => setCharacterCount(e.target.value.length)}
           />
         </Form.Control>
-        <Form.Message className="text-primary-300" match="valueMissing">
+        <Form.Message className="text-primary-300 px-2" match="valueMissing">
           Please enter your {label}
         </Form.Message>
       </Form.Field>
