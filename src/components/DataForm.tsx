@@ -1,5 +1,6 @@
 import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 import * as Form from "@radix-ui/react-form"
+import React from "react"
 import { addHistoryData } from "../firebase"
 import { Input } from "./Input.tsx"
 import { Textarea } from "./Textarea.tsx"
@@ -14,15 +15,19 @@ export interface Inputs {
 
 const DataForm = () => {
   const { handleSubmit, control, register } = useForm<Inputs>()
-
+  const formRef = React.useRef<HTMLFormElement>(null)
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await addHistoryData(data)
-    window.location.assign("https://repository.library.brown.edu/studio/item/bdr:p54c6u36/")
+    if (formRef.current) formRef.current.submit()
   }
   return (
     <Form.Root
+      ref={formRef}
       className="p-6 rounded outline outline-neutral-100 outline-1 shadow-md space-y-4"
       onSubmit={handleSubmit(onSubmit)}
+      action="https://repository.library.brown.edu/studio/item/bdr:p54c6u36/"
+      target="_blank"
+      method="GET"
     >
       <Controller
         name="name"
