@@ -19,7 +19,7 @@ export const addHistoryData = async (inputs) => {
       institution: inputs.institution,
       email: inputs.email,
       description: inputs.description,
-      date: new Date(),
+      date: Timestamp.now(),
     })
     console.log("Document written with ID: ", docRef.id)
   } catch (e) {
