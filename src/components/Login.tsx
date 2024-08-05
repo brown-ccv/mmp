@@ -28,12 +28,12 @@ const Login: React.FC<LoginProps> = ({ currentUser, setUserFunction }) => {
     <section className="flex flex-col gap-6">
       <div>
         {currentUser ? (
-          <Button onClick={logout}>Logout</Button>
+          <Button onClick={() => logout()}>Log Out</Button>
         ) : (
-          <Button onClick={() => login()}>Login</Button>
+          <Button onClick={() => login()}>Log In</Button>
         )}
       </div>
-      <div>{message && <p>{message}</p>}</div>
+      {message && <p className="text-primary-300">{message}</p>}
     </section>
   )
 }
