@@ -16,12 +16,10 @@ const ActivityTable: React.FC<ActivityTableProps> = ({ data }) => {
     <div className="w-full overflow-x-scroll no-scrollbar">
       <table className="table-fixed border-spacing-2 w-full">
         <thead>
-          <tr className="bg-neutral-100 text-left text-neutral-900">
-            <th>Name</th>
-            <th>Institution</th>
-            <th>Email</th>
+          <tr className="text-xl bg-neutral-100 text-left text-neutral-900">
             <th>Description</th>
-            <th>Download Date</th>
+            <th className="w-1/4 overflow-auto">User</th>
+            <th className="w-1/5">Download Date</th>
           </tr>
         </thead>
 
@@ -31,10 +29,18 @@ const ActivityTable: React.FC<ActivityTableProps> = ({ data }) => {
               const stringDate = date.toDate().toDateString()
               return (
                 <tr key={i}>
-                  <td>{name}</td>
-                  <td>{institution}</td>
-                  <td>{email}</td>
-                  <td>{description}</td>
+                  <td>
+                    <p>{description}</p>
+                  </td>
+                  <td>
+                    <div>
+                      <p className="text-lg font-semibold text-neutral-900">{name}</p>
+                      <p className="text-neutral-700 italic overflow-hidden overflow-ellipsis ">
+                        {email}
+                      </p>
+                      <p className="small">{institution}</p>
+                    </div>
+                  </td>
                   <td>{stringDate}</td>
                 </tr>
               )
