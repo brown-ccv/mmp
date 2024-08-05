@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { type UserInfo } from "firebase/auth"
+import { set } from "react-hook-form"
 import { handleLogin, handleLogout } from "../firebase"
 import Button from "./Button.tsx"
 
@@ -15,7 +16,7 @@ const Login: React.FC<LoginProps> = ({ currentUser, setUserFunction }) => {
     await handleLogin().then((loggedUser) => {
       if (!loggedUser)
         setMessage(
-          "You must be an admin on this project in order to see this data. If you believe this to be an error, please reach out to David Lindstrom."
+          "You must be an admin on this project in order to see this data. If you believe this to be an error, please reach out to David Lindstrom (david_lindstrom@brown.edu)."
         )
       setUserFunction(loggedUser)
     })
@@ -23,6 +24,7 @@ const Login: React.FC<LoginProps> = ({ currentUser, setUserFunction }) => {
   const logout = async () => {
     await handleLogout()
     setUserFunction(null)
+    setMessage("")
   }
   return (
     <section className="flex flex-col gap-6">
@@ -33,7 +35,7 @@ const Login: React.FC<LoginProps> = ({ currentUser, setUserFunction }) => {
           <Button onClick={() => login()}>Log In</Button>
         )}
       </div>
-      {message && <p className="text-primary-300">{message}</p>}
+      {message && <p className="font-semibold text-primary-300">{message}</p>}
     </section>
   )
 }

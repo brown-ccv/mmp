@@ -18,7 +18,7 @@ const ActivityTable: React.FC<ActivityTableProps> = ({ data }) => {
         <thead>
           <tr className="text-xl bg-neutral-100 text-left text-neutral-900">
             <th>Description</th>
-            <th className="w-1/4 overflow-auto">User</th>
+            <th className="w-1/4">User</th>
             <th className="w-1/5">Download Date</th>
           </tr>
         </thead>
