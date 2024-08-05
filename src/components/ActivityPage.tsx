@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import type { UserInfo } from "firebase/auth"
 import Login from "../components/Login"
-import HistoryTable from "../components/HistoryTable"
 import { getHistoryData } from "../firebase"
+import ActivityTable from "./ActivityTable.tsx"
 
-const HistoryPage = () => {
+const ActivityPage = () => {
   const [user, setUser] = useState<UserInfo | null | undefined>(null)
   const [historyData, setHistoryData] = useState<any[] | null>(null)
   const setUserFunction = (loggedUser: UserInfo | null | undefined) => {
@@ -25,24 +25,24 @@ const HistoryPage = () => {
 
   return (
     <div className="space-y-8">
-      <section>
-        <div className="flex justify-end">
-          <Login currentUser={user} setUserFunction={setUserFunction} />
-        </div>
+      <section className="space-y-6">
+        <Login currentUser={user} setUserFunction={setUserFunction} />
         {!user && (
           <p>
             This section of the website is reserved for administrators to view download statistics.
           </p>
         )}
       </section>
-      {historyData && (
+      {user && historyData && (
         <section className="space-y-2">
-          <p>Number of downloads: {historyData.length}</p>
-          <HistoryTable data={historyData} />
+          <h3>
+            <span className="font-bold px-2">{historyData.length}</span> download(s)
+          </h3>
+          <ActivityTable data={historyData} />
         </section>
       )}
     </div>
   )
 }
 
-export default HistoryPage
+export default ActivityPage

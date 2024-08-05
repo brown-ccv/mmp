@@ -8,5 +8,5 @@ export const LINKS = [
   "study-design",
   "data",
   "documentation",
-  "history",
+  "activity",
 ]

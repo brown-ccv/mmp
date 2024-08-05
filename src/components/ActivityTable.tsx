@@ -1,7 +1,7 @@
 import React from "react"
 import { type Timestamp } from "firebase/firestore"
 
-export interface HistoryTableProps {
+export interface ActivityTableProps {
   data: Array<{
     name: string
     institution: string
@@ -11,10 +11,10 @@ export interface HistoryTableProps {
   }>
 }
 
-const HistoryTable: React.FC<HistoryTableProps> = ({ data }) => {
+const ActivityTable: React.FC<ActivityTableProps> = ({ data }) => {
   return (
     <div className="w-full overflow-x-scroll no-scrollbar">
-      <table className="table-fixed border-spacing-2">
+      <table className="table-fixed border-spacing-2 w-full">
         <thead>
           <tr className="bg-neutral-100 text-left text-neutral-900">
             <th>Name</th>
@@ -44,4 +44,4 @@ const HistoryTable: React.FC<HistoryTableProps> = ({ data }) => {
     </div>
   )
 }
-export default HistoryTable
+export default ActivityTable
