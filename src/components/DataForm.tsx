@@ -17,7 +17,7 @@ const DataForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await addHistoryData(data)
-    window.location.replace("https://repository.library.brown.edu/studio/item/bdr:p54c6u36/")
+    window.location.assign("https://repository.library.brown.edu/studio/item/bdr:p54c6u36/")
   }
   return (
     <Form.Root
