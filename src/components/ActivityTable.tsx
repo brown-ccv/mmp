@@ -1,5 +1,5 @@
 import React from "react"
-import type { activityType } from "./ActivityPage.tsx"
+import type { activityType } from "../hooks/activity.ts"
 
 export interface ActivityTableProps {
   data: activityType[]

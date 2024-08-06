@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { type UserInfo } from "firebase/auth"
-import { set } from "react-hook-form"
 import { handleLogin, handleLogout } from "../firebase"
 import Button from "./Button.tsx"
 
