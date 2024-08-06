@@ -121,6 +121,7 @@
         @apply shadow-none;
     }
 
+
     button[role="switch"] {
         @apply bg-neutral-300;
         @apply flex gap-0;
@@ -160,6 +161,16 @@
 
     .switchSlider[data-state='checked'] {
         transform: translateX(21px);
+    }
+
+    .readable ul {
+        @apply list-disc;
+        @apply pl-14;
+        @apply py-2;
+    }
+
+    .readable li {
+        @apply m-2;
     }
 }
 

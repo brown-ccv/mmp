@@ -1,11 +1,12 @@
 ---
-import { getCollection } from "astro:content"
 import Layout from "../layouts/Layout.astro"
 import DataForm from "../components/DataForm"
-
-const files = (await getCollection("data")).filter((file) => file.data.cat === "Core")
+import * as lede from "../content/pages/data.md"
 ---
 
 <Layout title="Data" description="Data files and information">
-  <DataForm allFiles={files} client:only="react" />
+  <section class="space-y-8 readable pb-12">
+    <lede.Content />
+  </section>
+  <DataForm client:only="react" />
 </Layout>

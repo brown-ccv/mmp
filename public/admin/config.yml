@@ -13,6 +13,28 @@ i18n:
   # The locale to be used for fields validation and as a baseline for the entry.
   default_locale: en
 collections:
+  - name: pages
+    label: Pages
+    folder: src/content/pages
+    create: false
+    fields:
+      - name: title
+        label: Page
+        widget: text
+      - name: body
+        label: Page Content
+        widget: markdown
+  - name: map
+    label: Map
+    folder: src/content/map
+    create: false
+    fields:
+      - name: title
+        label: Map Version
+        widget: text
+      - name: image
+        label: MMP Community Map
+        widget: image
   - name: people
     label: People
     folder: src/content/people
@@ -110,7 +132,7 @@ collections:
         label: PDF
         widget: file
   - name: data
-    label: Core Data
+    label: Documentation Data
     create: true
     folder: src/content/data
     media_folder: files
@@ -121,43 +143,14 @@ collections:
       - name: description
         label: Description
         widget: text
-      - name: sav
-        label: SPSS File (.sav)
-        widget: file
-      - name: dta
-        label: Stata File (.dta)
-        widget: file
-  - name: supplement
-    label: Other Data
-    create: true
-    folder: src/content/data
-    media_folder: files
-    fields:
-      - name: title
-        label: File Name
-        widget: string
-      - name: description
-        label: Description
-        widget: text
-      - name: version
-        label: Field Season
-        required: false
-        widget: text
-        hint: "1987 - 1997"
       - name: file
-        required: false
         i18n: duplicate
-        label: English File
-        widget: file
-      - name: archivo
-        required: false
-        i18n: duplicate
-        label: Archivo Español
+        label: File
         widget: file
       - name: cat
         label: Category
         widget: select
-        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices', "Community Level Supplementary", "State Level Supplementary", "National Level Supplementary", "MSA Level Supplementary" ]
+        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
   - name: news
     label: News
     identifier_field: pubDate

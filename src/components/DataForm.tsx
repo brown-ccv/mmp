@@ -1,52 +1,87 @@
-import React, { useState } from "react"
-import DataTable from "../components/DataTable"
-import DownloadModal from "../components/DownloadModal"
+import { Controller, type SubmitHandler, useForm } from "react-hook-form"
+import * as Form from "@radix-ui/react-form"
+import React from "react"
+import { addHistoryData } from "../firebase"
+import { Input } from "./Input.tsx"
+import { Textarea } from "./Textarea.tsx"
+import Button from "./Button.tsx"
 
-export interface FileItem {
-  title: string
-  cat: string
-  file: string
-  description?: string
-  selected: boolean
+export interface Inputs {
+  name: string
+  institution: string
+  email: string
+  description: string
 }
 
-interface DataFormProps {
-  allFiles: {
-    data: {
-      title: string
-      cat: string
-      file: string
-      description?: string
-    }
-  }[]
-}
-
-const DataForm: React.FC<DataFormProps> = ({ allFiles }) => {
-  const [files, setFiles] = useState(
-    allFiles.map((file) => {
-      return { ...file.data, selected: false }
-    })
-  )
-
-  /**
-   * Given a target file name and new `selected` field for that file, update the matching file object in{@link files}
-   * with the new value for `selected`.
-   */
-  const updateFileList = ({ file: targetFile }: FileItem, selection: boolean) => {
-    setFiles((prevFiles) => {
-      return prevFiles.map(({ file, selected, ...rest }) => {
-        return file === targetFile
-          ? { file, selected: selection, ...rest }
-          : { file, selected, ...rest }
-      })
-    })
+const DataForm = () => {
+  const { handleSubmit, control, register } = useForm<Inputs>()
+  const formRef = React.useRef<HTMLFormElement>(null)
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    await addHistoryData(data)
+    if (formRef.current) formRef.current.submit()
   }
-
   return (
-    <div className="space-y-4">
-      <DownloadModal filesToDownload={files.map((file) => file.file)} />
-      <DataTable allFiles={files} updateFileList={updateFileList} />
-    </div>
+    <Form.Root
+      ref={formRef}
+      className="p-6 rounded outline outline-neutral-100 outline-1 shadow-md space-y-4"
+      onSubmit={handleSubmit(onSubmit)}
+      action="https://repository.library.brown.edu/studio/item/bdr:p54c6u36/"
+      target="_blank"
+      method="GET"
+    >
+      <Controller
+        name="name"
+        control={control}
+        render={() => (
+          <Input label="Name" placeholder="Heather Yu" {...register("name")} required />
+        )}
+      />
+      <Controller
+        name="institution"
+        control={control}
+        render={() => (
+          <Input
+            label="Institution"
+            placeholder="Brown University"
+            {...register("institution")}
+            required
+          />
+        )}
+      />
+      <Controller
+        name="email"
+        control={control}
+        render={() => (
+          <Input
+            label="Email"
+            placeholder="heather@example.com"
+            match="typeMismatch"
+            errorMessage="Please provide a valid email"
+            {...register("email")}
+            required
+          />
+        )}
+      />
+      <Controller
+        name="description"
+        control={control}
+        render={() => (
+          <Textarea
+            label="Description"
+            placeholder="Why you need this file..."
+            {...register("description")}
+            required
+          />
+        )}
+      />
+
+      <Form.Submit asChild>
+        <Button>
+          <span>Submit</span>
+        </Button>
+      </Form.Submit>
+    </Form.Root>
   )
 }
+
 export default DataForm

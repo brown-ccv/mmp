@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro"
+import * as lede from "../content/pages/study-design.md"
+---
+
+<Layout title="Map of MMP Communities" description="Mesoamerican Migration Project">
+  <div class="flex flex-col gap-6">
+    <section class="flex flex-col gap-3.5">
+      <img src="/images/MMP_Map.jpg" />
+    </section>
+    <section class="readable space-y-4">
+      <lede.Content />
+    </section>
+  </div>
+</Layout>
