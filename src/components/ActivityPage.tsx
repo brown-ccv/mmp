@@ -1,33 +1,8 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import type { UserInfo } from "firebase/auth"
-import type { Timestamp } from "firebase/firestore"
 import Login from "../components/Login"
-import { getActivityData } from "../firebase"
+import { useActivityData } from "../hooks/activity.ts"
 import ActivityTable from "./ActivityTable.tsx"
-
-export interface activityType {
-  name: string
-  institution: string
-  email: string
-  description: string
-  date: Timestamp
-}
-
-const getData = async () => {
-  return await getActivityData()
-}
-
-function useActivityData(user: UserInfo | null | undefined) {
-  const [activityData, setActivityData] = useState<activityType[] | null>(null)
-  useEffect(() => {
-    if (user) {
-      getData().then((data) => {
-        setActivityData(data)
-      })
-    }
-  }, [user])
-  return activityData
-}
 
 const ActivityPage = () => {
   const [user, setUser] = useState<UserInfo | null | undefined>(null)
