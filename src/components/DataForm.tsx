@@ -1,7 +1,7 @@
 import { Controller, type SubmitHandler, useForm } from "react-hook-form"
 import * as Form from "@radix-ui/react-form"
 import React from "react"
-import { addHistoryData } from "../firebase"
+import { addActivityData } from "../firebase"
 import { Input } from "./Input.tsx"
 import { Textarea } from "./Textarea.tsx"
 import Button from "./Button.tsx"
@@ -17,7 +17,7 @@ const DataForm = () => {
   const { handleSubmit, control, register } = useForm<Inputs>()
   const formRef = React.useRef<HTMLFormElement>(null)
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    await addHistoryData(data)
+    await addActivityData(data)
     if (formRef.current) formRef.current.submit()
   }
   return (
