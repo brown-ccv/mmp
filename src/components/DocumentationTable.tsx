@@ -20,12 +20,12 @@ const DocumentationTable: React.FC<DocumentationTableProps> = ({ allFiles, versi
   })
   return (
     <div className="w-full overflow-x-scroll no-scrollbar">
-      <table className="table-fixed border-spacing-2 w-full">
+      <table className="table-fixed border-spacing-4 w-full">
         <thead>
-          <tr className="bg-neutral-100 text-left text-neutral-900">
-            <th className="flex items-center w-1/4">File</th>
+          <tr className="text-xl bg-neutral-100 text-left text-neutral-900">
+            <th className="w-1/4">File</th>
             <th>Description</th>
-            {version && <th>Field Season</th>}
+            {version && <th className="w-1/5">Field Season</th>}
           </tr>
         </thead>
 
