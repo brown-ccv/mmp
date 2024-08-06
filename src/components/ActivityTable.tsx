@@ -22,7 +22,7 @@ const ActivityTable: React.FC<ActivityTableProps> = ({ data }) => {
             data.map(({ name, institution, email, description, date }, i) => {
               const stringDate = date.toDate().toDateString()
               return (
-                <tr key={i}>
+                <tr key={i} className="align-top">
                   <td>
                     <p>{description}</p>
                   </td>
