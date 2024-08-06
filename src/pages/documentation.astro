@@ -2,17 +2,39 @@
 import Layout from "../layouts/Layout.astro"
 import { ReaderIcon } from "@radix-ui/react-icons"
 import * as lede from "../content/pages/documentation.md"
+import DocumentationTable from "../components/DocumentationTable"
+import { getCollection } from "astro:content"
+
+const files = await getCollection("data")
+
+const codebooks = files.filter((file) => file.data.cat === "Codebook")
+const appendix = files.filter((file) => file.data.cat === "Appendices")
+const questionnaire = files.filter((file) => file.data.cat === "Questionnaire")
 ---
 
 <Layout title="Documentation" description="About the Project">
   <section class="space-y-8 readable pb-12">
     <lede.Content />
+    <a
+      href="/study-design"
+      class="flex gap-2 items-end text-primary-500 decoration-primary-500 font-bold mt-6 mb-10"
+    >
+      <ReaderIcon width="24" height="24" />
+      <span> Read the study design </span>
+    </a>
   </section>
-  <a
-    href="/study-design"
-    class="flex gap-2 items-end text-primary-500 decoration-primary-500 font-bold mt-6 mb-10"
-  >
-    <ReaderIcon width="24" height="24" />
-    <span> Read the study design </span>
-  </a>
+  <section class="flex flex-col gap-6">
+    <div>
+      <h2 class="pb-5">Codebooks</h2>
+      <DocumentationTable allFiles={codebooks} client:only="react" />
+    </div>
+    <div>
+      <h2 class="pb-5">Appendices</h2>
+      <DocumentationTable allFiles={appendix} client:only="react" />
+    </div>
+    <div>
+      <h2 class="pb-5">Questionnaires</h2>
+      <DocumentationTable allFiles={questionnaire} version={true} client:only="react" />
+    </div>
+  </section>
 </Layout>
