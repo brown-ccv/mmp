@@ -1,7 +1,14 @@
 import React, { useState } from "react"
 import * as Checkbox from "@radix-ui/react-checkbox"
 import { CheckIcon } from "@radix-ui/react-icons"
-import type { FileItem } from "./DataForm.tsx"
+
+export interface FileItem {
+  title: string
+  cat: string
+  file: string
+  description?: string
+  selected: boolean
+}
 
 type updateFileListType = (fileToUpdate: FileItem, selection: boolean) => void
 
