@@ -1,27 +1,40 @@
 import { useEffect, useState } from "react"
 import type { UserInfo } from "firebase/auth"
+import type { Timestamp } from "firebase/firestore"
 import Login from "../components/Login"
-import { getHistoryData } from "../firebase"
+import { getActivityData } from "../firebase"
 import ActivityTable from "./ActivityTable.tsx"
 
-const ActivityPage = () => {
-  const [user, setUser] = useState<UserInfo | null | undefined>(null)
-  const [historyData, setHistoryData] = useState<any[] | null>(null)
-  const setUserFunction = (loggedUser: UserInfo | null | undefined) => {
-    setUser(loggedUser)
-  }
+export interface activityType {
+  name: string
+  institution: string
+  email: string
+  description: string
+  date: Timestamp
+}
 
+const getData = async () => {
+  return await getActivityData()
+}
+
+function useActivityData(user: UserInfo | null | undefined) {
+  const [activityData, setActivityData] = useState<activityType[] | null>(null)
   useEffect(() => {
-    const getData = async () => {
-      return await getHistoryData()
-    }
-
     if (user) {
       getData().then((data) => {
-        setHistoryData(data)
+        setActivityData(data)
       })
     }
   }, [user])
+  return activityData
+}
+
+const ActivityPage = () => {
+  const [user, setUser] = useState<UserInfo | null | undefined>(null)
+  const setUserFunction = (loggedUser: UserInfo | null | undefined) => {
+    setUser(loggedUser)
+  }
+  const activityData = useActivityData(user)
 
   return (
     <div className="space-y-8">
@@ -33,12 +46,12 @@ const ActivityPage = () => {
           </p>
         )}
       </section>
-      {user && historyData && (
+      {user && activityData && (
         <section className="space-y-2">
           <h3>
-            <span className="font-bold px-2">{historyData.length}</span> download(s)
+            <span className="font-bold px-2">{activityData.length}</span> download(s)
           </h3>
-          <ActivityTable data={historyData} />
+          <ActivityTable data={activityData} />
         </section>
       )}
     </div>

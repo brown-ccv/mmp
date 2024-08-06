@@ -1,14 +1,8 @@
 import React from "react"
-import { type Timestamp } from "firebase/firestore"
+import type { activityType } from "./ActivityPage.tsx"
 
 export interface ActivityTableProps {
-  data: Array<{
-    name: string
-    institution: string
-    email: string
-    description: string
-    date: Timestamp
-  }>
+  data: activityType[]
 }
 
 const ActivityTable: React.FC<ActivityTableProps> = ({ data }) => {

@@ -12,7 +12,7 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 export const auth = getAuth(app)
 
-export const addHistoryData = async (inputs) => {
+export const addActivityData = async (inputs) => {
   try {
     const docRef = await addDoc(collection(db, "history"), {
       name: inputs.name,
@@ -38,7 +38,7 @@ export const getAdminUsers = async () => {
   })
 }
 
-export const getHistoryData = async () => {
+export const getActivityData = async () => {
   const querySnapshot = await getDocs(collection(db, "history"))
   const data = []
   querySnapshot.forEach((doc) => {
