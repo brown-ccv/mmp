@@ -42,7 +42,7 @@ const DocumentationTable: React.FC<DocumentationTableProps> = ({
               <tr key={i}>
                 <td className="flex justify-between gap-2">
                   <p className="font-bold">{title}</p>
-                  <div className="flex">
+                  <div className="flex gap-1">
                     (
                     {file && (
                       <a
@@ -60,7 +60,7 @@ const DocumentationTable: React.FC<DocumentationTableProps> = ({
                         target="_blank"
                         href={archivo}
                       >
-                        ea
+                        es
                       </a>
                     )}
                     )
