@@ -22,7 +22,7 @@ const Switch: React.FC<SwitchProps> = ({ name, option1, option2, updateSelection
         <SwitchUI.Root
           className="drop-shadow-md w-12 h-6 relative mx-4"
           id={name}
-          onCheckedChange={(checked) => emitSelection(checked)}
+          onCheckedChange={(checked: boolean) => emitSelection(checked)}
         >
           <SwitchUI.Thumb className="switchSlider" />
         </SwitchUI.Root>
