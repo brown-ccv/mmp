@@ -8,6 +8,14 @@ import { getCollection } from "astro:content"
 const files = await getCollection("data")
 
 const codebooks = files.filter((file) => file.data.cat === "Codebook")
+const core = codebooks.filter((file) => file.data.codebookType === "MMP Core")
+const community = codebooks.filter(
+  (file) => file.data.codebookType === "Community Level Supplementary"
+)
+const state = codebooks.filter((file) => file.data.codebookType === "State Level Supplementary")
+const national = codebooks.filter(
+  (file) => file.data.codebookType === "National Level Supplementary"
+)
 const appendix = files.filter((file) => file.data.cat === "Appendices")
 const questionnaire = files.filter((file) => file.data.cat === "Questionnaire")
 ---
@@ -23,18 +31,24 @@ const questionnaire = files.filter((file) => file.data.cat === "Questionnaire")
       <span> Read the study design </span>
     </a>
   </section>
-  <section class="flex flex-col gap-6">
-    <div>
+  <section class="flex flex-col gap-8">
+    <div class="flex flex-col gap-4">
       <h2 class="pb-5">Codebooks</h2>
-      <DocumentationTable allFiles={codebooks} client:only="react" />
+      <DocumentationTable allFiles={core} showHeader />
+      <h3 class="font-semibold">Community Level Supplementary Files</h3>
+      <DocumentationTable allFiles={community} />
+      <h3 class="font-semibold">State Level Supplementary Files</h3>
+      <DocumentationTable allFiles={state} />
+      <h3 class="font-semibold">National Level Supplementary Files</h3>
+      <DocumentationTable allFiles={national} />
     </div>
     <div>
       <h2 class="pb-5">Appendices</h2>
-      <DocumentationTable allFiles={appendix} client:only="react" />
+      <DocumentationTable allFiles={appendix} showHeader />
     </div>
     <div>
       <h2 class="pb-5">Questionnaires</h2>
-      <DocumentationTable allFiles={questionnaire} version={true} client:only="react" />
+      <DocumentationTable allFiles={questionnaire} version showHeader />
     </div>
   </section>
 </Layout>

@@ -1,4 +1,5 @@
 import React from "react"
+import Button from "./Button.tsx"
 
 interface DocumentationTableProps {
   allFiles: {
@@ -9,19 +10,25 @@ interface DocumentationTableProps {
       archivo?: string
       description?: string
       version?: string
+      codebookType?: string
     }
   }[]
   version?: boolean
+  showHeader?: boolean
 }
 
-const DocumentationTable: React.FC<DocumentationTableProps> = ({ allFiles, version }) => {
+const DocumentationTable: React.FC<DocumentationTableProps> = ({
+  allFiles,
+  version,
+  showHeader,
+}) => {
   const files = allFiles.map((file) => {
     return { ...file.data }
   })
   return (
     <div className="w-full overflow-x-scroll no-scrollbar">
       <table className="table-fixed border-spacing-4 w-full">
-        <thead>
+        <thead className={showHeader ? "" : "collapse"}>
           <tr className="text-xl bg-neutral-100 text-left text-neutral-900">
             <th className="w-1/4">File</th>
             <th>Description</th>
@@ -53,7 +60,7 @@ const DocumentationTable: React.FC<DocumentationTableProps> = ({ allFiles, versi
                         target="_blank"
                         href={archivo}
                       >
-                        es
+                        ea
                       </a>
                     )}
                     )
