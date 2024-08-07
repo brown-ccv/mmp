@@ -5,4 +5,5 @@ description: cross-sectional file containing information of the household-head -
   migration experience to Canada.
 file: src/content/data/files/cnmig-codebook-mmp174-.pdf
 cat: Codebook
+codebookType: MMP Core
 ---

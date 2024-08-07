@@ -137,20 +137,41 @@ collections:
     folder: src/content/data
     media_folder: files
     fields:
+      - name: cat
+        label: Category
+        widget: select
+        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
       - name: title
         label: Title
         widget: string
       - name: description
         label: Description
         widget: text
+      - name: version
+        i18n: duplicate
+        label: Field Season
+        condition:
+          field: cat
+          value: 'Questionnaire'
+        required: false
+      - name: codebookType
+        label: Codebook Category
+        condition:
+          field: cat
+          value: 'Codebook'
+        widget: select
+        options: [ 'MMP Core', 'Community Level Supplementary', 'State Level Supplementary', 'National Level Supplementary', 'MSA Level Supplementary' ]
+      - name: archivo
+        i18n: duplicate
+        required: false
+        label: Spanish File
+        widget: file
       - name: file
         i18n: duplicate
-        label: File
+        required: false
+        label: English File
         widget: file
-      - name: cat
-        label: Category
-        widget: select
-        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
+
   - name: news
     label: News
     identifier_field: pubDate
