@@ -17,4 +17,3 @@ charge for research and educational purposes through this web-site.
 The MMP is a unique source of data that enables researchers to track patterns and processes of contemporary Mexican
 immigration to the United States. The project is a multi-disciplinary research effort that generates public use data on
 the characteristics and behavior of Mexican migrants.
-

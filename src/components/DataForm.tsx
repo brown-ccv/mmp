@@ -23,7 +23,7 @@ const DataForm = () => {
   return (
     <Form.Root
       ref={formRef}
-      className="p-6 rounded outline outline-neutral-100 outline-1 shadow-md space-y-4"
+      className="outline outline-neutral-100 outline-1 p-6 space-y-4 rounded shadow-md"
       onSubmit={handleSubmit(onSubmit)}
       action="https://repository.library.brown.edu/studio/item/bdr:p54c6u36/"
       target="_blank"

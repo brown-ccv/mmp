@@ -14,14 +14,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <Form.Field name={name} className="relative flex flex-col gap-2">
         <Form.Label>{label}</Form.Label>
-        <span className="px-2 py-1 text-xs text-neutral-300 rounded absolute top-9 right-1">
+        <span className="text-neutral-300 top-9 right-1 absolute px-2 py-1 text-xs rounded">
           {characterCount}/{maxLength}
         </span>
         <Form.Control asChild>
           <textarea
             rows={4}
             maxLength={maxLength}
-            className="text-gray-400 text-sm font-medium outline-none border-b-2 w-full py-6"
+            className="w-full py-6 text-sm font-medium text-gray-400 border-b-2 outline-none"
             {...delegated}
             ref={ref}
             onChange={(e) => setCharacterCount(e.target.value.length)}

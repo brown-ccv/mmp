@@ -142,4 +142,3 @@ all the households in the home country sample and another weight for all the hou
 When working with pooled data from multiple communities, these weights give you the option to adjust your estimates in
 order to take into account the relative sizes of all the sampling frames. Whether you will need to weight your estimates
 or not will depend on what your goal is.
-

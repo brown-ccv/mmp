@@ -46,7 +46,7 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
             <Checkbox.Root
               name={file}
               id={file}
-              className="p-0 w-4 h-4 border"
+              className="w-4 h-4 p-0 border"
               checked={selected}
               onClick={() => handleSelect(selected, i)}
             >
@@ -71,15 +71,15 @@ const DataTable: React.FC<DataTableProps> = ({ allFiles, updateFileList }) => {
   })
 
   return (
-    <div className="w-full overflow-x-scroll no-scrollbar">
-      <table className="table-fixed border-spacing-2">
+    <div className="no-scrollbar w-full overflow-x-scroll">
+      <table className="border-spacing-2 table-fixed">
         <thead>
-          <tr className="bg-neutral-100 text-left text-neutral-900">
+          <tr className="bg-neutral-100 text-neutral-900 text-left">
             <th className="flex items-center w-[200px]">
               <Checkbox.Root
                 name="selectAll"
                 id="selectAll"
-                className="p-0 w-4 h-4 text-neutral-900 border"
+                className="text-neutral-900 w-4 h-4 p-0 border"
                 onCheckedChange={handleSelectAll}
               >
                 <Checkbox.Indicator>

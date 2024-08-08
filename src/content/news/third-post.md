@@ -1,8 +1,8 @@
 ---
-title: 'Third post'
-description: 'Lorem ipsum dolor sit amet'
-pubDate: 'Jul 04 2022'
-heroImage: '/blog-placeholder-2.jpg'
+title: "Third post"
+description: "Lorem ipsum dolor sit amet"
+pubDate: "Jul 04 2022"
+heroImage: "/blog-placeholder-2.jpg"
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna

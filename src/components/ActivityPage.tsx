@@ -24,7 +24,7 @@ const ActivityPage = () => {
       {user && activityData && (
         <section className="space-y-2">
           <h3>
-            <span className="font-bold px-2">{activityData.length}</span> download(s)
+            <span className="px-2 font-bold">{activityData.length}</span> download(s)
           </h3>
           <ActivityTable data={activityData} />
         </section>
