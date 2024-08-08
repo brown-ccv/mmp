@@ -4,7 +4,7 @@ export const PeoplePreview = ({ entry, collection, fields }) => {
 
   return h(
     "div",
-    { className: "flex flex-col md:flex-row gap-4 md:gap-8" },
+    { className: "flex flex-col mt-4 md:flex-row gap-4 md:gap-8" },
     h(
       "div",
       { className: "flex-none" },
@@ -18,11 +18,7 @@ export const PeoplePreview = ({ entry, collection, fields }) => {
         "div",
         {},
 
-        h(
-          "a",
-          { href: imageUrl, className: "text-xl font-semibold underline text-neutral-900" },
-          entry.data.name
-        ),
+        h("p", { className: "text-xl font-semibold underline text-neutral-900" }, entry.data.name),
         h("p", { className: "text-neutral-700 italic" }, entry.data.title),
         h("p", { className: "small" }, entry.data.org)
       ),
