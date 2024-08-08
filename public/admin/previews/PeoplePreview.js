@@ -1,4 +1,4 @@
-export const PeoplePreview = ({ widgetFor, entry, collection, fields }) => {
+export const PeoplePreview = ({ entry, collection, fields }) => {
   const imageField = useMemo(() => fields.find((field) => field.name === "avatar"), [fields])
   const imageUrl = useMediaAsset(entry.data.avatar, collection, imageField, entry)
 

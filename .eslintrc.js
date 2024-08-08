@@ -21,6 +21,7 @@ module.exports = {
     "out",
     "build",
     "node_modules",
+    "public/admin/previews"
   ],
   plugins: ["@typescript-eslint", "import"],
   rules: {
