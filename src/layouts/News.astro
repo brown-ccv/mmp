@@ -9,7 +9,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props
 ---
 
 <Layout title={title} description={description}>
-  <article>
+  <article class="space-y-4">
     {
       heroImage && (
         <div>
@@ -26,6 +26,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props
         </div>
       )
     }
+    <div class="py-3 space-y-4">
+      <slot />
+    </div>
   </article>
 </Layout>
-<slot />
