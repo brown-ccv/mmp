@@ -7,10 +7,10 @@ export interface ActivityTableProps {
 
 const ActivityTable: React.FC<ActivityTableProps> = ({ data }) => {
   return (
-    <div className="w-full overflow-x-scroll no-scrollbar">
-      <table className="table-fixed border-spacing-2 w-full">
+    <div className="no-scrollbar w-full overflow-x-scroll">
+      <table className="border-spacing-2 w-full table-fixed">
         <thead>
-          <tr className="text-xl bg-neutral-100 text-left text-neutral-900">
+          <tr className="bg-neutral-100 text-neutral-900 text-xl text-left">
             <th>Description</th>
             <th className="w-1/4">User</th>
             <th className="w-1/5">Download Date</th>
@@ -28,8 +28,8 @@ const ActivityTable: React.FC<ActivityTableProps> = ({ data }) => {
                   </td>
                   <td>
                     <div>
-                      <p className="text-lg font-semibold text-neutral-900">{name}</p>
-                      <p className="text-neutral-700 italic overflow-hidden overflow-ellipsis ">
+                      <p className="text-neutral-900 text-lg font-semibold">{name}</p>
+                      <p className="text-neutral-700 overflow-ellipsis  overflow-hidden italic">
                         {email}
                       </p>
                       <p className="small">{institution}</p>

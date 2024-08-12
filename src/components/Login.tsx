@@ -34,7 +34,7 @@ const Login: React.FC<LoginProps> = ({ currentUser, setUserFunction }) => {
           <Button onClick={() => login()}>Log In</Button>
         )}
       </div>
-      {message && <p className="font-semibold text-primary-300">{message}</p>}
+      {message && <p className="text-primary-300 font-semibold">{message}</p>}
     </section>
   )
 }
