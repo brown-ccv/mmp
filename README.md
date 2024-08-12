@@ -8,6 +8,7 @@ Mesoamerican Migration Project
 ├── public/
      ├── admin/
          ├──config.yml
+         ├── previews/
          
 ├── src/
 │   ├── components/
@@ -19,6 +20,25 @@ Mesoamerican Migration Project
 ├── package.json
 └── tsconfig.json
 ```
+
+## StaticCMS
+
+Link to docs: https://www.staticcms.org/docs/
+
+### Collections
+
+The collections for the CMS are defined in the public/admin/config.yml file. Here is where you can add/remove/edit any
+specific fields within a collection, specify output paths for collections, and configure i18n.
+
+If you edit any fields, make sure they match in astro's content configuration, located in the src/content/config.ts
+file. We use zod to type the markdown file frontmatter.
+
+### Previews
+
+StaticCMS enables custom previews by exposing a few constructs globally to allow us to create components inline. While
+the docs show examples for tsx and jsx, only js files with the h function seem to work at this time.
+
+When editing styling for the People page or the News page, be sure to edit the corresponding preview pages to match.
 
 ## Getting Started with Development
 
