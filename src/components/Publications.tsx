@@ -58,7 +58,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
     <>
       <section className="flex flex-col gap-6">
         <h2>Featured Publications</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div className="md:grid-cols-2 grid grid-cols-1 gap-2">
           {featuredPubs.map((publication, i) => {
             return (
               <div key={i} className="">
@@ -66,7 +66,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                   <p>{publication.citation}</p>
                   {publication.pdf && (
                     <a
-                      className="no-underline bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-max"
+                      className="bg-neutral-500 text-neutral-50 px-7 w-max py-3 no-underline rounded-full"
                       href={publication.pdf}
                     >
                       View PDF
@@ -78,12 +78,12 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
           })}
         </div>
       </section>
-      <Form className="flex flex-col lg:flex-row gap-4 justify-center my-24">
+      <Form className="lg:flex-row flex flex-col justify-center gap-4 my-24">
         <div>
           <Input
             label="Search for a publication"
             name="pubQuery"
-            icon={<MagnifyingGlassIcon className="h-full w-full" />}
+            icon={<MagnifyingGlassIcon className="w-full h-full" />}
             placeholder="Durand, Jorge..."
             value={searchInput}
             onChange={handleChange}
@@ -144,10 +144,10 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                                 }
                               >
                                 {option.label === "Books" && (
-                                  <div className="flex-none hidden md:block shadow-book-shadow w-40 h-72">
+                                  <div className="md:block shadow-book-shadow h-72 flex-none hidden w-40">
                                     {pub.image ? (
                                       <img
-                                        className="flex-none object-cover h-full w-full"
+                                        className="flex-none object-cover w-full h-full"
                                         src={pub.image}
                                       />
                                     ) : (
@@ -161,7 +161,7 @@ const PublicationSection: React.FC<PubProps> = ({ publications }) => {
                                   {pub.pdf && (
                                     <div className={option.label === "Books" ? "" : "ml-2"}>
                                       <a
-                                        className="no-underline bg-neutral-500 text-neutral-50 rounded-full py-3 px-7 w-max"
+                                        className="bg-neutral-500 text-neutral-50 px-7 w-max py-3 no-underline rounded-full"
                                         href={pub.pdf}
                                       >
                                         View PDF
