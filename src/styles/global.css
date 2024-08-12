@@ -121,6 +121,16 @@
     @apply shadow-none;
   }
 
+  button[role="switch"] {
+    @apply bg-neutral-300;
+    @apply flex gap-0;
+    @apply p-0.5;
+  }
+
+  button[role="switch"][data-state="checked"] {
+    @apply bg-neutral-500;
+  }
+
   th {
     @apply font-bold;
     @apply px-4 py-3;
@@ -137,6 +147,19 @@
 @layer components {
   .readable {
     width: min(75ch, 100%);
+  }
+
+  .switchSlider {
+    @apply w-5 h-5;
+    @apply bg-neutral-50;
+    @apply rounded-full;
+    transition: transform 100ms;
+    transform: translateX(2px);
+    will-change: transform;
+  }
+
+  .switchSlider[data-state="checked"] {
+    transform: translateX(21px);
   }
 
   .readable ul {

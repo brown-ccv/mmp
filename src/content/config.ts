@@ -20,8 +20,11 @@ const files = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
+    version: z.string().optional(),
     cat: z.string(),
-    file: z.string(),
+    codebookType: z.string().optional(),
+    file: z.string().optional(),
+    archivo: z.string().optional(),
   }),
 })
 
