@@ -11,11 +11,13 @@
 <script src="https://unpkg.com/@staticcms/app@^4.0.0/dist/static-cms-app.js"></script>
 <script type="module">
   import { PeoplePreview } from "./previews/PeoplePreview.js"
+  import { NewsPreview } from "./previews/NewsPreview.js"
 
   window.CMS.init()
   window.CMS.registerPreviewStyle("../src/styles/global.css")
 
   window.CMS.registerPreviewTemplate("people", PeoplePreview)
+  window.CMS.registerPreviewTemplate("news", NewsPreview)
 
 </script>
 </body>
