@@ -11,14 +11,14 @@
 <!-- Include the script that builds the page and powers Static CMS -->
 <script src="https://unpkg.com/@staticcms/app@^4.0.0/dist/static-cms-app.js"></script>
 <script type="module">
-  import { PeoplePreview } from "./previews/PeoplePreview.js"
-  import { NewsPreview } from "./previews/NewsPreview.js"
+  // import { PeoplePreview } from "./previews/PeoplePreview.js"
+  // import { NewsPreview } from "./previews/NewsPreview.js"
 
   window.CMS.init()
   window.CMS.registerPreviewStyle("../src/styles/global.css")
 
-  window.CMS.registerPreviewTemplate("people", PeoplePreview)
-  window.CMS.registerPreviewTemplate("news", NewsPreview)
+  // window.CMS.registerPreviewTemplate("people", PeoplePreview)
+  // window.CMS.registerPreviewTemplate("news", NewsPreview)
 
 </script>
 </body>
