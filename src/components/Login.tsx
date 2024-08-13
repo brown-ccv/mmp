@@ -13,10 +13,7 @@ const Login: React.FC<LoginProps> = ({ currentUser, setUserFunction }) => {
 
   const login = async () => {
     await handleLogin().then((loggedUser) => {
-      if (!loggedUser)
-        setMessage(
-          "You must be an admin on this project in order to see this data. If you believe this to be an error, please reach out to David Lindstrom (david_lindstrom@brown.edu)."
-        )
+      if (!loggedUser) setMessage("You must be an admin on this project in order to see this data.")
       setUserFunction(loggedUser)
     })
   }
