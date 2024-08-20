@@ -2,8 +2,7 @@
 import Layout from "../../layouts/Layout.astro"
 import { GET } from "./auth"
 
-const auth = await GET()
+const auth = await GET(Astro.url.origin)
 ---
 
-<Layout title="Authenticate" description="">
-</Layout>
+<Layout title="Authenticate" description="" />

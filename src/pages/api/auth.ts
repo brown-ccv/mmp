@@ -3,9 +3,8 @@ import { create } from "../../../api/_lib/oauth2.ts"
 
 export const prerender = false
 
-export const GET = () => {
+export const GET = (host: string) => {
   const randomString = () => crypto.randomBytes(4).toString(`hex`)
-  const host = "https://mmp-site-b1c9b.web.app"
   const oauth2 = create()
 
   const url = oauth2.authorizationCode.authorizeURL({

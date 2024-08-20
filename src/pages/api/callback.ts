@@ -1,9 +1,10 @@
 import { create, renderBody } from "../../../api/_lib/oauth2.ts"
 
-export const GetCallback = async (req: Request) => {
+export const prerender = false
+
+export const GetCallback = async (req: Request, host: string) => {
   const params = new URLSearchParams(req.url)
   const code = params.get("code") || ""
-  const host = "https://mmp-site-b1c9b.web.app"
   const oauth2 = create()
 
   try {
