@@ -13,14 +13,14 @@ export const GetCallback = async (req: Request, host: string) => {
       redirect_uri: `${host}/api/callback`,
     })
     const { token } = oauth2.accessToken.create(accessToken)
-    return Response.redirect(
+    return new Response(
       renderBody("success", {
         token: token.access_token,
         provider: "github",
       }),
-      200
+      { status: 200 }
     )
   } catch (e: any) {
-    return Response.redirect(renderBody("error", e.message), 200)
+    return new Response(renderBody("error", e.message), { status: 200 })
   }
 }
