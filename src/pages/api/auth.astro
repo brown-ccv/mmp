@@ -1,0 +1,9 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import { GET } from "./auth"
+
+const auth = await GET()
+---
+
+<Layout title="Authenticate" description="">
+</Layout>
