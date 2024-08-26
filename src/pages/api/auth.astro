@@ -3,6 +3,17 @@ import Layout from "../../layouts/Layout.astro"
 import { GET } from "./auth"
 
 const auth = await GET(Astro.url.origin)
+
+const receiveMessage = (message) => {
+  window.opener.postMessage(
+    "authorization:github:${status}:${JSON.stringify(content)}",
+    message.origin
+  )
+  window.removeEventListener("message", receiveMessage, false)
+}
+window.addEventListener("message", receiveMessage, false)
+
+window.opener.postMessage("authorizing:github", "*")
 ---
 
 <Layout title="Authenticate" description="" />

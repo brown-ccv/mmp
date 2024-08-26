@@ -1,4 +1,4 @@
-import { create, renderBody } from "../../../api/_lib/oauth2.ts"
+import { create, renderBody } from "../../api/_lib/oauth2.ts"
 
 export const prerender = false
 

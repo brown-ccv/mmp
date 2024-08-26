@@ -1,5 +1,5 @@
 import crypto from "crypto"
-import { create } from "../../../api/_lib/oauth2.ts"
+import { create } from "../../api/_lib/oauth2.ts"
 
 export const prerender = false
 
