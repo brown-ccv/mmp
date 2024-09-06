@@ -10,7 +10,10 @@
 </head>
 <body>
 <!-- Include the script that builds the page and powers Static CMS -->
-<script src="https://unpkg.com/@staticcms/app@^4.0.0/dist/static-cms-app.js"></script>
+<script src="https://unpkg.com/@staticcms/app@^4.0.0/dist/static-cms-app.js">
+  const { signIn } = await import("auth-astro/client")
+  document.querySelector(".CMS_Login_button").onclick = () => signIn("github")
+</script>
 <script type="module" src="/admin/config.js"></script>
 </body>
 </html>
