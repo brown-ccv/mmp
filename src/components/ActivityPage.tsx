@@ -1,5 +1,6 @@
 import { useState } from "react"
 import type { UserInfo } from "firebase/auth"
+import { isAfter, subYears, toDate } from "date-fns"
 import Login from "../components/Login"
 import { useActivityData } from "../hooks/activity.ts"
 import ActivityTable from "./ActivityTable.tsx"
@@ -10,6 +11,9 @@ const ActivityPage = () => {
     setUser(loggedUser)
   }
   const activityData = useActivityData(user)
+  const yearlyActivityData = activityData?.filter((data) =>
+    isAfter(toDate(data.date.toDate()), subYears(new Date(), 1))
+  )
 
   return (
     <div className="space-y-8">
@@ -22,10 +26,18 @@ const ActivityPage = () => {
         )}
       </section>
       {user && activityData && (
-        <section className="space-y-2">
-          <h3>
-            <span className="px-2 font-bold">{activityData.length}</span> download(s)
-          </h3>
+        <section className="space-y-4">
+          <div className="flex justify-between">
+            <h3>
+              <span className="px-2 font-bold">{activityData.length}</span> total download(s)
+            </h3>
+            {yearlyActivityData && (
+              <h3>
+                <span className="px-2 font-bold">{yearlyActivityData.length}</span> download(s) in
+                the past year
+              </h3>
+            )}
+          </div>
           <ActivityTable data={activityData} />
         </section>
       )}
