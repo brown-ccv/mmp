@@ -3,7 +3,8 @@ local_backend: true
 backend:
   name: github
   repo: brown-ccv/mmp
-  base_url: /
+  base_url: https://us-central1-mmp-site-b1c9b.cloudfunctions.net/oauth
+  auth_endpoint: /oauth/auth
 media_folder: public/images
 media_library:
   max_file_size: 734003200
