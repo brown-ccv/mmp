@@ -9,8 +9,17 @@
   <title>Content Manager</title>
 </head>
 <body>
+
+<button id="login" class="CMS_Login_button CMS_Button_root CMS_Button_contained-primary">Login</button>
 <!-- Include the script that builds the page and powers Static CMS -->
-<script src="https://unpkg.com/@staticcms/app@^4.0.0/dist/static-cms-app.js"></script>
+<script src="https://unpkg.com/@staticcms/app@^4.0.0/dist/static-cms-app.js">
+</script>
 <script type="module" src="/admin/config.js"></script>
+<script type="module">
+  import { signIn } from "../../node_modules/auth-astro/client.ts"
+
+  document.querySelector("#login").onclick = () => signIn("github")
+
+</script>
 </body>
 </html>
