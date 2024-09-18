@@ -1,13 +1,17 @@
 backend:
   name: github
   repo: brown-ccv/mmp
-  base_url: /
+  base_url: "http://localhost:4321"
+  auth_endpoint: /api/auth
+  site_domain: localhost
 media_folder: public/images
 media_library:
-  max_file_size: 734003200
+  name: uploadcare
+  config:
+    max_file_size: 734003200
 i18n:
   structure: multiple_folders
-  locales: [ en, es, pt ]
+  locales: [en, es, pt]
   # The locale to be used for fields validation and as a baseline for the entry.
   default_locale: en
 collections:
@@ -41,7 +45,7 @@ collections:
       - name: type
         label: Staff Type
         widget: select
-        options: [ 'Leadership', 'Advisors', 'Supporting Staff' ]
+        options: ["Leadership", "Advisors", "Supporting Staff"]
       - name: name
         label: Name
         widget: string
@@ -71,7 +75,7 @@ collections:
         i18n: duplicate
         label: Email
         widget: string
-        pattern: [ '.+@.+\..+', 'Email must follow standard guidelines' ]
+        pattern: ['.+@.+\..+', "Email must follow standard guidelines"]
       - name: startDate
         i18n: duplicate
         label: Year Started Contributions
@@ -92,12 +96,12 @@ collections:
     media_folder: public/pubs
     create: true
     identifier_field: citation
-    slug: '{{fields.classification}}-{{fields.pubDate}}_{{fields.author}}'
+    slug: "{{fields.classification}}-{{fields.pubDate}}_{{fields.author}}"
     fields:
       - name: classification
         label: Classification
         widget: select
-        options: [ 'Book', 'Chapter', 'Article', 'Dissertation' ]
+        options: ["Book", "Chapter", "Article", "Dissertation"]
       - name: author
         label: Author(s)
         widget: text
@@ -138,7 +142,8 @@ collections:
       - name: cat
         label: Category
         widget: select
-        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
+        options:
+          ["Study Design", "Questionnaire", "Changes to Questionnaire", "Codebook", "Appendices"]
       - name: title
         label: Title
         widget: string
@@ -150,15 +155,22 @@ collections:
         label: Field Season
         condition:
           field: cat
-          value: 'Questionnaire'
+          value: "Questionnaire"
         required: false
       - name: codebookType
         label: Codebook Category
         condition:
           field: cat
-          value: 'Codebook'
+          value: "Codebook"
         widget: select
-        options: [ 'MMP Core', 'Community Level Supplementary', 'State Level Supplementary', 'National Level Supplementary', 'MSA Level Supplementary' ]
+        options:
+          [
+            "MMP Core",
+            "Community Level Supplementary",
+            "State Level Supplementary",
+            "National Level Supplementary",
+            "MSA Level Supplementary",
+          ]
       - name: archivo
         i18n: duplicate
         required: false

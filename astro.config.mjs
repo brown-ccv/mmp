@@ -1,11 +1,10 @@
-import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
-import react from "@astrojs/react";
-import auth from "auth-astro";
-
-import node from "@astrojs/node";
+import { defineConfig } from "astro/config"
+import mdx from "@astrojs/mdx"
+import sitemap from "@astrojs/sitemap"
+import tailwind from "@astrojs/tailwind"
+import react from "@astrojs/react"
+import node from "@astrojs/node"
+import auth from "auth-astro"
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +12,6 @@ export default defineConfig({
   output: "hybrid",
   integrations: [mdx(), sitemap(), tailwind(), react(), auth()],
   adapter: node({
-    mode: "standalone"
-  })
-});
+    mode: "standalone",
+  }),
+})
