@@ -1,177 +1,16 @@
-local_backend: true
-
 backend:
   name: github
   repo: brown-ccv/mmp
-  base_url: /
+  base_url: "http://localhost:4321"
+  auth_endpoint: /oauth
+  site_domain: localhost:4321
+  auth_scope: repo
 media_folder: public/images
 media_library:
-  max_file_size: 734003200
-i18n:
-  structure: multiple_folders
-  locales: [ en, es, pt ]
-  # The locale to be used for fields validation and as a baseline for the entry.
-  default_locale: en
+  name: uploadcare
+  config:
+    max_file_size: 734003200
 collections:
-  - name: pages
-    label: Pages
-    folder: src/content/pages
-    create: false
-    fields:
-      - name: title
-        label: Page
-        widget: text
-      - name: body
-        label: Page Content
-        widget: markdown
-  - name: map
-    label: Map
-    folder: src/content/map
-    create: false
-    fields:
-      - name: title
-        label: Map Version
-        widget: text
-      - name: image
-        label: MMP Community Map
-        widget: image
-  - name: people
-    label: People
-    folder: src/content/people
-    create: true
-    fields:
-      - name: type
-        label: Staff Type
-        widget: select
-        options: [ 'Leadership', 'Advisors', 'Supporting Staff' ]
-      - name: name
-        label: Name
-        widget: string
-      - name: title
-        label: Title
-        widget: string
-      - name: avatar
-        required: false
-        i18n: duplicate
-        label: Photo
-        widget: image
-      - name: org
-        label: Company/University
-        widget: string
-      - name: address
-        required: false
-        i18n: duplicate
-        label: Mailing Address
-        widget: text
-      - name: phone
-        required: false
-        i18n: duplicate
-        label: Phone Number
-        widget: string
-      - name: email
-        required: false
-        i18n: duplicate
-        label: Email
-        widget: string
-        pattern: [ '.+@.+\..+', 'Email must follow standard guidelines' ]
-      - name: startDate
-        i18n: duplicate
-        label: Year Started Contributions
-        widget: datetime
-        date_format: yyyy
-        time_format: false
-        format: yyyy
-      - name: endDate
-        i18n: duplicate
-        label: Year Ended Contributions
-        widget: datetime
-        date_format: yyyy
-        time_format: false
-        format: yyyy
-  - name: pubs
-    label: Publications
-    folder: src/content/publications
-    media_folder: public/pubs
-    create: true
-    identifier_field: citation
-    slug: '{{fields.classification}}-{{fields.pubDate}}_{{fields.author}}'
-    fields:
-      - name: classification
-        label: Classification
-        widget: select
-        options: [ 'Book', 'Chapter', 'Article', 'Dissertation' ]
-      - name: author
-        label: Author(s)
-        widget: text
-      - name: pubDate
-        i18n: duplicate
-        label: Publish Date
-        widget: datetime
-        date_format: MM.yyyy
-        time_format: false
-      - name: citation
-        i18n: duplicate
-        label: Citation
-        widget: text
-      - name: feature
-        label: Featured Publication
-        widget: boolean
-      - name: image
-        required: false
-        i18n: duplicate
-        label: Image
-        widget: image
-      - name: url
-        required: false
-        i18n: duplicate
-        label: Link to Publication
-        widget: string
-      - name: pdf
-        required: false
-        i18n: duplicate
-        label: PDF
-        widget: file
-  - name: data
-    label: Documentation Data
-    create: true
-    folder: src/content/data
-    media_folder: files
-    fields:
-      - name: cat
-        label: Category
-        widget: select
-        options: [ 'Study Design', 'Questionnaire', 'Changes to Questionnaire', 'Codebook', 'Appendices' ]
-      - name: title
-        label: Title
-        widget: string
-      - name: description
-        label: Description
-        widget: text
-      - name: version
-        i18n: duplicate
-        label: Field Season
-        condition:
-          field: cat
-          value: 'Questionnaire'
-        required: false
-      - name: codebookType
-        label: Codebook Category
-        condition:
-          field: cat
-          value: 'Codebook'
-        widget: select
-        options: [ 'MMP Core', 'Community Level Supplementary', 'State Level Supplementary', 'National Level Supplementary', 'MSA Level Supplementary' ]
-      - name: archivo
-        i18n: duplicate
-        required: false
-        label: Spanish File
-        widget: file
-      - name: file
-        i18n: duplicate
-        required: false
-        label: English File
-        widget: file
-
   - name: news
     label: News
     identifier_field: pubDate
@@ -179,7 +18,6 @@ collections:
     folder: src/content/news
     fields:
       - name: pubDate
-        i18n: duplicate
         label: Date
         widget: datetime
         date_format: MM.dd.yyyy
