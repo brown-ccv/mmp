@@ -1,12 +1,12 @@
-local_backend: true
-
 backend:
   name: github
   repo: brown-ccv/mmp
-  base_url: /
+  site_domain: mmp.research.brown.edu
+  base_url: https://mmp.research.brown.edu/
+  auth_endpoint: oauth
 media_folder: public/images
-media_library:
-  max_file_size: 734003200
+public_folder: public/images
+
 i18n:
   structure: multiple_folders
   locales: [ en, es, pt ]
