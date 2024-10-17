@@ -6,8 +6,7 @@ backend:
   auth_endpoint: oauth
 media_folder: public/images
 public_folder: public/images
-media_library:
-  max_file_size: 734003200
+
 i18n:
   structure: multiple_folders
   locales: [ en, es, pt ]
