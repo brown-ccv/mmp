@@ -9,16 +9,15 @@ import decapCmsOauth from "astro-decap-cms-oauth"
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
-  output: "hybrid",
+  output: "server",
   integrations: [
-    decapCmsOauth({ decapCMSVersion: "3.3.3" }),
+    decapCmsOauth({ decapCMSVersion: "3.3.3", adminDisabled: false }),
     mdx(),
     sitemap(),
     tailwind(),
     react(),
   ],
   adapter: node({
-    mode: "standalone",
+    mode: "@astrojs/node",
   }),
 })
