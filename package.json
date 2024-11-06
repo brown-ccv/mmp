@@ -30,6 +30,7 @@
     "astro": "^4.15.7",
     "astro-decap-cms-oauth": "^0.4.1",
     "date-fns": "^3.6.0",
+    "decap-cms-app": "^3.3.3",
     "firebase": "^9.23.0",
     "i": "^0.3.7",
     "react": "^18.2.0",
